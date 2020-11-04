@@ -1,134 +1,140 @@
-<div class="container-fluid bg-info text-white mx-auto my-2 p-3 rounded shadow-lg">
+<h1 class="text-center">PROTOTIPO REGISTRO</h1>
+<div class="container-fluid bg-light mx-auto my-2 p-3 rounded shadow-lg">
   <div class="row">
-    <div class="col-sm">
+    <div class="col-sm rounded shadow-lg ml-2">
 
       <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
         <div class="row">
-          <div class="col-sm">
+          <div class="col gridFormulario">
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Usuario</mat-label>
-                <input matInput placeholder="Ingrese Usuario" type="text" formControlName="usuario"
-                  [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }" />
-                <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
-                  <div *ngIf="f.usuario.errors.required">El usuario es requerido</div>
-                </div>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Usuario</mat-label>
+              <input matInput placeholder="Ingrese Usuario" type="text" formControlName="usuario"
+                [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }" />
+              <mat-error *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
+                <div *ngIf="f.usuario.errors.required">El usuario es requerido</div>
+              </mat-error>
+            </mat-form-field>
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Contraseña</mat-label>
-                <input matInput placeholder="Ingrese Contraseña" type="password" formControlName="contrasena"
-                  [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }" />
-                <div *ngIf="submitted && f.contrasena.errors" class="invalid-feedback">
-                  <div *ngIf="f.contrasena.errors.required">La contraseña es requerido</div>
-                </div>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Contraseña</mat-label>
+              <input matInput placeholder="Ingrese Contraseña" type="password" formControlName="contrasena"
+                [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }" />
+              <mat-error *ngIf="submitted && f.contrasena.errors" class="invalid-feedback">
+                <div *ngIf="f.contrasena.errors.required">La contraseña es requerido</div>
+              </mat-error>
+            </mat-form-field>
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Correo Electronico</mat-label>
-                <input matInput placeholder="Ingrese Usuario" type="email" formControlName="correoE"
-                  [ngClass]="{ 'is-invalid': submitted && f.correoE.errors }" />
-                <div *ngIf="submitted && f.correoE.errors" class="invalid-feedback">
-                  <div *ngIf="f.correoE.errors.required">El CorreoE es requerido</div>
-                </div>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Correo Electronico</mat-label>
+              <input matInput placeholder="Ingrese Usuario" type="email" formControlName="correoE"
+                [ngClass]="{ 'is-invalid': submitted && f.correoE.errors }" />
+              <mat-error *ngIf="submitted && f.correoE.errors" class="invalid-feedback">
+                <div *ngIf="f.correoE.errors.required">El Correo Electronico es requerido</div>
+              </mat-error>
+            </mat-form-field>
 
           </div>
+        </div>
 
-          <div class="col-sm">
+        <div class="row">
+          <div class="col gridFormulario">
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Nombre</mat-label>
-                <input matInput placeholder="Ingrese Usuario" type="text" formControlName="nombre"
-                  [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
-                <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
-                  <div *ngIf="f.nombre.errors.required">El nombre es requerido</div>
-                </div>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Nombre</mat-label>
+              <input matInput placeholder="Ingrese Usuario" type="text" formControlName="nombre"
+                [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+              <mat-error *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                <div *ngIf="f.nombre.errors.required">El nombre es requerido</div>
+              </mat-error>
+            </mat-form-field>
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Apellido</mat-label>
-                <input matInput placeholder="Ingrese Apellido" type="text" formControlName="apellido"
-                  [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
-                <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
-                  <div *ngIf="f.apellido.errors.required">El apellido es requerido</div>
-                </div>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Apellido</mat-label>
+              <input matInput placeholder="Ingrese Apellido" type="text" formControlName="apellido"
+                [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+              <mat-error *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+                <div *ngIf="f.apellido.errors.required">El apellido es requerido</div>
+              </mat-error>
+            </mat-form-field>
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Fecha de Nacimiento</mat-label>
-                <input matInput [matDatepicker]="picker" formControlName="fechaNac"
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Fecha de Nacimiento</mat-label>
+              <input matInput [matDatepicker]="picker" formControlName="fechaNac"
                 [ngClass]="{ 'is-invalid': submitted && f.fechaNac.errors }" />
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-                <div *ngIf="submitted && f.fechaNac.errors" class="invalid-feedback">
-                  <div *ngIf="f.fechaNac.errors.required">La Fecha de nacimiento es requerida</div>
-                </div>
-              </mat-form-field>
-            </div>
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+              <mat-error *ngIf="submitted && f.fechaNac.errors" class="invalid-feedback">
+                <div *ngIf="f.fechaNac.errors.required">La Fecha de nacimiento es requerida</div>
+              </mat-error>
+            </mat-form-field>
 
           </div>
-          <div class="col-sm">
+          <div class="col gridFormulario">
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Genero</mat-label>
-                <mat-select formControlName="genero" [ngClass]="{ 'is-invalid': submitted && f.genero.errors }">
-                  <mat-option value="M">Masculino</mat-option>
-                  <mat-option value="F">Femenino</mat-option>
-                </mat-select>
-                <div *ngIf="submitted && f.genero.errors" class="invalid-feedback">
-                  <div *ngIf="f.genero.errors.required">El genero es requerido</div>
-                </div>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Genero</mat-label>
+              <mat-select formControlName="genero" [ngClass]="{ 'is-invalid': submitted && f.genero.errors }">
+                <mat-option value="M">Masculino</mat-option>
+                <mat-option value="F">Femenino</mat-option>
+              </mat-select>
+              <mat-error *ngIf="submitted && f.genero.errors" class="invalid-feedback">
+                <div *ngIf="f.genero.errors.required">El genero es requerido</div>
+              </mat-error>
+            </mat-form-field>
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Region</mat-label>
-                <input matInput placeholder="Ingrese Region" type="text" formControlName="region"
-                  [ngClass]="{ 'is-invalid': submitted && f.region.errors }" />
-                <div *ngIf="submitted && f.region.errors" class="invalid-feedback">
-                  <div *ngIf="f.region.errors.required">La region es requerida</div>
-                </div>
-              </mat-form-field>
-            </div>
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Region</mat-label>
+              <input matInput placeholder="Ingrese Region" type="text" formControlName="region"
+                [ngClass]="{ 'is-invalid': submitted && f.region.errors }" />
+              <mat-error *ngIf="submitted && f.region.errors" class="invalid-feedback">
+                <div *ngIf="f.region.errors.required">La region es requerida</div>
+              </mat-error>
+            </mat-form-field>
 
-            <div class="form-group">
-              <mat-form-field appearance="outline">
-                <mat-label>Comuna</mat-label>
-                <input matInput placeholder="Ingrese Comuna" type="text" formControlName="comuna"
-                  [ngClass]="{ 'is-invalid': submitted && f.comuna.errors }" />
-                <div *ngIf="submitted && f.comuna.errors" class="invalid-feedback">
-                  <div *ngIf="f.comuna.errors.required">La comuna es requerida</div>
-                </div>
-              </mat-form-field>
-            </div>
-              
-          </div>          
+            <mat-form-field appearance="outline" class="input">
+              <mat-label>Comuna</mat-label>
+              <input matInput placeholder="Ingrese Comuna" type="text" formControlName="comuna"
+                [ngClass]="{ 'is-invalid': submitted && f.comuna.errors }" />
+              <mat-error *ngIf="submitted && f.comuna.errors" class="invalid-feedback">
+                <div *ngIf="f.comuna.errors.required">La comuna es requerida</div>
+              </mat-error>
+            </mat-form-field>
+
+          </div>
         </div>
 
-        <div class="form-group">
-          <button class="btn btn-primary">Registrar Usuario</button>
+        <div class="form-group mt-2 text-center">
+          <button mat-raised-button color="primary" class="w-100">Primary</button>  
         </div>
-        <p>hola</p>
       </form>
 
     </div>
     <div class="col-sm">
-      One of three columns
+
+      <ngb-carousel *ngIf="images">
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[0]" alt="Random first slide">
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[1]" alt="Random second slide">
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[2]"  alt="Random third slide">
+          </div>
+        </ng-template>
+        <ng-template ngbSlide>
+          <div class="picsum-img-wrapper">
+            <img [src]="images[3]" alt="Random fourth slide">
+          </div>
+        </ng-template>
+      </ngb-carousel>
     </div>
   </div>
 </div>

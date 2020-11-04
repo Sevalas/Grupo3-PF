@@ -1,11 +1,21 @@
 .container-fluid {
     width: 95%;
 }
-mat-grid-tile {
-    background: lightblue;
-  }
+.input {
+    width: 100%;
+    height: 55px;
+    margin-bottom: 20px;
+}
+.gridFormulario {
+    margin-right: 0px;
+    padding: 1%;
+}
+/*Padding para el aviso de error Mat-Field*/
+::ng-deep .mat-form-field-wrapper {
+    padding-bottom: 10px;
+}
 
-.formulario > ::ng-deep figure {
-    justify-content: flex-start !important;
-    align-self: 20px;
+/*Aviso de error*/
+::ng-deep .mat-error {
+    font-size: 12px;
 }
