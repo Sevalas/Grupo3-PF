@@ -2,10 +2,13 @@
     width: 95%;
 }
 mat-grid-tile {
-    background: lightblue;
   }
 
-.formulario > ::ng-deep figure {
-    justify-content: flex-start !important;
-    align-self: 20px;
+.formulario {
+    height: 95%;
+    width: 95%;
+}
+
+mat-form-field {
+  margin: -1%;
 }
