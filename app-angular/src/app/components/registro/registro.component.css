@@ -19,3 +19,8 @@
 ::ng-deep .mat-error {
     font-size: 12px;
 }
+
+.responsive {
+    max-width: 100%;
+  height: auto;
+  }
