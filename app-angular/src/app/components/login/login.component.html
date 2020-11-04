@@ -1,15 +1,15 @@
-<div class="container-fluid bg-info text-white mx-auto rounded shadow-lg">
+<div class="container-fluid">
   <div class="row">
-    <div class="col-lg-6">
-      <div class="card" style="width: 18rem;">
-        <div class="card-header bg-info text-center">
-          Iniciar Sesion
+    <div class="col-lg-6 bg-info">
+      <div class="card shadow-lg" style="width: 18rem;">
+        <div class="card-header text-center">
+          <h1 id="tituloLogin">Iniciar Sesion</h1>
         </div>
-        <div class="card-body bg-info">
+        <div class="card-body">
           <div class="col-12">
             <mat-form-field appearance="outline">
               <mat-label>Usuario</mat-label>
-              <input type="text" matInput placeholder="Usuario">
+              <input class="btn btn-block" type="text" matInput placeholder="Usuario">
             </mat-form-field>
           </div>
           <div class="col-12">
@@ -20,13 +20,15 @@
           </div>
           <a href="" class="btn btn-success btn-block">Ingresar</a>
         </div>
-        <div class="card-footer text-center bg-info">
-          <p>No tienes cuenta? <a href="/registro"> Registrate Aqui</a></p>
-          <p>Olvide/Recuperar Contraseña</p>
+        <div class="card-footer text-center">
+          <p id="letraLogin">No tienes cuenta? <a id="letraLogin" href="/registro"> Registrate Aqui</a></p>
+          <p id="letraLogin">Olvide/Recuperar Contraseña</p>
         </div>
       </div>
     </div>
-    <div class="col-lg-6">
+    <div  id="slider" class="col-lg-6 bg-info">
+      <h1 id="tituloSlide">Ellos Esperan Por Ti!!</h1>
+      <br>
       <div>
         <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-ride="carousel">
           <ol class="carousel-indicators">
