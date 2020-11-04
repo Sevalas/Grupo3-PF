@@ -31,7 +31,6 @@ export class RegistroComponent implements OnInit {
 
   registerForm: FormGroup;
   submitted = false;
-  images = [0, 1, 2, 3].map((n) => `https://placeimg.com/750/540/animals`)
 
   get f() { return this.registerForm.controls; }
 
