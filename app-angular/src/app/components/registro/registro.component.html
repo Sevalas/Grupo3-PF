@@ -1,18 +1,135 @@
 <div class="container-fluid bg-info text-white mx-auto my-2 p-3 rounded shadow-lg">
 
-  <mat-grid-list cols="2" rowHeight="2:1">
-    <mat-grid-tile class="formulario">
-      ABCD
-    </mat-grid-tile>
+  <div class="row">
+    <div class="col-sm">
 
-    <mat-grid-tile>2</mat-grid-tile>
-  </mat-grid-list>
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
+        <div class="row">
+          <div class="col-sm">
 
-  <mat-form-field appearance="outline">
-    <mat-label>Outline form field</mat-label>
-    <input matInput placeholder="Usuario">
-    <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-  </mat-form-field>
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Usuario</mat-label>
+                <input matInput placeholder="Ingrese Usuario" type="text" formControlName="usuario"
+                  [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }" />
+                <div *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
+                  <div *ngIf="f.usuario.errors.required">El usuario es requerido</div>
+                </div>
+              </mat-form-field>
+            </div>
 
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Contraseña</mat-label>
+                <input matInput placeholder="Ingrese Contraseña" type="password" formControlName="contrasena"
+                  [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }" />
+                <div *ngIf="submitted && f.contrasena.errors" class="invalid-feedback">
+                  <div *ngIf="f.contrasena.errors.required">La contraseña es requerido</div>
+                </div>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Correo Electronico</mat-label>
+                <input matInput placeholder="Ingrese Usuario" type="email" formControlName="correoE"
+                  [ngClass]="{ 'is-invalid': submitted && f.correoE.errors }" />
+                <div *ngIf="submitted && f.correoE.errors" class="invalid-feedback">
+                  <div *ngIf="f.correoE.errors.required">El CorreoE es requerido</div>
+                </div>
+              </mat-form-field>
+            </div>
+
+          </div>
+
+          <div class="col-sm">
+
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput placeholder="Ingrese Usuario" type="text" formControlName="nombre"
+                  [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }" />
+                <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+                  <div *ngIf="f.nombre.errors.required">El nombre es requerido</div>
+                </div>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Apellido</mat-label>
+                <input matInput placeholder="Ingrese Apellido" type="text" formControlName="apellido"
+                  [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }" />
+                <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+                  <div *ngIf="f.apellido.errors.required">El apellido es requerido</div>
+                </div>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Fecha de Nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="fechaNac"
+                [ngClass]="{ 'is-invalid': submitted && f.fechaNac.errors }" />
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+                <div *ngIf="submitted && f.fechaNac.errors" class="invalid-feedback">
+                  <div *ngIf="f.fechaNac.errors.required">La Fecha de nacimiento es requerida</div>
+                </div>
+              </mat-form-field>
+            </div>
+
+          </div>
+          <div class="col-sm">
+
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Genero</mat-label>
+                <mat-select formControlName="genero" [ngClass]="{ 'is-invalid': submitted && f.genero.errors }">
+                  <mat-option value="M">Masculino</mat-option>
+                  <mat-option value="F">Femenino</mat-option>
+                </mat-select>
+                <div *ngIf="submitted && f.genero.errors" class="invalid-feedback">
+                  <div *ngIf="f.genero.errors.required">El genero es requerido</div>
+                </div>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Region</mat-label>
+                <input matInput placeholder="Ingrese Region" type="text" formControlName="region"
+                  [ngClass]="{ 'is-invalid': submitted && f.region.errors }" />
+                <div *ngIf="submitted && f.region.errors" class="invalid-feedback">
+                  <div *ngIf="f.region.errors.required">La region es requerida</div>
+                </div>
+              </mat-form-field>
+            </div>
+
+            <div class="form-group">
+              <mat-form-field appearance="outline">
+                <mat-label>Comuna</mat-label>
+                <input matInput placeholder="Ingrese Comuna" type="text" formControlName="comuna"
+                  [ngClass]="{ 'is-invalid': submitted && f.comuna.errors }" />
+                <div *ngIf="submitted && f.comuna.errors" class="invalid-feedback">
+                  <div *ngIf="f.comuna.errors.required">La comuna es requerida</div>
+                </div>
+              </mat-form-field>
+            </div>
+              
+          </div>          
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary">Registrar Usuario</button>
+        </div>
+        <p>hola</p>
+      </form>
+
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+  </div>
 </div>
