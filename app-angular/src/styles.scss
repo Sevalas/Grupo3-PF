@@ -3,3 +3,11 @@
 @include mat-core();
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body {
+  background-image: url("https://previews.123rf.com/images/belchonock/belchonock1407/belchonock140702950/30086370-collage-of-different-cute-pets.jpg"); /* The image used */
+  background-color: #cccccc; /* Used if the image is unavailable */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
+}
+
