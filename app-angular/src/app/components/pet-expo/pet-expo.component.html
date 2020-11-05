@@ -1,1 +1,42 @@
+<h1 class="text-center bg-light text-dark w-25 m-auto">PROTOTIPO TABLERO</h1>
+<div class="container-fluid bg-light mx-auto my- p-3 rounded shadow-lg">
 
+    <div class="table-responsive">
+        <table class="table">
+            <tbody>
+                <tr *ngFor="let i of Mascota">
+                    <td>
+                        <div class="card mb-3" style="max-width: 100%;">
+                            <div class="row no-gutters">
+                                <div class="col-md-2">
+                                    <img src="{{i.foto}}" class="card-img" alt="..." width="250px" height="250px">
+                                </div>
+                                <div class="col-md-2">
+                                    <div class="card-body px-2 text-center">
+                                        <h2 class="card-title mb-0">{{i.nombre}}</h2>
+                                        <h3 class="card-title mt-0 text-muted">{{i.especie}} - {{i.raza}}</h3>
+                                        <p class="card-text my-0">Dueño : {{i.dueno}}</p>
+                                        <p class="card-text my-0">Edad : {{i.edad}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="card-body">
+                                        <h2 class="card-title my-0">Informacion Adicional:</h2>
+                                        <p class="card-text my-0">{{i.informacionAdicional}}</p>
+                                        <h2 class="card-title my-0">Requisitos:</h2>
+                                        <p class="card-text my-0">{{i.requisitos}}</p>
+                                        <small class="text-muted">{{i.fecha}}</small>
+                                        <div class="text-right">
+                                            <button mat-raised-button color="warn">POSTULAR</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
