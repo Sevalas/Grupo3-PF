@@ -20,7 +20,11 @@
     font-size: 12px;
 }
 
-.responsive {
-    max-width: 100%;
-  height: auto;
-  }
+img {
+    max-width:100%;
+    max-height:100%;
+    display:block;
+}
+.picsum-img-wrapper{
+    object-fit: fill;
+}
