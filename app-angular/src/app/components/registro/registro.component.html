@@ -85,18 +85,22 @@
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="input">
-              <mat-label>Region</mat-label>
-              <input matInput placeholder="Ingrese Region" type="text" formControlName="region"
-                [ngClass]="{ 'is-invalid': submitted && f.region.errors }" />
+              <mat-label>Región</mat-label>
+              <mat-select name="region" formControlName="region"
+                [ngClass]="{ 'is-invalid': submitted && f.region.errors }" [(ngModel)]="regionSeleccionada">
+                <mat-option *ngFor="let item of regionesYcomunas" [value]="item.NombreRegion" (click)='filtroColumna()'>{{item.NombreRegion}}</mat-option>
+              </mat-select>
               <mat-error *ngIf="submitted && f.region.errors" class="invalid-feedback">
-                <div *ngIf="f.region.errors.required">La region es requerida</div>
+                <div *ngIf="f.region.errors.required">La región es requerida</div>
               </mat-error>
             </mat-form-field>
 
             <mat-form-field appearance="outline" class="input">
               <mat-label>Comuna</mat-label>
-              <input matInput placeholder="Ingrese Comuna" type="text" formControlName="comuna"
-                [ngClass]="{ 'is-invalid': submitted && f.comuna.errors }" />
+              <mat-select name="comuna" formControlName="comuna"
+                [ngClass]="{ 'is-invalid': submitted && f.comuna.errors }" [(ngModel)]="comunaSeleccionada">
+                <mat-option *ngFor="let item of listaDeColumnas" [value]="item">{{item}}</mat-option>
+              </mat-select>
               <mat-error *ngIf="submitted && f.comuna.errors" class="invalid-feedback">
                 <div *ngIf="f.comuna.errors.required">La comuna es requerida</div>
               </mat-error>
@@ -109,7 +113,10 @@
           <button mat-raised-button color="primary" class="w-100">Registrarse</button>
         </div>
       </form>
-
+      <p>es: {{regionSeleccionada}}</p>
+      <p>es: {{cambio}}</p>
+      <p>es: {{listaDeColumnas}}</p>
+      
     </div>
     <div class="col my-auto mt-50">
       <ngb-carousel>
