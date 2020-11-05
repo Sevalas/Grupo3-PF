@@ -28,6 +28,7 @@
     padding-left: 0px;
     padding-right: 0px;
 }
+
 #slider{
     padding-right: 50px;
     padding-left: 40px;
@@ -35,4 +36,5 @@
 #banner{
     height: 112px;
     width: 100%;
+    border-radius: 10px;
 }
