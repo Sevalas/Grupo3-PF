@@ -19,8 +19,11 @@
 
             <mat-form-field appearance="outline" class="input">
               <mat-label>Contraseña</mat-label>
-              <input matInput placeholder="Ingrese Contraseña" type="password" formControlName="contrasena"
+              <input matInput placeholder="Ingrese Contraseña" [type]="hide ? 'password' : 'text'" formControlName="contrasena"
                 [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }" />
+                <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                  <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </button>
               <mat-error *ngIf="submitted && f.contrasena.errors" class="invalid-feedback">
                 <div *ngIf="f.contrasena.errors.required">La contraseña es requerido</div>
               </mat-error>
@@ -88,7 +91,7 @@
               <mat-label>Región</mat-label>
               <mat-select name="region" formControlName="region"
                 [ngClass]="{ 'is-invalid': submitted && f.region.errors }" [(ngModel)]="regionSeleccionada">
-                <mat-option *ngFor="let item of regionesYcomunas" [value]="item.NombreRegion" (click)='filtroColumna()'>{{item.NombreRegion}}</mat-option>
+                <mat-option *ngFor="let item of regionesYcomunas" [value]="item.NombreRegion" (click)='filtroComuna()'>{{item.NombreRegion}}</mat-option>
               </mat-select>
               <mat-error *ngIf="submitted && f.region.errors" class="invalid-feedback">
                 <div *ngIf="f.region.errors.required">La región es requerida</div>

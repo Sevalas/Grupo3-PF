@@ -1,3 +1,4 @@
+import { ElementRef } from '@angular/core';
 import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +12,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 export class RegistroComponent implements OnInit {
 
 	constructor(private formBuilder: FormBuilder, config: NgbCarouselConfig, private cdRef: ChangeDetectorRef) {
+
 		config.interval = 2000;
 		config.wrap = true;
 		config.keyboard = false;
@@ -32,20 +34,30 @@ export class RegistroComponent implements OnInit {
 		});
 	}
 
+	hide = true;
+	showPassword = 'password'
 	registerForm: FormGroup;
 	submitted = false;
 	regionSeleccionada = null;
-	listaDeColumnas: String[];
+	cambioDeRegion = null;
 	comunaSeleccionada = null;
-	cambio = null;
+	listaDeColumnas: String[];
 
-	filtroColumna() {
-		if (this.cambio != this.regionSeleccionada) {
+	mostrarPass() {
+		if (this.showPassword === 'password') {
+			this.showPassword = 'text'
+		} else {
+			this.showPassword = 'password'
+		}
+	}
+
+	filtroComuna() {
+		if (this.cambioDeRegion != this.regionSeleccionada) {
 			this.listaDeColumnas = this.regionesYcomunas.find(x => x.NombreRegion == this.regionSeleccionada).comunas
 			this.comunaSeleccionada = null;
 		}
 		else {
-			this.cambio = this.regionSeleccionada
+			this.cambioDeRegion = this.regionSeleccionada
 		}
 	}
 
