@@ -7,14 +7,14 @@
 }
 #tituloLogin{
     margin-bottom: 0px;
-    font-family: 'Kaushan Script', cursive;
+    font-family: 'Grandstander', cursive;
 }
 #letraLogin{
-    font-family: 'Kaushan Script', cursive;
-
+    font-family: 'Grandstander', cursive;
 }
 #tituloSlide{
     margin-bottom: 0px;
+    font-family: 'Grandstander', cursive;
 }
 .card{
     margin: auto;
@@ -31,4 +31,8 @@
 #slider{
     padding-right: 50px;
     padding-left: 40px;
+}
+#banner{
+    height: 112px;
+    width: 100%;
 }
