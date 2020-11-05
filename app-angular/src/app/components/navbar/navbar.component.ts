@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -7,9 +8,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) {
+    router.events.subscribe(val => {
+      if (window.location.href === 'http://localhost:4200/registro' || window.location.href === 'http://localhost:4200/login' || window.location.href === 'http://localhost:4200/') {
+        this.nav2 = false;  
+        this.nav1 = true;
+      }
+      if (window.location.href === 'http://localhost:4200/tablero') {
+        this.nav1 = false; 
+        this.nav2 = true;
+      }
+    })
 
-  ngOnInit(): void {
   }
+
+  ngOnInit(): void { }
+
+  nav1: boolean = false
+  nav2: boolean = false
 
 }

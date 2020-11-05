@@ -1,8 +1,17 @@
 <mat-toolbar color="primary">
-    <span class="mr-2">My App</span>
+    <span class="mr-2">PetAdopt</span>
+    <div *ngIf="nav1">
     <button mat-raised-button color="warn" class="mx-1" routerLink="/">INICIO</button>
     <button mat-raised-button color="accent" class="mx-1" routerLink="/registro">REGISTRO</button>
     <button mat-raised-button class="mx-1" routerLink="/login">LOGIN</button>
+    </div>
+    <div *ngIf="nav2">
+    <button mat-raised-button color="warn" class="mx-1" routerLink="/">INICIO</button>
+    <button mat-raised-button color="accent" class="mx-1" routerLink="/tablero">REGISTRAR MASCOTA</button>
+    <button mat-raised-button class="mx-1" routerLink="/tablero">ADOPTAR</button>
+    <button mat-raised-button color="primary" class="mx-1" routerLink="/tablero">MENSAJES</button>
+    </div>
+
     <span class="example-spacer"></span>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
         <mat-icon>favorite</mat-icon>
