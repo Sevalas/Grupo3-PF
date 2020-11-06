@@ -1,6 +1,7 @@
 import { ElementRef } from '@angular/core';
 import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -11,7 +12,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegistroComponent implements OnInit {
 
-	constructor(private formBuilder: FormBuilder, config: NgbCarouselConfig, private cdRef: ChangeDetectorRef) {
+	constructor(private formBuilder: FormBuilder, config: NgbCarouselConfig, private cdRef: ChangeDetectorRef, private router: Router) {
 
 		config.interval = 2000;
 		config.wrap = true;
@@ -20,7 +21,6 @@ export class RegistroComponent implements OnInit {
 	}
 
 	ngOnInit(): void {
-		console.log()
 		this.registerForm = this.formBuilder.group({
 			usuario: ['', Validators.required],
 			contrasena: ['', Validators.required],
@@ -68,6 +68,7 @@ export class RegistroComponent implements OnInit {
 		if (this.registerForm.invalid) {
 			return;
 		}
+		this.router.navigate(['/tablero']);
 	}
 
 	regionesYcomunas =
