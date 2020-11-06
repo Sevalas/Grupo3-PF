@@ -10,6 +10,7 @@ export class PetExpoComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void { }
+  seleccion = 'readonly';
 
   Mascota: PeriodicElement[] = [
     {nombre: 'Snoopy', dueno: 'Sevalas', foto: 'https://images-na.ssl-images-amazon.com/images/I/71-EeSx9gGL._AC_SL1500_.jpg', edad: '3 años', especie: 'Perro',raza: 'Beagle',informacionAdicional: 'Snoopy no duerme dentro de la casita porque sufre claustrofobia.', requisitos: 'Ser Carlitos',fecha:'05/11/2020'},

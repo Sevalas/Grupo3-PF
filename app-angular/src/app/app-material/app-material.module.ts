@@ -15,7 +15,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 
 @NgModule({
@@ -39,6 +39,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatCardModule,
     MatRadioModule,
     MatDividerModule,
+    MatCheckboxModule,
   ]
 })
 export class AppMaterialModule { }
