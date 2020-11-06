@@ -54,25 +54,37 @@
                 <div class="container-fluid bg-light mx-auto my- p-3 rounded shadow-lg">
                     <div class="container-fluid">
                         <div class="row">
+                            <div class="card-body">
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>>¿Por que tu deberias ser quien lo adopte</mat-label>
+                                    <input type="text" matInput placeholder="Respuesta">
+                                </mat-form-field>
 
-                        </div>
-                        <div class="card-body">
-                            <mat-form-field class="w-100" appearance="outline">
-                                <mat-label>>¿Por que tu deberias ser quien lo adopte</mat-label>
-                                <input type="text" matInput placeholder="Respuesta">
-                            </mat-form-field>
-                            <mat-form-field class="w-100" appearance="outline">
-                                <mat-label>>¿Como es el lugar donde vivira?</mat-label>
-                                <input type="text" matInput placeholder="Respuesta">
-                            </mat-form-field>
-                            <mat-form-field class="w-100" appearance="outline">
-                                <mat-label>>Describete</mat-label>
-                                <input type="text" matInput placeholder="Respuesta">
-                            </mat-form-field>
-                            <mat-form-field class="w-100" appearance="outline">
-                                <mat-label>>¿Tienes más mascotas?</mat-label>
-                                <input type="text" matInput placeholder="Respuesta">
-                            </mat-form-field>
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>>¿Como es el lugar donde vivira?</mat-label>
+                                    <input type="text" matInput placeholder="Respuesta">
+                                </mat-form-field>
+
+                                <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>>Describete</mat-label>
+                                    <input type="text" matInput placeholder="Respuesta">
+                                </mat-form-field>
+
+
+                                <label class="w-100" appearance="outline">>¿Tienes más mascotas? </label>
+                                <mat-radio-group aria-label="Select an option" [(ngModel)]="seleccion">
+                                    <mat-radio-button class="w-25" value="true">Si</mat-radio-button>
+                                    <mat-radio-button class="w-25" value="false">No</mat-radio-button>
+                                </mat-radio-group>
+
+
+                                <div *ngIf="seleccion">
+                                  <mat-form-field class="w-100" appearance="outline">
+                                    <mat-label>>¿Cuantas mascotas?</mat-label>
+                                    <input type="number" matInput placeholder="Respuesta" >
+                                    </mat-form-field>  
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
