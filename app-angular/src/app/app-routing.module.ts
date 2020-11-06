@@ -5,6 +5,7 @@ import { PanelDeUsuarioComponent } from './components/panel-de-usuario/panel-de-
 import { PetExpoComponent } from './components/pet-expo/pet-expo.component';
 import { PublicarPetComponent } from './components/publicar-pet/publicar-pet.component';
 import { RegistroComponent } from './components/registro/registro.component';
+import { PetPostulaComponent } from './components/pet-postula/pet-postula.component';
 
 const routes: Routes = [
   {
@@ -24,9 +25,13 @@ const routes: Routes = [
     component: PublicarPetComponent
   },
   {
+    path: 'postula',
+    component: PetPostulaComponent
+    
+  },
+  {
     path: 'panelUsuario',
-    component: PanelDeUsuarioComponent
-  }
+    component: PanelDeUsuarioComponent}
 ];
 
 @NgModule({

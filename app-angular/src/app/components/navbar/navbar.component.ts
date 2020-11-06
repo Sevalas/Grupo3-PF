@@ -14,7 +14,7 @@ export class NavbarComponent implements OnInit {
         this.nav2 = false;  
         this.nav1 = true;
       }
-      if (window.location.href === 'http://localhost:4200/tablero' || window.location.href === 'http://localhost:4200/registro_mascotas' || window.location.href === 'http://localhost:4200/panelUsuario') {
+      if (window.location.href === 'http://localhost:4200/tablero' || window.location.href === 'http://localhost:4200/registro_mascotas' || window.location.href === 'http://localhost:4200/panelUsuario' || window.location.href === 'http://localhost:4200/postula') {
         this.nav1 = false; 
         this.nav2 = true;
       }

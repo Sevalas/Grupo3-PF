@@ -13,7 +13,9 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
+import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
+
 
 
 @NgModule({
@@ -35,6 +37,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
+    MatRadioModule,
     MatDividerModule,
   ]
 })
