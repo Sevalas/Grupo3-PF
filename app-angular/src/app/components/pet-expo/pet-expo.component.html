@@ -75,16 +75,17 @@
 
                                 <label class="w-100" appearance="outline">>¿Tienes más mascotas? </label>
                                 <mat-radio-group aria-label="Select an option" [(ngModel)]="seleccion">
-                                    <mat-radio-button class="w-25" value="readonly">Si</mat-radio-button>
-                                    <mat-radio-button class="w-25" value="">No</mat-radio-button>
+                                    <mat-radio-button class="w-25" value="true">Si</mat-radio-button>
+                                    <mat-radio-button class="w-25" value="false">No</mat-radio-button>
                                 </mat-radio-group>
 
 
-
-                                <mat-form-field class="w-100" appearance="outline">
+                                <div *ngIf="seleccion">
+                                  <mat-form-field class="w-100" appearance="outline">
                                     <mat-label>>¿Cuantas mascotas?</mat-label>
-                                    <input type="text" matInput placeholder="Respuesta" {{seleccion}}>
-                                </mat-form-field>
+                                    <input type="text" matInput placeholder="Respuesta" >
+                                    </mat-form-field>  
+                                </div>
                             </div>
                         </div>
                     </div>
