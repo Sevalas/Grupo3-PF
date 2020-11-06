@@ -23,31 +23,43 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div class="col-lg-12">
-                            <mat-form-field class="w-50 mr-3 " appearance="outline">
+                        <div id="columna12" class="col-lg-12">
+                            <p>Ingresa los datos de tu mascota para que su nueva familia la conozca mejor!</p>
+                            <mat-form-field class="w-100 " appearance="outline">
                                 <mat-label>Nombre Mascota</mat-label>
                                 <input type="text" matInput placeholder="Nombre Mascota">
-                            
                             </mat-form-field>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Especie</mat-label>
-                                <mat-select>
-                                    <mat-option value="0" >-none-</mat-option>
-                                    <mat-option value="P">Perro</mat-option>
-                                    <mat-option value="G" >Gato</mat-option>
-                                </mat-select>
-                              </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Nombre Mascota</mat-label>
-                                <input type="text" matInput placeholder="Nombre Mascota">
+                        <div id="columna12" class="col-lg-12 col-sm-12">
+                            <mat-form-field class="w mr-3" appearance="outline">
+                                <mat-label>Especie</mat-label>
+                                <mat-select>
+                                    <mat-option value="0">-none-</mat-option>
+                                    <mat-option value="P">Perro</mat-option>
+                                    <mat-option value="G">Gato</mat-option>
+                                </mat-select>
                             </mat-form-field>
-                            <mat-form-field appearance="outline">
-                                <mat-label>Usuario</mat-label>
-                                <input type="text" matInput placeholder="Usuario">
+                            <mat-form-field class="w" appearance="outline">
+                                <mat-label>Raza</mat-label>
+                                <mat-select>
+                                    <mat-option value="0">-none-</mat-option>
+                                    <mat-option value="1"></mat-option>
+                                    <mat-option value="2"></mat-option>
+                                </mat-select>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div id="columna12" class="col-12">
+                            <mat-form-field class="w mr-3" appearance="outline">
+                                <mat-label>Edad</mat-label>
+                                <input type="number" matInput placeholder="Edad">
+                            </mat-form-field>
+                            <mat-form-field class="w" appearance="outline">
+                                <mat-label>Informacion Adicional</mat-label>
+                                <input type="text" matInput placeholder="Informacion Adicional">
                             </mat-form-field>
                         </div>
                     </div>
@@ -61,18 +73,19 @@
         <div class="col-lg-12">
             <div class="card shadow-lg">
                 <div class="card-header text-left">
-                    <h3 id="timg"></h3>
+                    <h3 id="timg">Requisitos de Adopcion</h3>
                 </div>
                 <div class="card-body">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias atque velit nesciunt magni
-                        tempora veritatis officiis, aspernatur ratione officia sit dolorem, sunt eum dolor! Aliquam ab
-                        nesciunt tempora mollitia ut.</p>
+                    <p>Ingrese los  requisitos que deberan cumplor los postulantes al momento de querer adoptar a su mascota</p>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Requisitos</mat-label>
+                        <input type="text" matInput placeholder="Requisitos">
+                    </mat-form-field>
                 </div>
                 <div class="card-footer text-center">
-                    <a class="btn btn-success btn-block">Seleccionar Archivo</a>
+                    <a class="btn btn-success btn-block">Buscar Nuevo Hogar</a>
                 </div>
             </div>
         </div>
-
     </div>
 </div>
