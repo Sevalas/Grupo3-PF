@@ -10,11 +10,11 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) {
     router.events.subscribe(val => {
-      if (window.location.href === 'http://localhost:4200/registro' || window.location.href === 'http://localhost:4200/login' || window.location.href === 'http://localhost:4200/') {
+      if (window.location.href === 'http://localhost:4200/' || window.location.href === 'http://localhost:4200/registro') {
         this.nav2 = false;  
         this.nav1 = true;
       }
-      if (window.location.href === 'http://localhost:4200/tablero' || window.location.href === 'http://localhost:4200/registro_mascotas') {
+      if (window.location.href === 'http://localhost:4200/tablero' || window.location.href === 'http://localhost:4200/registro_mascotas' || window.location.href === 'http://localhost:4200/panelUsuario') {
         this.nav1 = false; 
         this.nav2 = true;
       }
