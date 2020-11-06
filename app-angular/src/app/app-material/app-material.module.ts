@@ -14,6 +14,8 @@ import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatDividerModule} from '@angular/material/divider';
+
 
 @NgModule({
   declarations: [],
@@ -34,7 +36,8 @@ import {MatRadioModule} from '@angular/material/radio';
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
-    MatRadioModule
+    MatRadioModule,
+    MatDividerModule,
   ]
 })
 export class AppMaterialModule { }
