@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-11-09T15:16:00.016Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="4g25cy47aGud8B1lQvwO" version="13.9.2" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-09T15:17:59.970Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.183 Safari/537.36" etag="Sh5fJXDiGny8uo3qThx5" version="13.9.2" type="github">
   <diagram id="C5RBs43oDa-KdzZeNtuy" name="Page-1">
     <mxGraphModel dx="868" dy="484" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -110,8 +110,8 @@
         <mxCell id="rvEzBcFBRjXu9yHHsur9-3" value="Text" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=0;fontColor=#FFFFFF;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
           <mxGeometry x="470" y="350" width="40" height="20" as="geometry" />
         </mxCell>
-        <mxCell id="rvEzBcFBRjXu9yHHsur9-4" value="Un diagrama de clases esta compuesto por los siguientes elementos: Clase: atributos, métodos y visibilidad. Relaciones: Herencia, Composición, Agregación, Asociación y Uso." style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;sketch=0;fontSize=17;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
-          <mxGeometry x="40" y="40" width="360" height="110" as="geometry" />
+        <mxCell id="rvEzBcFBRjXu9yHHsur9-6" value="&lt;b style=&quot;font-size: 14px;&quot;&gt;&lt;u style=&quot;font-size: 14px;&quot;&gt;Nota:&amp;nbsp;&lt;/u&gt;&lt;/b&gt;&lt;br style=&quot;font-size: 14px;&quot;&gt;Un diagrama de clases esta compuesto por los siguientes&amp;nbsp; &amp;nbsp; &amp;nbsp;elementos: Clase: atributos, métodos y visibilidad. Relaciones: Herencia, Composición, Agregación, Asociación y Uso." style="ellipse;shape=cloud;whiteSpace=wrap;html=1;rounded=0;sketch=0;fillColor=#dae8fc;fontSize=14;strokeColor=#6c8ebf;" vertex="1" parent="WIyWlLk6GJQsqaUBKTNV-1">
+          <mxGeometry x="40" y="10" width="340" height="160" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
