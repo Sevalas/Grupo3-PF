@@ -1,3 +1,7 @@
 .container-fluid {
     width: 95%;
 }
+#aceptar{
+    color: white;
+    background-color:  #218838;
+}
