@@ -28,3 +28,7 @@ img {
 .picsum-img-wrapper{
     object-fit: fill;
 }
+#Registrarse{
+    color: white;
+    background-color: #12ad34;
+}
