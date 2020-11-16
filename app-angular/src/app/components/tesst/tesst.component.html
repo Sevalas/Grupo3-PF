@@ -51,7 +51,7 @@
             </div>
         </div>
         <div class="col-8 foto p-0 h-100" style="overflow:hidden; pointer-events: none;">
-            <mat-carousel timings="500ms ease-in" [autoplay]="true" interval="3500" maxWidth="auto" proportion="85"
+            <mat-carousel timings="500ms ease-in" [autoplay]="true" interval="3500" maxWidth="100" [maintainAspectRatio]="false" slideHeight="100%"
                 slides="5" [loop]="true" [hideArrows]="true" [hideIndicators]="true" [useKeyboard]="false"
                 [useMouseWheel]="false" orientation="ltr">
                 <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
