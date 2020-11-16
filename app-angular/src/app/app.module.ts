@@ -15,6 +15,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TesstComponent } from './components/tesst/tesst.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PetExpoComponent,
     PetPostulaComponent,
     PanelDeUsuarioComponent,
+    TesstComponent,
   ],
   imports: [
     BrowserModule,

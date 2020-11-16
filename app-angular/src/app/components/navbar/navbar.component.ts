@@ -10,6 +10,9 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router) {
     router.events.subscribe(val => {
+      if (window.location.href === 'http://localhost:4200/test'){
+        this.nav = false;
+      }
       if (window.location.href === 'http://localhost:4200/' || window.location.href === 'http://localhost:4200/registro') {
         this.nav2 = false;  
         this.nav1 = true;
@@ -24,7 +27,8 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  nav1: boolean = false
-  nav2: boolean = false
+  nav: boolean = true;
+  nav1: boolean = false;
+  nav2: boolean = false;
 
 }
