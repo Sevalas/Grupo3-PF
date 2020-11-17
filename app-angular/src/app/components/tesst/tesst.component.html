@@ -4,7 +4,7 @@
             <div class="row h-25">
                 <div class="w-100 mr-3">
                     <a class="text-right click">
-                        <h3>Conocenos</h3>
+                        <p>Conocenos</p>
                     </a>
                 </div>
             </div>
@@ -84,116 +84,122 @@
         <form [formGroup]="registerForm" (ngSubmit)="registerOnSubmit()">
 
             <div class="row">
-              <div class="col gridFormulario">
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Usuario</mat-label>
-                  <input matInput placeholder="Ingrese Usuario" type="text" formControlName="usuario"
-                    [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.usuario.errors }" />
-                  <mat-error *ngIf="registerSubmitted && fRegister.usuario.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.usuario.errors.required">El usuario es requerido</div>
-                  </mat-error>
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Contraseña</mat-label>
-                  <input matInput placeholder="Ingrese Contraseña" [type]="hide ? 'password' : 'text'" formControlName="contrasena"
-                    [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.contrasena.errors }" />
-                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-                      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-                      </button>
-                  <mat-error *ngIf="registerSubmitted && fRegister.contrasena.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.contrasena.errors.required">La contraseña es requerido</div>
-                  </mat-error>
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Correo Electronico</mat-label>
-                  <input matInput placeholder="Ingrese Usuario" type="email" formControlName="correoE"
-                    [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.correoE.errors }" />
-                  <mat-error *ngIf="registerSubmitted && fRegister.correoE.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.correoE.errors.required">El Correo Electronico es requerido</div>
-                  </mat-error>
-                </mat-form-field>
-    
-              </div>
+                <div class="col gridFormulario">
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Usuario</mat-label>
+                        <input matInput placeholder="Ingrese Usuario" type="text" formControlName="usuario"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.usuario.errors }" />
+                        <mat-error *ngIf="registerSubmitted && fRegister.usuario.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.usuario.errors.required">El usuario es requerido</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Contraseña</mat-label>
+                        <input matInput placeholder="Ingrese Contraseña" [type]="hide ? 'password' : 'text'"
+                            formControlName="contrasena"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.contrasena.errors }" />
+                        <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                            [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                        </button>
+                        <mat-error *ngIf="registerSubmitted && fRegister.contrasena.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.contrasena.errors.required">La contraseña es requerido</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Correo Electronico</mat-label>
+                        <input matInput placeholder="Ingrese Usuario" type="email" formControlName="correoE"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.correoE.errors }" />
+                        <mat-error *ngIf="registerSubmitted && fRegister.correoE.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.correoE.errors.required">El Correo Electronico es requerido</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
             </div>
-    
+
             <div class="row">
-              <div class="col gridFormulario">
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Nombre</mat-label>
-                  <input matInput placeholder="Ingrese Usuario" type="text" formControlName="nombre"
-                    [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.nombre.errors }" />
-                  <mat-error *ngIf="registerSubmitted && fRegister.nombre.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.nombre.errors.required">El nombre es requerido</div>
-                  </mat-error>
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Apellido</mat-label>
-                  <input matInput placeholder="Ingrese Apellido" type="text" formControlName="apellido"
-                    [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.apellido.errors }" />
-                  <mat-error *ngIf="registerSubmitted && fRegister.apellido.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.apellido.errors.required">El apellido es requerido</div>
-                  </mat-error>
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Fecha de Nacimiento</mat-label>
-                  <input matInput [matDatepicker]="picker" formControlName="fechaNac"
-                    [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.fechaNac.errors }" />
-                  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                  <mat-datepicker #picker></mat-datepicker>
-                  <mat-error *ngIf="registerSubmitted && fRegister.fechaNac.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.fechaNac.errors.required">La Fecha de nacimiento es requerida</div>
-                  </mat-error>
-                </mat-form-field>
-    
-              </div>
-              <div class="col gridFormulario">
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Genero</mat-label>
-                  <mat-select formControlName="genero" [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.genero.errors }">
-                    <mat-option value="M">Masculino</mat-option>
-                    <mat-option value="F">Femenino</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="registerSubmitted && fRegister.genero.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.genero.errors.required">El genero es requerido</div>
-                  </mat-error>
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Región</mat-label>
-                  <mat-select name="region" formControlName="region"
-                    [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.region.errors }" [(ngModel)]="regionSeleccionada">
-                    <mat-option *ngFor="let item of regionesYcomunas" [value]="item.NombreRegion" (click)='filtroComuna()'>{{item.NombreRegion}}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="registerSubmitted && fRegister.region.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.region.errors.required">La región es requerida</div>
-                  </mat-error>
-                </mat-form-field>
-    
-                <mat-form-field appearance="outline" class="input">
-                  <mat-label>Comuna</mat-label>
-                  <mat-select name="comuna" formControlName="comuna"
-                    [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.comuna.errors }" [(ngModel)]="comunaSeleccionada">
-                    <mat-option *ngFor="let item of listaDeColumnas" [value]="item">{{item}}</mat-option>
-                  </mat-select>
-                  <mat-error *ngIf="registerSubmitted && fRegister.comuna.errors" class="invalid-feedback">
-                    <div *ngIf="fRegister.comuna.errors.required">La comuna es requerida</div>
-                  </mat-error>
-                </mat-form-field>
-    
-              </div>
+                <div class="col gridFormulario">
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput placeholder="Ingrese Usuario" type="text" formControlName="nombre"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.nombre.errors }" />
+                        <mat-error *ngIf="registerSubmitted && fRegister.nombre.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.nombre.errors.required">El nombre es requerido</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Apellido</mat-label>
+                        <input matInput placeholder="Ingrese Apellido" type="text" formControlName="apellido"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.apellido.errors }" />
+                        <mat-error *ngIf="registerSubmitted && fRegister.apellido.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.apellido.errors.required">El apellido es requerido</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Fecha de Nacimiento</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="fechaNac"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.fechaNac.errors }" />
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="registerSubmitted && fRegister.fechaNac.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.fechaNac.errors.required">La Fecha de nacimiento es requerida</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
+                <div class="col gridFormulario">
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Genero</mat-label>
+                        <mat-select formControlName="genero"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.genero.errors }">
+                            <mat-option value="M">Masculino</mat-option>
+                            <mat-option value="F">Femenino</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="registerSubmitted && fRegister.genero.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.genero.errors.required">El genero es requerido</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Región</mat-label>
+                        <mat-select name="region" formControlName="region"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.region.errors }"
+                            [(ngModel)]="regionSeleccionada">
+                            <mat-option *ngFor="let item of regionesYcomunas" [value]="item.NombreRegion"
+                                (click)='filtroComuna()'>{{item.NombreRegion}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="registerSubmitted && fRegister.region.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.region.errors.required">La región es requerida</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input">
+                        <mat-label>Comuna</mat-label>
+                        <mat-select name="comuna" formControlName="comuna"
+                            [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.comuna.errors }"
+                            [(ngModel)]="comunaSeleccionada">
+                            <mat-option *ngFor="let item of listaDeColumnas" [value]="item">{{item}}</mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="registerSubmitted && fRegister.comuna.errors" class="invalid-feedback">
+                            <div *ngIf="fRegister.comuna.errors.required">La comuna es requerida</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                </div>
             </div>
-    
+
             <div class="form-group mt-2 text-center">
-              <button mat-raised-button id='Registrarse' class="w-100 boton">Registrarse</button>
+                <button mat-raised-button id='Registrarse' class="w-100 boton">Registrarse</button>
             </div>
-          </form>
+        </form>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-outline-dark" (click)="c('Save click')">Save</button>
