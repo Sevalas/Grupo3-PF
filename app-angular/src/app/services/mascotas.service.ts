@@ -13,3 +13,10 @@ export class MascotasService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 }
+export interface mascotas {nombre : String,
+  cuidador : number, 
+  especies : String,
+   raza : String,
+   edad : number,
+   requisitos : String, 
+  fechaDePublicacion : Date}

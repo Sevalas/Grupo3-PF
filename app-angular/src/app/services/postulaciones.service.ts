@@ -12,3 +12,12 @@ export class PostulacionesService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 }
+export interface Postulaciones{usuario : number,
+  pregunta1 : String,
+  pregunta2 : String,
+  descripcion : String,
+  fotoRefUrl : String,
+  mascota : number,
+  estado : String
+}
+
