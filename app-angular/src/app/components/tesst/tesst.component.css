@@ -1,13 +1,12 @@
 .foto{
     background-image: url(../../../assets/imagenes/perritoLogin.jpg);
 }
-#inicio{
-    color: white;
-    background-color: #218838;
-}
+
 .boton{
     border-top-left-radius: 50px; border-bottom-left-radius: 50px;
     border-top-right-radius: 50px; border-bottom-right-radius: 50px;
+    color: white;
+    background-color: #218838;
 }
 .click{
     color: #218838;
@@ -21,6 +20,11 @@
     left: 0;
     min-height: 300px;
 }
-::ng-deep .mat-error {
+
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 10000 !important;
+}
+.mat-error {
     font-size: 12px;
 }
+
