@@ -15,7 +15,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppMaterialModule } from './app-material/app-material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from'@angular/common/http';
+import { TesstComponent } from './components/tesst/tesst.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { HttpClientModule } from'@angular/common/http';
     PetExpoComponent,
     PetPostulaComponent,
     PanelDeUsuarioComponent,
+    TesstComponent,
   ],
   imports: [
     BrowserModule,

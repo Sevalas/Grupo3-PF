@@ -12,7 +12,7 @@ import { NgbCarouselConfig } from '@ng-bootstrap/ng-bootstrap';
 })
 export class RegistroComponent implements OnInit {
 
-	constructor(private formBuilder: FormBuilder, config: NgbCarouselConfig, private cdRef: ChangeDetectorRef, private router: Router) {
+	constructor(private formBuilder: FormBuilder, config: NgbCarouselConfig, private router: Router,) {
 
 		config.interval = 2000;
 		config.wrap = true;

@@ -1,0 +1,63 @@
+<div class="container-flex h-100 w-100">
+    <div class="row w-100 h-100 m-0">
+        <div class="col-4  bg-white text-dark">
+            <div class="row h-25">
+                <div class="w-100 mr-3">
+                    <a class="text-right click">
+                        <h3>Conocenos</h3>
+                    </a>
+                </div>
+            </div>
+            <div class="row h-75">
+                <div class="col text-center login">
+                    <h1>PetAdopt <mat-icon>pets</mat-icon>
+                    </h1>
+                    <h2>Ingrese a PetAdopt</h2>
+                    <br>
+                    <br>
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                        <mat-form-field appearance="outline" class="input w-100">
+                            <mat-label>Usuario</mat-label>
+                            <input matInput placeholder="Ingrese Usuario" formControlName="usuario"
+                            [ngClass]="{ 'is-invalid': submitted && f.usuario.errors }" [(ngModel)]="user" />
+                          <mat-error *ngIf="submitted && f.usuario.errors" class="invalid-feedback">
+                            <div *ngIf="f.usuario.errors.required">El usuario es requerido</div>
+                          </mat-error>
+                        </mat-form-field>
+                        <br>
+                        <mat-form-field appearance="outline" class="input w-100">
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput placeholder="Ingrese Contraseña" [type]="hide ? 'password' : 'text'"
+                                formControlName="contrasena"
+                                [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }" [(ngModel)]="pass" />
+                            <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                                [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error *ngIf="submitted && f.contrasena.errors" class="invalid-feedback">
+                                <div *ngIf="f.contrasena.errors.required">La contraseña es requerido</div>
+                            </mat-error>
+                        </mat-form-field>
+                        <div class="text-right">
+                            <a class="click">¿Olvidaste tu contraseña?</a>
+                        </div>
+                        <br>
+                        <div class="form-group mt-2 text-center">
+                            <button mat-raised-button id='inicio' class="w-75 boton">Iniciar Sesion</button>
+                        </div>
+                    </form>
+                    <a class="click" routerLink="/registro">Registrate Aqui</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-8 foto p-0 h-100" style="overflow:hidden; pointer-events: none;">
+            <mat-carousel timings="500ms ease-in" [autoplay]="true" interval="3500" maxWidth="100" [maintainAspectRatio]="false" slideHeight="100%"
+                slides="5" [loop]="true" [hideArrows]="true" [hideIndicators]="true" [useKeyboard]="false"
+                [useMouseWheel]="false" orientation="ltr">
+                <mat-carousel-slide #matCarouselSlide *ngFor="let slide of slides; let i = index" [image]="slide.image"
+                    overlayColor="#00000040" [hideOverlay]="true"></mat-carousel-slide>
+            </mat-carousel>
+
+        </div>
+    </div>
+</div>

@@ -6,6 +6,7 @@ import { PetExpoComponent } from './components/pet-expo/pet-expo.component';
 import { PublicarPetComponent } from './components/publicar-pet/publicar-pet.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { PetPostulaComponent } from './components/pet-postula/pet-postula.component';
+import { TesstComponent } from './components/tesst/tesst.component';
 
 const routes: Routes = [
   {
@@ -31,7 +32,12 @@ const routes: Routes = [
   },
   {
     path: 'panelUsuario',
-    component: PanelDeUsuarioComponent}
+    component: PanelDeUsuarioComponent
+  },
+  {
+    path: 'test',
+    component: TesstComponent
+  },
 ];
 
 @NgModule({
