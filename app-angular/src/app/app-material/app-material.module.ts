@@ -16,8 +16,8 @@ import {MatCardModule} from '@angular/material/card';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatCheckboxModule} from '@angular/material/checkbox';
-import { MatCarouselModule } from '@ngmodule/material-carousel';
-
+import {MatCarouselModule} from '@ngmodule/material-carousel';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [],
@@ -42,6 +42,7 @@ import { MatCarouselModule } from '@ngmodule/material-carousel';
     MatDividerModule,
     MatCheckboxModule,
     MatCarouselModule,
+    MatProgressBarModule,
   ]
 })
 export class AppMaterialModule { }

@@ -18,6 +18,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TesstComponent } from './components/tesst/tesst.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { MaterialFileInputModule } from 'ngx-mat-file-input';
+
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModalModule,
+    FormsModule,
+    MaterialFileInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,7 +4,7 @@ export interface Usuario {
     password:string;
     nombres:string
     apellidos:string;
-    fechaNacimiento:Date;
+    fechaNacimiento:string;
     email:string;
     fono:number;
     region:string;
