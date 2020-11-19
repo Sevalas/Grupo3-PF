@@ -13,3 +13,6 @@ export class FotosMascotasService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 }
+export interface fotos_mascota{mascota : number,
+  foto : string
+}
