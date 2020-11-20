@@ -22,15 +22,30 @@
 }
 .mat-error {
     font-size: 13px;
-    margin-top: 0%;
+}
+.hint {
+    color:rgb(235, 140, 52);
+    font-size: 14px;
+}
+.mat-form-field-wrapper{
+    padding-bottom: 13px;
+    margin-top: 0% !important; 
+    margin-bottom: 3% !important;
 }
 .segundaRow {
     width: 49%;
 }
-
-ul,  
-li {  
-      margin: 0;  
-      padding: 0;  
-      list-style: none;  
+#loading{
+    float:left; 
+    width: 24px; 
+    height: 24px; 
+}
+#registro{
+    z-index: 10000 !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 25%;
+    height: 15%;
+    font-size: 16px;
 }

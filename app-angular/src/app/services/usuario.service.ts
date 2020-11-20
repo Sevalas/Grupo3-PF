@@ -24,5 +24,9 @@ export class UsuarioService {
   agregarUsuario(Data:FormData): Observable<string>{
     return this.http.post(`${this.apiURL}/agregar`,Data,{ responseType: 'text',})
   }
+
+  obtenerUsuariosPorNickname(usuario:String): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.apiURL}/nickname=${usuario}`)
+  }
 }
 
