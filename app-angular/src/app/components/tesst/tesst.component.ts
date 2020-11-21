@@ -1,10 +1,11 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ViewEncapsulation } from '@angular/core';
 import { Usuario } from '../../interfaces/usuario.model';
 import { CustomValidators } from 'ngx-custom-validators';
+import * as $ from "jquery";
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -14,7 +15,7 @@ import { CustomValidators } from 'ngx-custom-validators';
 })
 export class TesstComponent implements OnInit {
 
-  @ViewChild('modalButton') modalButton:ElementRef;
+  @ViewChild('modalButton') modalButton: ElementRef;
 
   constructor(private router: Router, private formBuilder: FormBuilder, private servicio: UsuarioService) {
   }
@@ -43,10 +44,12 @@ export class TesstComponent implements OnInit {
     });
   }
 
-  loginPassOnKeydown(event){ this.CredencialesIncorrectas = false }
-  RegistroEmailOnKeydown(event){ this.registroEmail = false }
-  RegistroNicknameOnKeydown(event){ this.registroNick = false }
+  loginPassOnKeydown(event) { this.CredencialesIncorrectas = false }
+  RegistroEmailOnKeydown(event) { this.registroEmail = false }
+  RegistroNicknameOnKeydown(event) { this.registroNick = false }
   RegistroFonoOnKeydown(event) { this.registroFono = false }
+  resetRegistroForm() { this.registerForm.get('usuario').setValue(''), this.registerForm.get('contrasena').setValue(''), this.registerForm.get('nombre').setValue(''), this.registerForm.get('apellido').setValue(''), this.registerForm.get('fechaNac').setValue(''), this.registerForm.get('email').setValue(''), this.registerForm.get('fono').setValue(''), this.registerForm.get('region').setValue(''), this.registerForm.get('comuna').setValue('');this.registerSubmitted = false;}
+
 
   loginForm: FormGroup;
   registerForm: FormGroup;
@@ -126,19 +129,20 @@ export class TesstComponent implements OnInit {
           this.registroFono = false;
           this.registroNick = true;
         }
-        if (res === 'Este Correo ya existe'){  
-          this.registroNick = false;     
+        if (res === 'Este Correo ya existe') {
+          this.registroNick = false;
           this.registroFono = false;
           this.registroEmail = true;
         }
-        if (res === 'Este Fono ya existe'){     
-          this.registroEmail = false; 
-          this.registroNick = false;     
-          this.registroFono = true;  
+        if (res === 'Este Fono ya existe') {
+          this.registroEmail = false;
+          this.registroNick = false;
+          this.registroFono = true;
         }
-        if (res === 'Correo Enviado'){     
+        if (res === 'Correo Enviado') {
           this.modalButton.nativeElement.click();
           this.alertCloseRegistro = true;
+          this.resetRegistroForm()
         }
       }, err => {
         if (err) {
@@ -147,7 +151,7 @@ export class TesstComponent implements OnInit {
         }
       })
   }
-  
+
 
   Login() {
     this.servicio.loginCredenciales(this.loginForm.get('usuario').value, this.loginForm.get('contrasena').value).subscribe(respuesta => {
@@ -164,11 +168,12 @@ export class TesstComponent implements OnInit {
       if (respuesta === true) {
         this.noExiste = false
         this.CredencialesIncorrectas = false;
-        this.servicio.obtenerUsuariosPorNickname(this.loginForm.get('usuario').value).subscribe(respuesta =>{
-          localStorage.setItem("usuarioActual",JSON.stringify(respuesta))
+        this.servicio.obtenerUsuariosPorNickname(this.loginForm.get('usuario').value).subscribe(respuesta => {
+          localStorage.setItem("usuarioActual", JSON.stringify(respuesta))
+          console.log("este es el componente login y el usuario a continuación va a el tablero")
+          console.log(localStorage.getItem("usuarioActual"))
           this.router.navigate(['/tablero']);
         })
-
       }
     })
   }

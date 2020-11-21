@@ -10,12 +10,12 @@
             </div>
             <div class="row h-75">
                 <div class="col text-center login">
-                    <h1>PetAdopt <mat-icon>pets</mat-icon>
-                    </h1>
-                    <h2>Ingrese a PetAdopt</h2>
+                    <p style="font-size: 40px;">PetAdopt <mat-icon>pets</mat-icon>
+                    </p>
+                    <p class="mt-5" style="font-size: 20px;">Ingrese a PetAdopt</p>
                     <br>
                     <br>
-                    <form [formGroup]="loginForm" (ngSubmit)="loginOnSubmit()">
+                    <form [formGroup]="loginForm" id="loginForm" (ngSubmit)="loginOnSubmit()">
                         <mat-form-field appearance="outline" class="input w-100 mb-2">
                             <mat-label>Usuario(Nickname)</mat-label>
                             <input matInput placeholder="Ingrese nombre de Usuario" type="text" maxlength="15"
@@ -55,7 +55,7 @@
                             <button mat-raised-button id='inicio' class="w-75 boton">Iniciar Sesion</button>
                         </div>
                     </form>
-                    <a class="click" data-toggle="modal" data-target=".bd-example-modal-lg"
+                    <a class="click" (click)='this.alertCloseRegistro = false' data-toggle="modal" data-target=".bd-example-modal-lg"
                         style="cursor: pointer;">Registrate Aqui</a>
                 </div>
             </div>
@@ -82,12 +82,12 @@
                 </p>
                 <div style="width: 65%;"></div>
                 <mat-spinner *ngIf="loading" diameter="40"></mat-spinner>
-                <button type="button" #modalButton class="close" data-dismiss="modal" aria-label="Close" (click)="registroNick=false;registroEmail=false;registroFono=false">
+                <button type="reset" #modalButton class="close" data-dismiss="modal" aria-label="Close" (click)="registroNick=false;registroEmail=false;registroFono=false;resetRegistroForm()">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                <form [formGroup]="registerForm" (ngSubmit)="registerOnSubmit()">
+                <form [formGroup]="registerForm" id="registerForm" (ngSubmit)="registerOnSubmit()">
 
                     <div class="h-50 w-100 px-3">
                         <div class="row justify-content-center mb-2">
@@ -131,7 +131,7 @@
                             <mat-form-field appearance="outline" class="input w-100">
                                 <mat-label>Correo Electronico*</mat-label>
                                 <input matInput placeholder="Ingrese Correo Electronico correo@electronico.com"
-                                    type="email" maxlength="35" name="email" formControlName="email" (keydown)="RegistroEmailOnKeydown($event)"
+                                    type="text" maxlength="35" name="email" formControlName="email" (keydown)="RegistroEmailOnKeydown($event)"
                                     [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.email.errors }">
                                 <mat-error *ngIf="registerSubmitted && fRegister.email.errors" class="invalid-feedback">
                                     <div *ngIf="fRegister.email.errors.required">El Correo Electronico es requerido
@@ -244,7 +244,4 @@
 
 <div *ngIf="alertCloseRegistro" id="registro" class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Bienvenido</strong> Se envio un correo con tus credenciales, ahora podras logearte.
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-      <span aria-hidden="true">&times;</span>
-    </button>
   </div>
