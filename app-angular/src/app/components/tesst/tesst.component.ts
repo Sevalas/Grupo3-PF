@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AbstractControl, FormBuilder, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { ViewEncapsulation } from '@angular/core';
 import { Usuario } from '../../interfaces/usuario.model';
-import { ThemePalette } from '@angular/material/core';
+import { CustomValidators } from 'ngx-custom-validators';
+import * as $ from "jquery";
 
 @Component({
   encapsulation: ViewEncapsulation.None,
@@ -14,37 +15,56 @@ import { ThemePalette } from '@angular/material/core';
 })
 export class TesstComponent implements OnInit {
 
+  @ViewChild('modalButton') modalButton: ElementRef;
+
   constructor(private router: Router, private formBuilder: FormBuilder, private servicio: UsuarioService) {
   }
   ngOnInit(): void {
+
+    function verificadoEdad(control: AbstractControl): { [key: string]: boolean } | null {
+      if ((new Date().valueOf() - control.value.valueOf()) <= 473353890000.01) {
+        return { 'verificadoEdad': true }
+      }
+      return null;
+    }
     this.loginForm = this.formBuilder.group({
-      usuario: ['', [Validators.required,Validators.minLength(7),Validators.maxLength(15)]],
-      contrasena: ['', [Validators.required,Validators.minLength(7),Validators.maxLength(15),Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{7,15})')]],
+      usuario: ['', [Validators.required, Validators.minLength(7), Validators.pattern('(?!.*[\\.\\-\\_]{})^[a-zA-Z0-9\\.\\-\\_]{0,16}$')]],
+      contrasena: ['', [Validators.required, Validators.minLength(7), Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{7,15})')]],
     });
     this.registerForm = this.formBuilder.group({
-      usuario: ['', [Validators.required,Validators.minLength(7),Validators.maxLength(15)]],
-      contrasena: ['', [Validators.required,Validators.minLength(7),Validators.maxLength(15),Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{7,15})')]],
-      nombre: ['', Validators.required],
+      usuario: ['', [Validators.required, Validators.minLength(7), Validators.pattern('(?!.*[\\.\\-\\_]{})^[a-zA-Z0-9\\.\\-\\_]{0,16}$')]],
+      contrasena: ['', [Validators.required, Validators.minLength(7), Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{7,15})')]],
+      nombre: ['', Validators.required,],
       apellido: ['', Validators.required],
-      fechaNac: ['', Validators.required],
-      email: ['', Validators.required],
+      fechaNac: ['', [Validators.required, verificadoEdad]],
+      email: ['', [Validators.required, CustomValidators.email]],
       region: ['', Validators.required],
       comuna: ['', Validators.required],
-      fono: ['', Validators.required],
+      fono: ['', [Validators.required, Validators.pattern('^(0?9)[987654321]\\d{7}$')]],
     });
   }
+
+  loginPassOnKeydown(event) { this.CredencialesIncorrectas = false }
+  RegistroEmailOnKeydown(event) { this.registroEmail = false }
+  RegistroNicknameOnKeydown(event) { this.registroNick = false }
+  RegistroFonoOnKeydown(event) { this.registroFono = false }
+  resetRegistroForm() { this.registerForm.get('usuario').setValue(''), this.registerForm.get('contrasena').setValue(''), this.registerForm.get('nombre').setValue(''), this.registerForm.get('apellido').setValue(''), this.registerForm.get('fechaNac').setValue(''), this.registerForm.get('email').setValue(''), this.registerForm.get('fono').setValue(''), this.registerForm.get('region').setValue(''), this.registerForm.get('comuna').setValue('');this.registerSubmitted = false;}
+
 
   loginForm: FormGroup;
   registerForm: FormGroup;
   loginSubmitted = false;
   registerSubmitted = false;
   hide = true;
-  multiple:boolean = false;
-  accept:string = null;
-  color:ThemePalette = null;
+  multiple: boolean = false;
+  loading: boolean = false;
+  alertCloseRegistro = false;
 
   noExiste = false;
   CredencialesIncorrectas = false;
+  registroNick = false;
+  registroEmail = false;
+  registroFono = false;
   slides = [{ 'image': '../../../assets/imagenes/cat3.jpg' }, { 'image': '../../../assets/imagenes/dog.jpg' }, { 'image': '../../../assets/imagenes/cat.jpg' }, { 'image': '../../../assets/imagenes/dog2.jpg' }, { 'image': '../../../assets/imagenes/cat2.jpg' }];
 
   fotoPerfil = fetch('assets/imagenes/perfil.png').then(res => res.blob())
@@ -53,6 +73,7 @@ export class TesstComponent implements OnInit {
   comunaSeleccionada = null;
   listaDeColumnas: String[];
 
+  usuarioDeValidacion: string;
 
   get fLogin() { return this.loginForm.controls; }
   get fRegister() { return this.registerForm.controls; }
@@ -72,6 +93,7 @@ export class TesstComponent implements OnInit {
     if (this.registerForm.invalid) {
       return;
     }
+    this.loading = true;
     var fechaNac: Date = this.registerForm.get('fechaNac').value
     var usuario: Usuario = {
       idUsuario: 0,
@@ -92,30 +114,66 @@ export class TesstComponent implements OnInit {
         key, usuario[key]
       )
     }
-    
+
     formData.append(
       'image', await this.fotoPerfil)
 
-    this.servicio.agregarUsuario(formData).subscribe(res => {
-      console.log(res)
-    })
+    this.servicio.agregarUsuario(formData).subscribe(
+      res => {
+        console.log(res)
+        if (res) {
+          this.loading = false;
+        }
+        if (res === 'Este Nickname ya existe') {
+          this.registroEmail = false;
+          this.registroFono = false;
+          this.registroNick = true;
+        }
+        if (res === 'Este Correo ya existe') {
+          this.registroNick = false;
+          this.registroFono = false;
+          this.registroEmail = true;
+        }
+        if (res === 'Este Fono ya existe') {
+          this.registroEmail = false;
+          this.registroNick = false;
+          this.registroFono = true;
+        }
+        if (res === 'Correo Enviado') {
+          this.modalButton.nativeElement.click();
+          this.alertCloseRegistro = true;
+          this.resetRegistroForm()
+        }
+      }, err => {
+        if (err) {
+          this.loading = false;
+          console.log(err)
+        }
+      })
   }
+
 
   Login() {
     this.servicio.loginCredenciales(this.loginForm.get('usuario').value, this.loginForm.get('contrasena').value).subscribe(respuesta => {
       console.log(respuesta)
       if (respuesta === null) {
-        this.CredencialesIncorrectas = false;
         this.noExiste = true;
+        this.CredencialesIncorrectas = false;
+        this.usuarioDeValidacion = this.loginForm.get('usuario').value
       }
       if (respuesta === false) {
-        this.noExiste = false
         this.CredencialesIncorrectas = true;
+        this.noExiste = false
       }
       if (respuesta === true) {
         this.noExiste = false
         this.CredencialesIncorrectas = false;
-        this.router.navigate(['/tablero']);
+        this.servicio.obtenerUsuariosPorNickname(this.loginForm.get('usuario').value).subscribe(respuesta => {
+          localStorage.setItem("usuarioActual", JSON.stringify(respuesta))
+          console.log("este es el componente login y el usuario a continuación va a el tablero")
+          console.log(localStorage.getItem("usuarioActual"))
+          this.router.navigate(['/tablero']);
+        })
       }
     })
   }

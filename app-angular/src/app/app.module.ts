@@ -19,6 +19,7 @@ import { TesstComponent } from './components/tesst/tesst.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialFileInputModule } from 'ngx-mat-file-input';
+import { CustomFormsModule } from 'ngx-custom-validators';
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import { MaterialFileInputModule } from 'ngx-mat-file-input';
     HttpClientModule,
     NgbModalModule,
     FormsModule,
-    MaterialFileInputModule
+    MaterialFileInputModule,
+    CustomFormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

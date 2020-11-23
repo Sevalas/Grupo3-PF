@@ -9,7 +9,12 @@ export class PetExpoComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    console.log("este es el componente tablero y el usuario a continuación viene de el login")
+    console.log(localStorage.getItem("usuarioActual"))
+   }
+
+
 
   seleccion = 'false';
 
