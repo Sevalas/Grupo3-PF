@@ -1,17 +1,17 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { LoginComponent } from './components/login/login.component';
+import { Routes, RouterModule } from '@angular/router'; 
 import { PanelDeUsuarioComponent } from './components/panel-de-usuario/panel-de-usuario.component';
 import { PetExpoComponent } from './components/pet-expo/pet-expo.component';
 import { PublicarPetComponent } from './components/publicar-pet/publicar-pet.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { PetPostulaComponent } from './components/pet-postula/pet-postula.component';
 import { TesstComponent } from './components/tesst/tesst.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: HomeComponent
   },
   {
     path: 'registro',

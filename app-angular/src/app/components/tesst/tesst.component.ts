@@ -5,7 +5,6 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 import { ViewEncapsulation } from '@angular/core';
 import { Usuario } from '../../interfaces/usuario.model';
 import { CustomValidators } from 'ngx-custom-validators';
-import * as $ from "jquery";
 
 @Component({
   encapsulation: ViewEncapsulation.None,

@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegistroComponent } from './components/registro/registro.component';
-import { LoginComponent } from './components/login/login.component';
 import { PublicarPetComponent } from './components/publicar-pet/publicar-pet.component';
 import { PetExpoComponent } from './components/pet-expo/pet-expo.component';
 import { PetPostulaComponent } from './components/pet-postula/pet-postula.component';
@@ -28,7 +27,6 @@ import { CustomFormsModule } from 'ngx-custom-validators';
     HomeComponent,
     NavbarComponent,
     RegistroComponent,
-    LoginComponent,
     PublicarPetComponent,
     PetExpoComponent,
     PetPostulaComponent,

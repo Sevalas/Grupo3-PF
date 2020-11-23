@@ -1,24 +1,10 @@
-<mat-toolbar *ngIf="nav" id='NAVBAR'>
+<mat-toolbar id='NAVBAR'>
     <span class="mr-2">PetAdopt</span>
-    <div *ngIf="nav1">
-        <button mat-raised-button id='NAV1' class="mx-1" routerLink="/">INICIO</button>
-        <button mat-raised-button id='NAV1' class="mx-1" routerLink="/registro">REGISTRO</button>
-        <span class="example-spacer"></span>
-    </div>
-    <div *ngIf="nav2">
         <button mat-raised-button id='NAV1' class="mx-1" routerLink="/tablero">ADOPTA</button>
         <button mat-raised-button id='NAV1' class="mx-1" routerLink="/registro_mascotas">REGISTRAR MASCOTA</button>
         <button mat-raised-button id='NAV1' class="mx-1" routerLink="/panelUsuario">MENSAJES</button>
-    </div>
-
     <span class="example-spacer"></span>
-    <div *ngIf="nav2">
+    <div >
         <button mat-raised-button color="warn" class="mx-1" routerLink="/">CERRAR SESION</button>
     </div>
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-    </button>
 </mat-toolbar>
