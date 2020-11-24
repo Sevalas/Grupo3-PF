@@ -14,3 +14,8 @@ table {
     color: white;
     background-color: #12ad34;
 }
+#divFoto{
+    background-size: contain;
+    background-position:center;
+    background-repeat:no-repeat;
+}

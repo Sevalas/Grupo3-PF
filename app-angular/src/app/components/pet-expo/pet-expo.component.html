@@ -3,30 +3,30 @@
     <div class="table-responsive">
         <table class="table">
             <tbody>
-                <tr *ngFor="let i of listaMascotas">
+                <tr *ngFor="let mascota of listaMascotas;let i = index">
                     <td>
                         <div class="card mb-3" style="max-width: 100%;">
                             <div class="row no-gutters">
-                                <div class="col-md-2">
-                                    <img src="{{i.foto}}" class="card-img" alt="..." width="250px" height="250px">
+                                <div id="divFoto" class="col-md-2" style="background-image: url({{urlFotosMascotas[i]}});">
                                 </div>
                                 <div class="col-md-2">
                                     <div class="card-body px-2 text-center">
-                                        <h2 class="card-title mb-0">{{i.nombre}}</h2>
-                                        <h3 class="card-title mt-0 text-muted">{{i.especie}} - {{i.raza}}</h3>
-                                        <p class="card-text my-0">Dueño : {{i.dueno}}</p>
-                                        <p class="card-text my-0">Edad : {{i.edad}}</p>
-                                        <p class="card-text my-0">Sexo : {{i.sexo}}</p>
-
+                                        <p></p>
+                                        <h2 class="card-title mb-0">{{mascota.nombre}}</h2>
+                                        <h3 class="card-title mt-0 text-muted">{{mascota.especie}} - {{mascota.raza}}</h3>
+                                        <p class="card-text my-0">Edad : {{mascota.edad}}</p>
+                                        <p class="card-text my-0" *ngIf="mascota.sexo==='F'">Sexo : Hermbra</p>
+                                        <p class="card-text my-0" *ngIf="mascota.sexo==='M'">Sexo : Macho</p>
+                                        <p class="card-text my-0" *ngIf="mascota.sexo==='N'">Sexo : Indefinido</p>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
                                         <h2 class="card-title my-0">Informacion Adicional:</h2>
-                                        <p class="card-text my-0">{{i.informacionAdicional}}</p>
+                                        <p class="card-text my-0">{{mascota.informacionAdicional}}</p>
                                         <h2 class="card-title my-0">Requisitos:</h2>
-                                        <p class="card-text my-0">{{i.requisitos}}</p>
-                                        <small class="text-muted">{{i.fecha}}</small>
+                                        <p class="card-text my-0">{{mascota.requisitos}}</p>
+                                        <small class="text-muted">{{mascota.fecha}}</small>
                                         <div class="text-right">
                                             <button mat-raised-button id='POSTULAR' (click)="data(i.idMascota)" class="mx-1" data-toggle="modal"
                                                 data-target="#exampleModal">POSTULAR</button>
