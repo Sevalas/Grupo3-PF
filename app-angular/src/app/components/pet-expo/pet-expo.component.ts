@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Mascota } from 'src/app/interfaces/mascota.model';
+import { MascotasService } from 'src/app/services/mascotas.service';
 
 @Component({
   selector: 'app-pet-expo',
@@ -7,37 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PetExpoComponent implements OnInit {
 
-  constructor() { }
+
+  constructor(private servicio: MascotasService) { }
 
   ngOnInit(): void {
-    console.log("este es el componente tablero y el usuario a continuación viene de el login")
-    console.log(localStorage.getItem("usuarioActual"))
-   }
+    if (localStorage.length !== 0) {
+      this.servicio.listaMascotasFiltrada(parseInt(localStorage.getItem("idUsuario"))).subscribe(
+        res => {
+          console.log(res)
+          this.listaMascotas = res;
+        })
+    }
+  }
 
-
-
+  listaMascotas: Mascota[];
   seleccion = 'false';
 
-  Mascota: PeriodicElement[] = [
-    {nombre: 'Snoopy', dueno: 'Sevalas', foto: 'https://images-na.ssl-images-amazon.com/images/I/71-EeSx9gGL._AC_SL1500_.jpg', edad: '3 años', especie: 'Perro',raza: 'Beagle',informacionAdicional: 'Snoopy no duerme dentro de la casita porque sufre claustrofobia.', requisitos: 'Ser Carlitos',fecha:'05/11/2020'},
-    {nombre: 'Snoopy', dueno: 'Sevalas', foto: 'https://images-na.ssl-images-amazon.com/images/I/71-EeSx9gGL._AC_SL1500_.jpg', edad: '3 años', especie: 'Perro',raza: 'Beagle',informacionAdicional: 'Snoopy no duerme dentro de la casita porque sufre claustrofobia.', requisitos: 'Ser Carlitos',fecha:'05/11/2020'},
-    {nombre: 'Snoopy', dueno: 'Sevalas', foto: 'https://images-na.ssl-images-amazon.com/images/I/71-EeSx9gGL._AC_SL1500_.jpg', edad: '3 años', especie: 'Perro',raza: 'Beagle',informacionAdicional: 'Snoopy no duerme dentro de la casita porque sufre claustrofobia.', requisitos: 'Ser Carlitos',fecha:'05/11/2020'},
-    {nombre: 'Snoopy', dueno: 'Sevalas', foto: 'https://images-na.ssl-images-amazon.com/images/I/71-EeSx9gGL._AC_SL1500_.jpg', edad: '3 años', especie: 'Perro',raza: 'Beagle',informacionAdicional: 'Snoopy no duerme dentro de la casita porque sufre claustrofobia.', requisitos: 'Ser Carlitos',fecha:'05/11/2020'},
-    {nombre: 'Snoopy', dueno: 'Sevalas', foto: 'https://images-na.ssl-images-amazon.com/images/I/71-EeSx9gGL._AC_SL1500_.jpg', edad: '3 años', especie: 'Perro',raza: 'Beagle',informacionAdicional: 'Snoopy no duerme dentro de la casita porque sufre claustrofobia.', requisitos: 'Ser Carlitos',fecha:'05/11/2020'},
-  ]; 
-
+  data(data: string) {
+    console.log(data)
+  }
 }
-
-  export interface PeriodicElement {
-  nombre: string;
-  dueno: string;
-  foto: string;
-  edad: string;
-  especie: string;
-  raza: string;
-  informacionAdicional: string
-  requisitos: string;
-  fecha: string;
-}
-
 

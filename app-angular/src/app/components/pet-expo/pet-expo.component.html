@@ -1,10 +1,9 @@
-<h1 class="text-center bg-light text-dark w-25 m-auto">PROTOTIPO TABLERO</h1>
 <div class="container-fluid bg-light mx-auto my- p-3 rounded shadow-lg">
 
     <div class="table-responsive">
         <table class="table">
             <tbody>
-                <tr *ngFor="let i of Mascota">
+                <tr *ngFor="let i of listaMascotas">
                     <td>
                         <div class="card mb-3" style="max-width: 100%;">
                             <div class="row no-gutters">
@@ -17,6 +16,8 @@
                                         <h3 class="card-title mt-0 text-muted">{{i.especie}} - {{i.raza}}</h3>
                                         <p class="card-text my-0">Dueño : {{i.dueno}}</p>
                                         <p class="card-text my-0">Edad : {{i.edad}}</p>
+                                        <p class="card-text my-0">Sexo : {{i.sexo}}</p>
+
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -27,7 +28,7 @@
                                         <p class="card-text my-0">{{i.requisitos}}</p>
                                         <small class="text-muted">{{i.fecha}}</small>
                                         <div class="text-right">
-                                            <button mat-raised-button id='POSTULAR' class="mx-1" data-toggle="modal"
+                                            <button mat-raised-button id='POSTULAR' (click)="data(i.idMascota)" class="mx-1" data-toggle="modal"
                                                 data-target="#exampleModal">POSTULAR</button>
                                         </div>
                                     </div>
@@ -40,6 +41,8 @@
         </table>
     </div>
 </div>
+
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">

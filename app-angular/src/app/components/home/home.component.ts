@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   constructor(private router: Router, private formBuilder: FormBuilder, private servicio: UsuarioService) {
   }
   ngOnInit(): void {
-
+    localStorage.clear();
     function verificadoEdad(control: AbstractControl): { [key: string]: boolean } | null {
       if ((new Date().valueOf() - control.value.valueOf()) <= 473353890000.01) {
         return { 'verificadoEdad': true }
@@ -118,7 +118,6 @@ export class HomeComponent implements OnInit {
 
     this.servicio.agregarUsuario(formData).subscribe(
       res => {
-        console.log(res)
         if (res) {
           this.loading = false;
         }
@@ -145,7 +144,6 @@ export class HomeComponent implements OnInit {
       }, err => {
         if (err) {
           this.loading = false;
-          console.log(err)
         }
       })
   }
@@ -153,7 +151,6 @@ export class HomeComponent implements OnInit {
 
   Login() {
     this.servicio.loginCredenciales(this.loginForm.get('usuario').value, this.loginForm.get('contrasena').value).subscribe(respuesta => {
-      console.log(respuesta)
       if (respuesta === null) {
         this.noExiste = true;
         this.CredencialesIncorrectas = false;
@@ -167,9 +164,7 @@ export class HomeComponent implements OnInit {
         this.noExiste = false
         this.CredencialesIncorrectas = false;
         this.servicio.obtenerUsuariosPorNickname(this.loginForm.get('usuario').value).subscribe(respuesta => {
-          localStorage.setItem("usuarioActual", JSON.stringify(respuesta))
-          console.log("este es el componente login y el usuario a continuación va a el tablero")
-          console.log(localStorage.getItem("usuarioActual"))
+          localStorage.setItem("idUsuario", JSON.stringify(respuesta.idUsuario))
           this.router.navigate(['/tablero']);
         })
       }
