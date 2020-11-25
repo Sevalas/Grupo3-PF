@@ -11,6 +11,7 @@ table {
     margin-bottom: 0px;
 }
 #POSTULAR{
+    width: 25%;
     color: white;
     background-color: #12ad34;
 }
@@ -18,4 +19,12 @@ table {
     background-size: contain;
     background-position:center;
     background-repeat:no-repeat;
+}
+.mat-error {
+    font-size: 13px;
+}
+.mat-form-field-wrapper{
+    padding-bottom: 12px;
+    margin-top: 0% !important; 
+    margin-bottom: 3% !important;
 }

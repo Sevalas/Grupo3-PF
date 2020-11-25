@@ -5,19 +5,16 @@ import { HttpClient, HttpHeaders } from'@angular/common/http';
   providedIn: 'root'
 })
 export class PostulacionesService {
-  constructor(privatehttp: HttpClient) { }
+  constructor(private http: HttpClient) { }
+
   apiURL = 'http://localhost:8080/api/postulaciones';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
-}
-export interface Postulaciones{usuario : number,
-  pregunta1 : String,
-  pregunta2 : String,
-  descripcion : String,
-  fotoRefUrl : String,
-  mascota : number,
-  estado : String
+
+  agregarPostulacion(data:FormData) {
+    return this.http.post(`${this.apiURL}`,data)
+  }
 }
 

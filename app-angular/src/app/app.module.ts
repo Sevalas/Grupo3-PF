@@ -18,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialFileInputModule } from 'ngx-mat-file-input';
 import { CustomFormsModule } from 'ngx-custom-validators';
+import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { CustomFormsModule } from 'ngx-custom-validators';
     FormsModule,
     MaterialFileInputModule,
     CustomFormsModule,
+    NgImageFullscreenViewModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

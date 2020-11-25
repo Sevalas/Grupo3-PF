@@ -7,13 +7,15 @@
                     <td>
                         <div class="card mb-3" style="max-width: 100%;">
                             <div class="row no-gutters">
-                                <div id="divFoto" class="col-md-2" style="background-image: url({{urlFotosMascotas[i]}});">
-                                </div>
+                                <div id="divFoto" style="cursor: pointer;" (click)="showLightbox(0,mascota.imgUrl)" class="col-md-2 border shadow-lg"
+                                    style="background-image: url({{mascota.imgUrl}});"></div>
                                 <div class="col-md-2">
-                                    <div class="card-body px-2 text-center">
+                                    <small class="text-muted ml-3">{{mascota.fechaDePublicacion}}</small>
+                                    <div class="card-body px-2 pt-0 text-center">
                                         <p></p>
                                         <h2 class="card-title mb-0">{{mascota.nombre}}</h2>
-                                        <h3 class="card-title mt-0 text-muted">{{mascota.especie}} - {{mascota.raza}}</h3>
+                                        <h3 class="card-title mt-0 text-muted">{{mascota.especie}} - {{mascota.raza}}
+                                        </h3>
                                         <p class="card-text my-0">Edad : {{mascota.edad}}</p>
                                         <p class="card-text my-0" *ngIf="mascota.sexo==='F'">Sexo : Hermbra</p>
                                         <p class="card-text my-0" *ngIf="mascota.sexo==='M'">Sexo : Macho</p>
@@ -22,14 +24,18 @@
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
-                                        <h2 class="card-title my-0">Informacion Adicional:</h2>
-                                        <p class="card-text my-0">{{mascota.informacionAdicional}}</p>
                                         <h2 class="card-title my-0">Requisitos:</h2>
-                                        <p class="card-text my-0">{{mascota.requisitos}}</p>
-                                        <small class="text-muted">{{mascota.fecha}}</small>
-                                        <div class="text-right">
-                                            <button mat-raised-button id='POSTULAR' (click)="data(i.idMascota)" class="mx-1" data-toggle="modal"
-                                                data-target="#exampleModal">POSTULAR</button>
+                                        <div style="overflow-y: scroll; height: 57px;">
+                                            <p class="card-text  my-0">{{mascota.requisitos}}</p>
+                                        </div>
+                                        <h2 class="card-title my-0">Informacion Adicional:</h2>
+                                        <div style="overflow-y: scroll; height: 57px;">
+                                            <p class="card-text  my-0">{{mascota.infoAdicional}}</p>
+                                        </div>
+                                        <div class="text-center mt-2">
+                                            <button mat-raised-button id='POSTULAR'
+                                                (click)="setDatosMascota(mascota.idMascota,mascota.nombre)" class="mx-1"
+                                                data-toggle="modal" data-target="#exampleModal">POSTULAR</button>
                                         </div>
                                     </div>
                                 </div>
@@ -45,56 +51,77 @@
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-xl" style="width: 75%;" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Solicitud de Adopcion</h3>
+                <h3 class="modal-title" id="exampleModalLabel">Solicitud de Adopcion de {{nombreMascota}}</h3>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <div class="modal-body">
-                <div class="container-fluid bg-light mx-auto my- p-3 rounded shadow-lg">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="card-body">
-                                <mat-form-field class="w-100" appearance="outline">
-                                    <mat-label>¿Por que tu deberias ser quien lo adopte?</mat-label>
-                                    <input type="text" matInput placeholder="Respuesta">
-                                </mat-form-field>
+            <form [formGroup]="postulaForm" (ngSubmit)="postulaOnSubmit()">
+                <div class="modal-body">
 
-                                <mat-form-field class="w-100" appearance="outline">
-                                    <mat-label>¿Como es el lugar donde vivira?</mat-label>
-                                    <input type="text" matInput placeholder="Respuesta">
-                                </mat-form-field>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>¿Por que tu deberias ser quien lo adopte?</mat-label>
+                        <textarea matInput type="text" style="height: 65px;" placeholder="Respuesta" formControlName="pregunta1"
+                            [ngClass]="{ 'is-invalid': postulaSubmitted && fPostula.pregunta1.errors}"></textarea>
+                        <mat-error *ngIf="postulaSubmitted && fPostula.pregunta1.errors" class="invalid-feedback">
+                            <div *ngIf="fPostula.pregunta1.errors.required">Pregunta requerida</div>
+                        </mat-error>
+                    </mat-form-field>
 
-                                <mat-form-field class="w-100" appearance="outline">
-                                    <mat-label>Describete</mat-label>
-                                    <input type="text" matInput placeholder="Respuesta">
-                                </mat-form-field>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>¿Como es el lugar donde vivira?</mat-label>
+                        <textarea matInput type="text" style="height: 65px;" placeholder="Respuesta" formControlName="pregunta2"
+                            [ngClass]="{ 'is-invalid': postulaSubmitted && fPostula.pregunta2.errors}"></textarea>
+                        <mat-error *ngIf="postulaSubmitted && fPostula.pregunta2.errors" class="invalid-feedback">
+                            <div *ngIf="fPostula.pregunta2.errors.required">Pregunta requerida</div>
+                        </mat-error>
+                    </mat-form-field>
 
-
-                                <label class="w-100" appearance="outline">¿Tienes más mascotas? </label>
-                                <mat-radio-group aria-label="Select an option" [(ngModel)]="seleccion">
-                                    <mat-radio-button class="w-25" value="false">No</mat-radio-button>
-                                    <mat-radio-button class="w-25" value="true">Si</mat-radio-button>
-                                </mat-radio-group>
-
-
-                                <div *ngIf="seleccion === 'true'">
-                                  <mat-form-field class="w-100" appearance="outline">
-                                    <mat-label>>¿Cuantas mascotas?</mat-label>
-                                    <input type="number" matInput placeholder="Respuesta" >
-                                    </mat-form-field>  
-                                </div>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Describete</mat-label>
+                        <textarea  matInput type="text" style="height: 65px;" placeholder="Respuesta" formControlName="descripcion"
+                            [ngClass]="{ 'is-invalid': postulaSubmitted && fPostula.descripcion.errors}"></textarea>
+                        <mat-error *ngIf="postulaSubmitted && fPostula.descripcion.errors" class="invalid-feedback">
+                            <div *ngIf="fPostula.descripcion.errors.required">Descripción requerida
                             </div>
-                        </div>
-                    </div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input ml-2 segundaRow">
+                        <ngx-mat-file-input id="fotoPerfil" (change)="uploadImg($event)"
+                            valuePlaceholder="Click para ingresar foto de perfil" type="file" [multiple]="multiple">
+                        </ngx-mat-file-input>
+                        <mat-icon matSuffix style="cursor: pointer;">folder</mat-icon>
+                    </mat-form-field>
                 </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" data-dismiss="modal" class="btn btn-success w-100">Adoptar!</button>
-            </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success w-100">Adoptar!</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
+
+<ng-image-fullscreen-view
+        [images]="imageObject"
+        [imageIndex]="currentIndex"
+        [show]="showFlag"
+        (close)="closeEventHandler()"></ng-image-fullscreen-view>
+<!--
+<label class="w-100" appearance="outline">¿Tienes más mascotas?</label>
+<mat-radio-group aria-label="Select an option" [(ngModel)]="seleccion">
+    <mat-radio-button class="w-25" value="false">No</mat-radio-button>
+    <mat-radio-button class="w-25" value="true">Si</mat-radio-button>
+</mat-radio-group>
+
+
+<div *ngIf="seleccion === 'true'">
+    <mat-form-field class="w-100" appearance="outline">
+        <mat-label>¿Cuantas mascotas?</mat-label>
+        <input type="number" matInput placeholder="Respuesta">
+    </mat-form-field>
+</div>
+-->
