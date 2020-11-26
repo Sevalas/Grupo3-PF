@@ -1,6 +1,3 @@
-#timg{
-    margin: 0px;
-}
 .card-img{
     width: 100%; height: 100%;
 }
@@ -9,4 +6,27 @@
 }
 .w{
     width: 49%;
+}
+.boton{
+    border-top-left-radius: 50px; border-bottom-left-radius: 50px;
+    border-top-right-radius: 50px; border-bottom-right-radius: 50px;
+    color: white;
+    background-color: #218838;
+}
+#registro{
+    z-index: 10000 !important;
+    position: fixed;
+    top: 0;
+    left: 40%;
+    width: 25%;
+    height: 12%;
+    font-size: 16px;
+}
+.mat-error {
+    font-size: 13px;
+}
+.mat-form-field-wrapper{
+    padding-bottom: 12px;
+    margin-top: 0% !important; 
+    margin-bottom: 3% !important;
 }

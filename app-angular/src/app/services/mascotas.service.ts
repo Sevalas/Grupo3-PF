@@ -13,7 +13,7 @@ export class MascotasService {
   apiURL = 'http://localhost:8080/api/mascotas';
 
   httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'multipart/form-data'})
+    headers: new HttpHeaders({ 'Content-Type': 'application/json'})
   };
 
   obtenerListaMascotas(): Observable<Mascota[]>{
@@ -21,5 +21,8 @@ export class MascotasService {
   }
   listaMascotasFiltrada(usuario:number): Observable<Mascota[]>{
     return this.http.get<Mascota[]>(`${this.apiURL}/filtrada=${usuario}`)
+  }
+  agregarMascota(mascota:Mascota): Observable<number>{
+    return this.http.post<number>(`${this.apiURL}`,mascota)
   }
 }

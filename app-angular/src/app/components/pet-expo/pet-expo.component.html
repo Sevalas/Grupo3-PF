@@ -1,5 +1,5 @@
-<div class="container-fluid bg-light mx-auto my- p-3 rounded shadow-lg">
-
+<br>
+<div class="container-fluid bg-light mx-auto p-3 rounded shadow-lg">
     <div class="table-responsive">
         <table class="table">
             <tbody>
@@ -16,10 +16,10 @@
                                         <h2 class="card-title mb-0">{{mascota.nombre}}</h2>
                                         <h3 class="card-title mt-0 text-muted">{{mascota.especie}} - {{mascota.raza}}
                                         </h3>
-                                        <p class="card-text my-0">Edad : {{mascota.edad}}</p>
-                                        <p class="card-text my-0" *ngIf="mascota.sexo==='F'">Sexo : Hermbra</p>
+                                        <p class="card-text my-0">Edad : {{mascota.edad}} años</p>
+                                        <p class="card-text my-0" *ngIf="mascota.sexo==='H'">Sexo : Hermbra</p>
                                         <p class="card-text my-0" *ngIf="mascota.sexo==='M'">Sexo : Macho</p>
-                                        <p class="card-text my-0" *ngIf="mascota.sexo==='N'">Sexo : Indefinido</p>
+                                        <p class="card-text my-0" *ngIf="mascota.sexo==='N'">Sexo : Indeterminado</p>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
@@ -54,8 +54,10 @@
     <div class="modal-dialog modal-xl" style="width: 75%;" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Solicitud de Adopcion de {{nombreMascota}}</h3>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <p class="modal-title" id="exampleModalLabel">Solicitud de Adopcion de {{nombreMascota}}</p>
+                <div style="width: 65%;"></div>
+                <mat-spinner *ngIf="loading" diameter="40"></mat-spinner>
+                <button type="reset" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -90,9 +92,9 @@
                         </mat-error>
                     </mat-form-field>
 
-                    <mat-form-field appearance="outline" class="input ml-2 segundaRow">
+                    <mat-form-field appearance="outline" class="input ml-2 segundaRow w-100">
                         <ngx-mat-file-input id="fotoPerfil" (change)="uploadImg($event)"
-                            valuePlaceholder="Click para ingresar foto de perfil" type="file" [multiple]="multiple">
+                            valuePlaceholder="Click para ingresar foto de referencia" type="file" [multiple]="multiple">
                         </ngx-mat-file-input>
                         <mat-icon matSuffix style="cursor: pointer;">folder</mat-icon>
                     </mat-form-field>

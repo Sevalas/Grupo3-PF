@@ -1,91 +1,143 @@
 <div class="container-fluid">
-    <div class="row">
-        <div class="col-lg-3">
-            <br>
-            <div class="card shadow-lg">
+    <form [formGroup]="publicaForm" (ngSubmit)="publicaOnSubmit()">
+        <br>
+        <div class="row">
+            <div class="card mx-auto rounded shadow-lg" style="width: 95%;">
                 <div class="card-header text-left">
-                    <h3 id="timg">Agregar imagen</h3>
-                </div>
-                <div class="card-body">
-                    <img src="../assets/imagenes/agregarFoto.jpg" class="card-img">
-                </div>
-                <div class="card-footer text-center">
-                    <a class="btn btn-success btn-block">Seleccionar Archivo</a>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-lg-9">
-            <br>
-            <div class="card shadow-lg">
-                <div class="card-header text-left">
-                    <h3 id="timg">Agregar Informacion</h3>
+                    <div class="row">
+                        <div class="col-11 m-0"><strong>Agregar Informacion:</strong> Ingresa los datos de tu mascota
+                            para que su nueva familia la conozca mejor!</div>
+                        <div class="col-1 m-0">
+                            <mat-spinner *ngIf="loading" diameter="40"></mat-spinner>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="row">
-                        <div id="columna12" class="col-lg-12">
-                            <p>Ingresa los datos de tu mascota para que su nueva familia la conozca mejor!</p>
-                            <mat-form-field class="w-100 " appearance="outline">
-                                <mat-label>Nombre Mascota</mat-label>
-                                <input type="text" matInput placeholder="Nombre Mascota">
+                        <div id="columna12" class="col-sm-12">
+                            <mat-form-field class="w mr-3" appearance="outline">
+                                <mat-label>Nombre Mascota*</mat-label>
+                                <input type="text" matInput placeholder="Nombre de la Mascota" formControlName="nombre"
+                                    [ngClass]="{ 'is-invalid': publicaSubmitted && fPublica.nombre.errors}">
+                                <mat-error *ngIf="publicaSubmitted && fPublica.nombre.errors" class="invalid-feedback">
+                                    <div *ngIf="fPublica.nombre.errors.required">El nombre es requerido</div>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="w" appearance="outline">
+                                <mat-label>Sexo*</mat-label>
+                                <mat-select placeholder="Sexo de la Mascota" formControlName="sexo"
+                                    [ngClass]="{ 'is-invalid': publicaSubmitted && fPublica.sexo.errors}">
+                                    <mat-option value="H">Hembra</mat-option>
+                                    <mat-option value="M">Macho</mat-option>
+                                    <mat-option value="N">Indeterminado</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="publicaSubmitted && fPublica.sexo.errors" class="invalid-feedback">
+                                    <div *ngIf="fPublica.sexo.errors.required">El sexo es requerido</div>
+                                </mat-error >
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
-                        <div id="columna12" class="col-lg-12 col-sm-12">
+                        <div id="columna12" class="col-sm-12">
                             <mat-form-field class="w mr-3" appearance="outline">
-                                <mat-label>Especie</mat-label>
-                                <mat-select>
-                                    <mat-option value="0">-none-</mat-option>
-                                    <mat-option value="P">Perro</mat-option>
-                                    <mat-option value="G">Gato</mat-option>
-                                </mat-select>
+                                <mat-label>Especie*</mat-label>
+                                <input type="text" matInput placeholder="Especie de la Mascota"
+                                    formControlName="especie"
+                                    [ngClass]="{ 'is-invalid': publicaSubmitted && fPublica.especie.errors}">
+                                <mat-error *ngIf="publicaSubmitted && fPublica.especie.errors" class="invalid-feedback">
+                                    <div *ngIf="fPublica.especie.errors.required">La especie es requerida</div>
+                                </mat-error>
                             </mat-form-field>
                             <mat-form-field class="w" appearance="outline">
-                                <mat-label>Raza</mat-label>
-                                <mat-select>
-                                    <mat-option value="0">-none-</mat-option>
-                                    <mat-option value="1"></mat-option>
-                                    <mat-option value="2"></mat-option>
-                                </mat-select>
+                                <mat-label>Raza*</mat-label>
+                                <input type="text" matInput placeholder="Raza de la Mascota" formControlName="raza"
+                                    [ngClass]="{ 'is-invalid': publicaSubmitted && fPublica.raza.errors}">
+                                <mat-error *ngIf="publicaSubmitted && fPublica.raza.errors" class="invalid-feedback">
+                                    <div *ngIf="fPublica.raza.errors.required">La raza es requerida</div>
+                                </mat-error>
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <div id="columna12" class="col-12">
                             <mat-form-field class="w mr-3" appearance="outline">
-                                <mat-label>Edad</mat-label>
-                                <input type="number" matInput placeholder="Edad">
+                                <mat-label>Edad*</mat-label>
+                                <input type="number" matInput placeholder="Edad de la mascota en años humanos" formControlName="edad"
+                                    [ngClass]="{ 'is-invalid': publicaSubmitted && fPublica.edad.errors}">
+                                <mat-error *ngIf="publicaSubmitted && fPublica.edad.errors" class="invalid-feedback">
+                                    <div *ngIf="fPublica.edad.errors.required">La edad es requerida</div>
+                                </mat-error>
                             </mat-form-field>
-                            <mat-form-field class="w" appearance="outline">
-                                <mat-label>Informacion Adicional</mat-label>
-                                <input type="text" matInput placeholder="Informacion Adicional">
+                            <mat-form-field appearance="outline" class="w">
+                                <ngx-mat-file-input id="fotoPerfil" (change)="uploadImg($event)"
+                                    valuePlaceholder="Click para ingresar foto de la mascota*" type="file"
+                                    [multiple]="false" formControlName="imgMascota"
+                                    [ngClass]="{ 'is-invalid': publicaSubmitted && fPublica.imgMascota.errors}">
+                                </ngx-mat-file-input>
+                                <mat-icon matSuffix style="cursor: pointer;">folder</mat-icon>
+                                <mat-error *ngIf="publicaSubmitted && fPublica.imgMascota.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="fPublica.imgMascota.errors.required">La imagen es requerida</div>
+                                </mat-error>
                             </mat-form-field>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <br>
-    <div class="row">
-
-        <div class="col-lg-12">
-            <div class="card shadow-lg">
+        <br>
+        <div class="row">
+            <div class="card mx-auto rounded shadow-lg" style="width: 95%;">
                 <div class="card-header text-left">
-                    <h3 id="timg">Requisitos de Adopcion</h3>
+                    <div class="m-0"><strong>Requisitos de Adopcion: </strong> Ingrese los requisitos que deberan
+                        cumplor
+                        los postulantes al momento de querer adoptar a su mascota
+                    </div>
                 </div>
-                <div class="card-body">
-                    <p>Ingrese los  requisitos que deberan cumplor los postulantes al momento de querer adoptar a su mascota</p>
+                <div class="card-body pb-0">
                     <mat-form-field class="w-100" appearance="outline">
-                        <mat-label>Requisitos</mat-label>
-                        <input type="text" matInput placeholder="Requisitos">
+                        <mat-label>Requisitos*</mat-label>
+                        <textarea type="text" matInput placeholder="Requisitos para adoptar" style="height: 65px;"
+                            formControlName="requisitos"
+                            [ngClass]="{ 'is-invalid': publicaSubmitted && fPublica.requisitos.errors}"></textarea>
+                        <mat-error *ngIf="publicaSubmitted && fPublica.requisitos.errors" class="invalid-feedback">
+                            <div *ngIf="fPublica.requisitos.errors.required">Los requisitos son requeridos</div>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Información Adicional</mat-label>
+                        <textarea type="text" matInput placeholder="Información Adicional" style="height: 65px;"
+                            formControlName="infoAdicional"
+                            [ngClass]="{ 'is-invalid': publicaSubmitted && fPublica.infoAdicional.errors}"></textarea>
                     </mat-form-field>
                 </div>
-                <div class="card-footer text-center">
-                    <a class="btn btn-success btn-block">Buscar Nuevo Hogar</a>
+                <div class="form-group mt-2 text-center">
+                    <button mat-raised-button id='Registrarse' class="w-50 boton">Buscar Nuevo Hogar</button>
                 </div>
             </div>
         </div>
-    </div>
+    </form>
 </div>
+
+<div *ngIf="alertClosePublicacion" id="registro" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Completado</strong> La mascota se ha publicado Correctamente.
+    <button type="button" (click)="closeModal()" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<!--
+<div class="col-lg-3">
+    <div class="card shadow-lg">
+        <div class="card-header text-left">
+            <h3 id="timg">Agregar imagen</h3>
+        </div>
+        <div class="card-body">
+            <img src="../assets/imagenes/agregarFoto.jpg" class="card-img">
+        </div>
+        <div class="card-footer text-center">
+            <a class="btn btn-success btn-block">Seleccionar Archivo</a>
+        </div>
+    </div>
+</div> 
+-->

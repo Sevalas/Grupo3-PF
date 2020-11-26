@@ -1,7 +1,14 @@
-.container-fluid {
-    width: 95%;
-}
 #aceptar{
     color: white;
     background-color:  #12ad34;
+}
+.mat-tab-header{
+    background-color: seagreen;
+    border-radius: 5px 5px 0px 0px;
+}
+.mat-tab-label-content{
+    color: white
+}
+.mat-tab-body-wrapper{
+    border-radius: 0px 0px 5px 5px;
 }

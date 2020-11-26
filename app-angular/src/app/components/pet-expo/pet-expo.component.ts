@@ -39,6 +39,7 @@ export class PetExpoComponent implements OnInit {
   imageObject = Array<object>();
   currentIndex: any = -1;
   showFlag: boolean = false;
+  loading: boolean = false;
 
   conectarMascotas() {
     if (localStorage.length !== 0) {
@@ -71,6 +72,7 @@ export class PetExpoComponent implements OnInit {
     if (this.postulaForm.invalid) {
       return;
     }
+    this.loading = true;
     var postulacion: Postulacion = {
       idPostulaciones: 0,
       usuario: parseInt(localStorage.getItem("idUsuario")),

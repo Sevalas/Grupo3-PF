@@ -18,4 +18,8 @@ export class FotosMascotasService {
   obtenerListaFotoMascotaPorMascota(idMascota:number): Observable<FotoMascota[]>{
     return this.http.get<FotoMascota[]>(`${this.apiURL}/mascota=${idMascota}`) 
   }
+
+  agregarFotoMascota(Data:FormData){
+    return this.http.post(`${this.apiURL}`,Data)
+  }
 }

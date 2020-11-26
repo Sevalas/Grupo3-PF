@@ -19,6 +19,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatTabsModule} from '@angular/material/tabs';
 
 @NgModule({
   declarations: [],
@@ -45,6 +46,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatCarouselModule,
     MatProgressBarModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
   ]
 })
 export class AppMaterialModule { }

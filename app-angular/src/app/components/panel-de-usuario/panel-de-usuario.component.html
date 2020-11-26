@@ -1,168 +1,140 @@
-<h1 class="text-center bg-light text-dark w-25 m-auto">PROTOTIPO PANEL DE USUARIO</h1>
-<div class="container-fluid bg-light mx-auto my-2 p-3 rounded shadow-lg">
+<br>
+<mat-tab-group mat-stretch-tabs color="warn" class="mx-auto" style="width: 95%;">
+    <mat-tab label="Postulaciones Entrantes">
+        <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
+            <table class="table">
+                <tbody>
+                    <tr>
+                        <td>
+                            <mat-card>
+                                <mat-card-header>
+                                    <mat-card-title class="ml-0">Postulante (#) : (Nombre de Usuario) </mat-card-title>
+                                </mat-card-header>
+                                <div mat-card-image></div>
+                                <mat-card-content>
+                                    <div class="row">
+                                        <div class="col bg-light rounded shadow-lg">
+                                            <h2>¿Por qué quiero tu mascota?</h2>
+                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat facilis
+                                                enim dolores quasi accusantium ex doloribus vel nostrum magni incidunt.
+                                                Dolorem molestias ullam itaque atque, distinctio libero! Repudiandae,
+                                                veritatis at?</p>
+                                        </div>
+                                        <div class="col bg-light rounded shadow-lg">
+                                            <h2>Descripción: </h2>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptatibus
+                                                cupiditate reiciendis.</p>
+                                            <h2>¿Como es el lugar donde vivira?</h2>
+                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quasi
+                                                asperiores sapiente corporis perspiciatis.</p>
+                                        </div>
+                                        <div class="col bg-light rounded shadow-lg">
+                                            <h2>¿Tengo más mascotas?</h2>
+                                            <p>Tengo # mascotas</p>
+                                            <u>
+                                                <li>
+                                                    mascota 1 - especie - raza
+                                                </li>
+                                                <li>
+                                                    mascota 2 - especie - raza
+                                                </li>
+                                                <li>
+                                                    mascota 3 - especie - raza
+                                                </li>
+                                            </u>
+                                        </div>
+                                        <div class="col bg-light rounded shadow-lg">
+                                            <h2>Imagenes de referencia:</h2>
+                                            <img src="https://webstockreview.net/images250_/clipart-animals-person.png"
+                                                alt="">
+                                        </div>
+                                    </div>
+                                </mat-card-content>
+                                <mat-card-actions class="text-right">
+                                    <button mat-raised-button id='aceptar'>ACEPTAR</button>
+                                    <button mat-raised-button color="warn">RECHAZAR</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </mat-tab>
+    <mat-tab label="Tus Mascotas">
+        <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
+            Tus Mascotas
+        </div>
+    </mat-tab>
+    <mat-tab label="Postulaciones Realizadas">
+        <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
+            Postulaciones Realizadas
+        </div>
+    </mat-tab>
+</mat-tab-group>
 
+
+
+
+<!--
     <div class="table-responsive">
-        <table class="table">
-            <tbody>
-                <tr>
-                    <td>
-                        <mat-card>
-                            <mat-card-header>
-                                <mat-card-title class="ml-0">Postulante (#) : (Nombre de Usuario) </mat-card-title>
-                            </mat-card-header>
-                            <div mat-card-image></div>
-                            <mat-card-content>
-                                    <div class="row">
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>¿Por qué quiero tu mascota?</h2>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat facilis
-                                                enim dolores quasi accusantium ex doloribus vel nostrum magni incidunt.
-                                                Dolorem molestias ullam itaque atque, distinctio libero! Repudiandae,
-                                                veritatis at?</p>
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <mat-card>
+                                    <mat-card-header>
+                                        <mat-card-title class="ml-0">Postulante (#) : (Nombre de Usuario) </mat-card-title>
+                                    </mat-card-header>
+                                    <div mat-card-image></div>
+                                    <mat-card-content>
+                                        <div class="row">
+                                            <div class="col bg-light rounded shadow-lg">
+                                                <h2>¿Por qué quiero tu mascota?</h2>
+                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat facilis
+                                                    enim dolores quasi accusantium ex doloribus vel nostrum magni incidunt.
+                                                    Dolorem molestias ullam itaque atque, distinctio libero! Repudiandae,
+                                                    veritatis at?</p>
+                                            </div>
+                                            <div class="col bg-light rounded shadow-lg">
+                                                <h2>Descripción: </h2>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptatibus
+                                                    cupiditate reiciendis.</p>
+                                                <h2>¿Como es el lugar donde vivira?</h2>
+                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quasi
+                                                    asperiores sapiente corporis perspiciatis.</p>
+                                            </div>
+                                            <div class="col bg-light rounded shadow-lg">
+                                                <h2>¿Tengo más mascotas?</h2>
+                                                <p>Tengo # mascotas</p>
+                                                <u>
+                                                    <li>
+                                                        mascota 1 - especie - raza
+                                                    </li>
+                                                    <li>
+                                                        mascota 2 - especie - raza
+                                                    </li>
+                                                    <li>
+                                                        mascota 3 - especie - raza
+                                                    </li>
+                                                </u>
+                                            </div>
+                                            <div class="col bg-light rounded shadow-lg">
+                                                <h2>Imagenes de referencia:</h2>
+                                                <img src="https://webstockreview.net/images250_/clipart-animals-person.png"
+                                                    alt="">
+                                            </div>
                                         </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>Descripción: </h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptatibus cupiditate reiciendis.</p>
-                                            <h2>¿Como es el lugar donde vivira?</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quasi asperiores sapiente corporis perspiciatis.</p>
-                                        </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>¿Tengo más mascotas?</h2>
-                                            <p>Tengo # mascotas</p>
-                                            <u>
-                                                <li>
-                                                    mascota 1 - especie - raza
-                                                </li>
-                                                <li>
-                                                    mascota 2 - especie - raza
-                                                </li>
-                                                <li>
-                                                    mascota 3 - especie - raza
-                                                </li>
-                                            </u>
-                                        </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>Imagenes de referencia:</h2>
-                                            <img src="https://webstockreview.net/images250_/clipart-animals-person.png" alt="">
-                                        </div>
-                                    </div>
-                            </mat-card-content>
-                            <mat-card-actions class="text-right">
-                                <button mat-raised-button id='aceptar'>ACEPTAR</button>
-                                <button mat-raised-button color="warn">RECHAZAR</button>
-                            </mat-card-actions>
-                        </mat-card>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="clearfix">
-                            <div class="float-left">aaaa</div>
-                            <div class="float-right">bbbb</div>
-                        </div>
-                        <mat-card>
-                            <mat-card-header>
-                                <mat-card-title class="ml-0">Postulante (#) : (Nombre de Usuario) </mat-card-title>
-                            </mat-card-header>
-                            <div mat-card-image></div>
-                            <mat-card-content>
-                                    <div class="row">
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>¿Por qué quiero tu mascota?</h2>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat facilis
-                                                enim dolores quasi accusantium ex doloribus vel nostrum magni incidunt.
-                                                Dolorem molestias ullam itaque atque, distinctio libero! Repudiandae,
-                                                veritatis at?</p>
-                                        </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>Descripción: </h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptatibus cupiditate reiciendis.</p>
-                                            <h2>¿Como es el lugar donde vivira?</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quasi asperiores sapiente corporis perspiciatis.</p>
-                                        </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>¿Tengo más mascotas?</h2>
-                                            <p>Tengo # mascotas</p>
-                                            <u>
-                                                <li>
-                                                    mascota 1 - especie - raza
-                                                </li>
-                                                <li>
-                                                    mascota 2 - especie - raza
-                                                </li>
-                                                <li>
-                                                    mascota 3 - especie - raza
-                                                </li>
-                                            </u>
-                                        </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>Imagenes de referencia:</h2>
-                                            <img src="https://webstockreview.net/images250_/clipart-animals-person.png" alt="">
-                                        </div>
-                                    </div>
-                            </mat-card-content>
-                            <mat-card-actions class="text-right">
-                                <button mat-raised-button id='aceptar'>ACEPTAR</button>
-                                <button mat-raised-button color="warn">RECHAZAR</button>
-                            </mat-card-actions>
-                        </mat-card>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="clearfix">
-                            <div class="float-left">aaaa</div>
-                            <div class="float-right">bbbb</div>
-                        </div>
-                        <mat-card>
-                            <mat-card-header>
-                                <mat-card-title class="ml-0">Postulante (#) : (Nombre de Usuario) </mat-card-title>
-                            </mat-card-header>
-                            <div mat-card-image></div>
-                            <mat-card-content>
-                                    <div class="row">
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>¿Por qué quiero tu mascota?</h2>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat facilis
-                                                enim dolores quasi accusantium ex doloribus vel nostrum magni incidunt.
-                                                Dolorem molestias ullam itaque atque, distinctio libero! Repudiandae,
-                                                veritatis at?</p>
-                                        </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>Descripción: </h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptatibus cupiditate reiciendis.</p>
-                                            <h2>¿Como es el lugar donde vivira?</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quasi asperiores sapiente corporis perspiciatis.</p>
-                                        </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>¿Tengo más mascotas?</h2>
-                                            <p>Tengo # mascotas</p>
-                                            <u>
-                                                <li>
-                                                    mascota 1 - especie - raza
-                                                </li>
-                                                <li>
-                                                    mascota 2 - especie - raza
-                                                </li>
-                                                <li>
-                                                    mascota 3 - especie - raza
-                                                </li>
-                                            </u>
-                                        </div>
-                                        <div class="col bg-light rounded shadow-lg">
-                                            <h2>Imagenes de referencia:</h2>
-                                            <img src="https://webstockreview.net/images250_/clipart-animals-person.png" alt="">
-                                        </div>
-                                    </div>
-                            </mat-card-content>
-                            <mat-card-actions class="text-right">
-                                <button mat-raised-button id='aceptar'>ACEPTAR</button>
-                                <button mat-raised-button color="warn">RECHAZAR</button>
-                            </mat-card-actions>
-                        </mat-card>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                                    </mat-card-content>
+                                    <mat-card-actions class="text-right">
+                                        <button mat-raised-button id='aceptar'>ACEPTAR</button>
+                                        <button mat-raised-button color="warn">RECHAZAR</button>
+                                    </mat-card-actions>
+                                </mat-card>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+-->
+
