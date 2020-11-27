@@ -33,6 +33,10 @@ export class PanelDeUsuarioComponent implements OnInit {
   loading: boolean = false;
   aceptada: boolean = false;
   rechazada: boolean = false;
+  emptyPostulacionEntrante: boolean = false;
+  emptyMascotasPorCuidador: boolean = false;
+  emptyPostulacionPorUsuario: boolean = false;
+
   closeModal() { this.aceptada = false, this.rechazada = false }
 
   actualizarEstado(id: number, estado: boolean, idPostulante: number) {
@@ -57,6 +61,8 @@ export class PanelDeUsuarioComponent implements OnInit {
     this.PostulacionesEntrantes = [];
     this.servicioPostulaciones.obtenerListaPostulacionesFiltrada(parseInt(localStorage.getItem("idUsuario"))).subscribe(
       resPost => {
+        console.log(resPost)
+        if(resPost.length < 1){ this.emptyPostulacionEntrante = true;}
         for (let mascota of resPost) {
           this.servicioMascotas.obtenerMascotaPorId(mascota.mascota).subscribe(
             resMasc => {
@@ -86,6 +92,7 @@ export class PanelDeUsuarioComponent implements OnInit {
     this.MascotasPorCuidador = [];
     this.servicioMascotas.obtenerMascotasPorCuidador(parseInt(localStorage.getItem("idUsuario"))).subscribe(
       res => {
+        if(res.length < 1){ this.emptyMascotasPorCuidador = true;}
         for (let mascota of res) {
           this.servicioFotos.obtenerListaFotoMascotaPorMascota(mascota.idMascota).subscribe(res => {
             var pet = {
@@ -111,6 +118,7 @@ export class PanelDeUsuarioComponent implements OnInit {
     this.PostulacionesPorUsuario = [];
     this.servicioPostulaciones.obtenerPostulacionPorUsuario(parseInt(localStorage.getItem("idUsuario"))).subscribe(
       res => {
+        if(res.length < 1){ this.emptyPostulacionPorUsuario = true;}
         for (let mascota of res) {
           this.servicioMascotas.obtenerMascotaPorId(mascota.mascota).subscribe(
             resMasc => {

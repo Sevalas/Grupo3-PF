@@ -34,7 +34,7 @@ export class PetExpoComponent implements OnInit {
   postulaSubmitted = false;
   multiple: boolean = false;
   get fPostula() { return this.postulaForm.controls; }
-  fotoRef = fetch('assets/imagenes/perfil.png').then(res => res.blob())
+  fotoRef = fetch('assets/imagenes/FotoRef.jpg').then(res => res.blob())
   idMascota = 0;
   nombreMascota = ""
   setDatosMascota(idMascota: number,nombre:string) { this.idMascota = idMascota; this.nombreMascota = nombre}

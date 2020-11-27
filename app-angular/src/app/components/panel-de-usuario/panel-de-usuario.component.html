@@ -2,6 +2,9 @@
 <mat-tab-group mat-stretch-tabs color="warn" class="mx-auto" style="width: 95%;">
     <mat-tab label="Postulaciones Entrantes">
         <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
+            <div *ngIf="emptyPostulacionEntrante">
+                NO TIENES POSTULACIONES ENTRANTES
+            </div>
             <table class="table">
                 <tbody>
                     <tr *ngFor="let postulacion of PostulacionesEntrantes">
@@ -50,6 +53,9 @@
     </mat-tab>
     <mat-tab label="Tus Mascotas">
         <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
+            <div *ngIf="emptyMascotasPorCuidador">
+                NO HAY NINGUNA MASCOTA POSTULADA
+            </div>
             <table class="table">
                 <tbody>
                     <tr *ngFor="let mascota of MascotasPorCuidador;let i = index">
@@ -100,13 +106,16 @@
     </mat-tab>
     <mat-tab label="Postulaciones Realizadas">
         <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
+            <div *ngIf="emptyPostulacionPorUsuario">
+                NO HAY NINGUNA POSTULACION REALIZADA
+            </div>
             <table class="table">
                 <tbody>
                     <tr *ngFor="let postulacion of PostulacionesPorUsuario">
                         <td>
                             <mat-card>
                                 <mat-card-header>
-                                    <mat-card-title class="ml-0">Postulacion Realizada a {{postulacion.nombreMascota}}</mat-card-title>
+                                    <mat-card-title class="ml-0">Postulacion Realizada a {{postulacion.nombreMascota}}. Estado: <span *ngIf="postulacion.estado===null">Pendiente</span><span *ngIf="postulacion.estado==='true'">Aceptada</span><span *ngIf="postulacion.estado==='false'">Rechazada</span></mat-card-title>
                                 </mat-card-header>
                                 <div mat-card-image></div>
                                 <mat-card-content>
