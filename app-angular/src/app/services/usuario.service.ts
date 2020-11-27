@@ -28,5 +28,8 @@ export class UsuarioService {
   obtenerUsuariosPorNickname(usuario:String): Observable<Usuario>{
     return this.http.get<Usuario>(`${this.apiURL}/nickname=${usuario}`)
   }
+  obtenerUsuariosPorId(id:number): Observable<Usuario>{
+    return this.http.get<Usuario>(`${this.apiURL}/id=${id}`)
+  }
 }
 

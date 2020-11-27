@@ -17,6 +17,8 @@ export class PetExpoComponent implements OnInit {
   constructor(private router: Router,private servicio: MascotasService, private servicioFotos: FotosMascotasService, private servicioPostula: PostulacionesService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("idUsuario")==null){
+    this.router.navigateByUrl("/")}
     this.conectarMascotas();
     this.postulaForm = this.formBuilder.group({
       pregunta1: ['', [Validators.required]],

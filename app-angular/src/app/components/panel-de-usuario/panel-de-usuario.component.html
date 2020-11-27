@@ -4,55 +4,42 @@
         <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
             <table class="table">
                 <tbody>
-                    <tr>
+                    <tr *ngFor="let postulacion of PostulacionesEntrantes">
                         <td>
                             <mat-card>
                                 <mat-card-header>
-                                    <mat-card-title class="ml-0">Postulante (#) : (Nombre de Usuario) </mat-card-title>
+                                    <mat-card-title class="ml-0">{{postulacion.nombreMascota}} tiene una postulacion de
+                                        {{postulacion.nickUsuario}}</mat-card-title>
                                 </mat-card-header>
                                 <div mat-card-image></div>
                                 <mat-card-content>
                                     <div class="row">
                                         <div class="col bg-light rounded shadow-lg">
                                             <h2>¿Por qué quiero tu mascota?</h2>
-                                            <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat facilis
-                                                enim dolores quasi accusantium ex doloribus vel nostrum magni incidunt.
-                                                Dolorem molestias ullam itaque atque, distinctio libero! Repudiandae,
-                                                veritatis at?</p>
+                                            <p style="overflow-y: scroll; height: 150px;">{{postulacion.pregunta1}}</p>
                                         </div>
                                         <div class="col bg-light rounded shadow-lg">
                                             <h2>Descripción: </h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptatibus
-                                                cupiditate reiciendis.</p>
-                                            <h2>¿Como es el lugar donde vivira?</h2>
-                                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quasi
-                                                asperiores sapiente corporis perspiciatis.</p>
+                                            <p style="overflow-y: scroll; height: 150px;">{{postulacion.descripcion}}
+                                            </p>
                                         </div>
                                         <div class="col bg-light rounded shadow-lg">
-                                            <h2>¿Tengo más mascotas?</h2>
-                                            <p>Tengo # mascotas</p>
-                                            <u>
-                                                <li>
-                                                    mascota 1 - especie - raza
-                                                </li>
-                                                <li>
-                                                    mascota 2 - especie - raza
-                                                </li>
-                                                <li>
-                                                    mascota 3 - especie - raza
-                                                </li>
-                                            </u>
+                                            <h2>¿Como es el lugar donde vivira?</h2>
+                                            <p style="overflow-y: scroll; height: 150px;">{{postulacion.pregunta2}}</p>
                                         </div>
                                         <div class="col bg-light rounded shadow-lg">
                                             <h2>Imagenes de referencia:</h2>
-                                            <img src="https://webstockreview.net/images250_/clipart-animals-person.png"
-                                                alt="">
+                                            <div id="divFotoPanel" style="cursor: pointer;" class="border shadow-lg"
+                                                style="background-image: url({{postulacion.fotoRefUrl}});"
+                                                (click)="showLightbox(0,postulacion.fotoRefUrl)"></div>
                                         </div>
                                     </div>
                                 </mat-card-content>
                                 <mat-card-actions class="text-right">
-                                    <button mat-raised-button id='aceptar'>ACEPTAR</button>
-                                    <button mat-raised-button color="warn">RECHAZAR</button>
+                                    <button mat-raised-button id='aceptar'
+                                        (click)="actualizarEstado(postulacion.idPostulaciones,true,postulacion.usuario)">ACEPTAR</button>
+                                    <button mat-raised-button color="warn"
+                                        (click)="actualizarEstado(postulacion.idPostulaciones,false,postulacion.usuario)">RECHAZAR</button>
                                 </mat-card-actions>
                             </mat-card>
                         </td>
@@ -63,15 +50,125 @@
     </mat-tab>
     <mat-tab label="Tus Mascotas">
         <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
-            Tus Mascotas
+            <table class="table">
+                <tbody>
+                    <tr *ngFor="let mascota of MascotasPorCuidador;let i = index">
+                        <td>
+                            <div class="card mb-3" style="max-width: 100%;">
+                                <div class="row no-gutters">
+                                    <div id="divFoto" style="cursor: pointer;" (click)="showLightbox(0,mascota.imgUrl)"
+                                        class="col-md-2 border shadow-lg"
+                                        style="background-image: url({{mascota.imgUrl}});"></div>
+                                    <div class="col-md-2">
+                                        <small class="text-muted ml-3">{{mascota.fechaDePublicacion}}</small>
+                                        <div class="card-body px-2 pt-0 text-center">
+                                            <p></p>
+                                            <h2 class="card-title mb-0">{{mascota.nombre}}</h2>
+                                            <h3 class="card-title mt-0 text-muted">{{mascota.especie}} -
+                                                {{mascota.raza}}
+                                            </h3>
+                                            <p class="card-text my-0">Edad : {{mascota.edad}} años</p>
+                                            <p class="card-text my-0" *ngIf="mascota.sexo==='H'">Sexo : Hermbra</p>
+                                            <p class="card-text my-0" *ngIf="mascota.sexo==='M'">Sexo : Macho</p>
+                                            <p class="card-text my-0" *ngIf="mascota.sexo==='N'">Sexo : Indeterminado
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <div class="card-body">
+                                            <h2 class="card-title my-0">Requisitos:</h2>
+                                            <div style="overflow-y: scroll; height: 57px;">
+                                                <p class="card-text  my-0">{{mascota.requisitos}}</p>
+                                            </div>
+                                            <h2 class="card-title my-0">Informacion Adicional:</h2>
+                                            <div style="overflow-y: scroll; height: 57px;">
+                                                <p class="card-text  my-0">{{mascota.infoAdicional}}</p>
+                                            </div>
+                                            <div class="text-center mt-2">
+                                                <button class="mr-4" mat-raised-button color="accent">EDITAR</button>
+                                                <button mat-raised-button color="warn">ELIMINAR</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </mat-tab>
     <mat-tab label="Postulaciones Realizadas">
         <div class="w-100 bg-light p-3 rounded-bottom shadow-lg">
-            Postulaciones Realizadas
+            <table class="table">
+                <tbody>
+                    <tr *ngFor="let postulacion of PostulacionesPorUsuario">
+                        <td>
+                            <mat-card>
+                                <mat-card-header>
+                                    <mat-card-title class="ml-0">Postulacion Realizada a {{postulacion.nombreMascota}}</mat-card-title>
+                                </mat-card-header>
+                                <div mat-card-image></div>
+                                <mat-card-content>
+                                    <div class="row">
+                                        <div class="col bg-light rounded shadow-lg">
+                                            <h2>¿Por qué quiero tu mascota?</h2>
+                                            <p style="overflow-y: scroll; height: 150px;">{{postulacion.pregunta1}}</p>
+                                        </div>
+                                        <div class="col bg-light rounded shadow-lg">
+                                            <h2>Descripción: </h2>
+                                            <p style="overflow-y: scroll; height: 150px;">{{postulacion.descripcion}}
+                                            </p>
+                                        </div>
+                                        <div class="col bg-light rounded shadow-lg">
+                                            <h2>¿Como es el lugar donde vivira?</h2>
+                                            <p style="overflow-y: scroll; height: 150px;">{{postulacion.pregunta2}}</p>
+                                        </div>
+                                        <div class="col bg-light rounded shadow-lg">
+                                            <h2>Imagenes de referencia:</h2>
+                                            <div id="divFotoPanel" style="cursor: pointer;" class="border shadow-lg"
+                                                style="background-image: url({{postulacion.fotoRefUrl}});"
+                                                (click)="showLightbox(0,postulacion.fotoRefUrl)"></div>
+                                        </div>
+                                    </div>
+                                </mat-card-content>
+                                <mat-card-actions class="text-right">
+                                    <button mat-raised-button color="accent">EDITAR</button>
+                                    <button mat-raised-button color="warn">ELIMINAR</button>
+                                </mat-card-actions>
+                            </mat-card>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </mat-tab>
 </mat-tab-group>
+
+<ng-image-fullscreen-view [images]="imageObject" [imageIndex]="currentIndex" [show]="showFlag"
+    (close)="closeEventHandler()">
+</ng-image-fullscreen-view>
+
+<div *ngIf="loading" id="overlay">
+    <div class="spinner">
+        <mat-spinner diameter="300"></mat-spinner>
+    </div>
+</div>
+
+<div *ngIf="aceptada" id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Solicitud Aceptada</strong> La información de contacto será enviada a tu correo electronico.
+    <button type="button" (click)="closeModal()" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
+<div *ngIf="rechazada" id="alerta" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <strong>Solicitud Rechazada</strong>
+    <button type="button" (click)="closeModal()" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+
 
 
 
@@ -137,4 +234,3 @@
                 </table>
             </div>
 -->
-

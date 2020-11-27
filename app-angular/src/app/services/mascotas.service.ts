@@ -25,4 +25,10 @@ export class MascotasService {
   agregarMascota(mascota:Mascota): Observable<number>{
     return this.http.post<number>(`${this.apiURL}`,mascota)
   }
+  obtenerMascotaPorId(id:number): Observable<Mascota>{
+    return this.http.get<Mascota>(`${this.apiURL}/id=${id}`)
+  }
+  obtenerMascotasPorCuidador(cuidador:number): Observable<Mascota[]>{
+    return this.http.get<Mascota[]>(`${this.apiURL}/cuidador=${cuidador}`)
+  }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { FotoMascota } from 'src/app/interfaces/foto-mascota.model';
 import { Mascota } from 'src/app/interfaces/mascota.model';
 import { FotosMascotasService } from 'src/app/services/fotos-mascotas.service';
@@ -14,9 +15,11 @@ import { MascotasService } from 'src/app/services/mascotas.service';
 export class PublicarPetComponent implements OnInit {
   @ViewChild(FormGroupDirective) formDirective
 
-  constructor(private formBuilder: FormBuilder,private servicioMascota: MascotasService,private servicioFotoMascota: FotosMascotasService) { }
+  constructor(private router: Router,private formBuilder: FormBuilder,private servicioMascota: MascotasService,private servicioFotoMascota: FotosMascotasService) { }
 
   ngOnInit(): void {
+    if(localStorage.getItem("idUsuario")==null){
+      this.router.navigateByUrl("/")}
     this.publicaForm = this.formBuilder.group({
       nombre: ['', [Validators.required]],
       especie: ['', [Validators.required]],

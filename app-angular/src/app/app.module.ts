@@ -19,6 +19,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialFileInputModule } from 'ngx-mat-file-input';
 import { CustomFormsModule } from 'ngx-custom-validators';
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
+import { ProgressSpinnerComponent } from './components/progress-spinner/progress-spinner.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
     PetPostulaComponent,
     PanelDeUsuarioComponent,
     TesstComponent,
+    ProgressSpinnerComponent,
   ],
   imports: [
     BrowserModule,
