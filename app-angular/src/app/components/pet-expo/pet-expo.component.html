@@ -4,16 +4,16 @@
         <table class="table">
             <tbody>
                 <tr *ngFor="let mascota of listaMascotas;let i = index">
-                    <td>
+                    <td class="p-0">
                         <div class="card mb-3" style="max-width: 100%;">
                             <div class="row no-gutters">
-                                <div id="divFoto" style="cursor: pointer;" (click)="showLightbox(0,mascota.imgUrl)" class="col-md-2 border shadow-lg"
+                                <div id="divFoto" style="cursor: pointer;" (click)="showLightbox(0,mascota.imgUrl)" class="col-md-3 shadow"
                                     style="background-image: url({{mascota.imgUrl}});"></div>
                                 <div class="col-md-2">
                                     <small class="text-muted ml-3">{{mascota.fechaDePublicacion}}</small>
                                     <div class="card-body px-2 pt-0 text-center">
                                         <p></p>
-                                        <h2 class="card-title mb-0">{{mascota.nombre}}</h2>
+                                        <h2 class="card-title mb-0"><strong>{{mascota.nombre}}</strong></h2>
                                         <h3 class="card-title mt-0 text-muted">{{mascota.especie}} - {{mascota.raza}}
                                         </h3>
                                         <p class="card-text my-0">Edad : {{mascota.edad}} años</p>
@@ -22,14 +22,16 @@
                                         <p class="card-text my-0" *ngIf="mascota.sexo==='N'">Sexo : Indeterminado</p>
                                     </div>
                                 </div>
-                                <div class="col-md-8">
+                                <div class="col-md-7">
                                     <div class="card-body">
-                                        <h2 class="card-title my-0">Requisitos:</h2>
-                                        <div style="overflow-y: scroll; height: 57px;">
+                                        <h2 class="card-title my-0"><strong>Requisitos:</strong></h2>
+                                        <div style="overflow-y: auto; height: 57px;">
                                             <p class="card-text  my-0">{{mascota.requisitos}}</p>
                                         </div>
-                                        <h2 class="card-title my-0">Informacion Adicional:</h2>
-                                        <div style="overflow-y: scroll; height: 57px;">
+                                        <br>
+                                        <h2 class="card-title my-0"><strong>Informacion Adicional:</strong></h2>
+                                        <div style="overflow-y: auto; height: 57px;">
+                                            <p *ngIf="!mascota.infoAdicional" class="text-muted">Sin información adicional</p>
                                             <p class="card-text  my-0">{{mascota.infoAdicional}}</p>
                                         </div>
                                         <div class="text-center mt-2">
