@@ -58,6 +58,23 @@
     height: 12%;
     font-size: 16px;
 }
+#col-sm-12{
+    width: 100%;
+}
+.w{
+    width: 49%;
+}
 p {
     font-size: 16px;
     }
+.mat-error {
+    font-size: 13px;
+}
+.mat-form-field-wrapper{
+    padding-bottom: 12px;
+    margin-top: 0% !important; 
+    margin-bottom: 3% !important;
+}
+.cdk-global-overlay-wrapper, .cdk-overlay-container {
+    z-index: 10000 !important;
+}    

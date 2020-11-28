@@ -93,7 +93,7 @@ export class PetExpoComponent implements OnInit {
     }
     formData.append(
       'imagen', await this.fotoRef)
-    this.servicioPostula.agregarPostulacion(formData).subscribe(res => { console.log("funciona"), window.location.reload(); })
+    this.servicioPostula.agregarPostulacion(formData).subscribe(res => { window.location.reload(); })
   }
 
   uploadImg(event: any) {

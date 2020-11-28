@@ -11,7 +11,8 @@
                         <td class="p-2">
                             <mat-card>
                                 <mat-card-header>
-                                    <mat-card-title class="ml-0"><strong>{{postulacion.nombreMascota}}</strong> tiene una postulacion de
+                                    <mat-card-title class="ml-0"><strong>{{postulacion.nombreMascota}}</strong> tiene
+                                        una postulacion de
                                         <u>{{postulacion.nickUsuario}}</u></mat-card-title>
                                 </mat-card-header>
                                 <div mat-card-image></div>
@@ -63,8 +64,8 @@
                             <div class="card mb-3" style="max-width: 100%;">
                                 <div class="row no-gutters">
                                     <div id="divFoto" style="cursor: pointer;" (click)="showLightbox(0,mascota.imgUrl)"
-                                        class="col-md-3 shadow"
-                                        style="background-image: url({{mascota.imgUrl}});"></div>
+                                        class="col-md-3 shadow" style="background-image: url({{mascota.imgUrl}});">
+                                    </div>
                                     <div class="col-md-2">
                                         <small class="text-muted ml-3">{{mascota.fechaDePublicacion}}</small>
                                         <div class="card-body px-2 pt-0 text-center">
@@ -89,12 +90,17 @@
                                             <br>
                                             <h2 class="card-title my-0"><strong>Informacion Adicional:</strong></h2>
                                             <div style="overflow-y: auto; height: 57px;">
-                                                <p *ngIf="!mascota.infoAdicional" class="text-muted">Sin información adicional</p>
+                                                <p *ngIf="!mascota.infoAdicional" class="text-muted">Sin información
+                                                    adicional</p>
                                                 <p class="card-text  my-0">{{mascota.infoAdicional}}</p>
                                             </div>
                                             <div class="text-center mt-2">
-                                                <button class="mr-4" mat-raised-button color="accent">EDITAR</button>
-                                                <button mat-raised-button color="warn">ELIMINAR</button>
+                                                <button class="mr-4" mat-raised-button color="accent"
+                                                    data-toggle="modal" data-target="#editarMascotaModal"
+                                                    (click)="setDatosMascota(mascota.idMascota,mascota.nombre,mascota.imgId)">EDITAR</button>
+                                                <button mat-raised-button color="warn" data-toggle="modal"
+                                                    data-target="#eliminarMascotaModal"
+                                                    (click)="setDatosMascota(mascota.idMascota,mascota.nombre)">ELIMINAR</button>
                                             </div>
                                         </div>
                                     </div>
@@ -117,7 +123,12 @@
                         <td class="p-2">
                             <mat-card>
                                 <mat-card-header>
-                                    <mat-card-title class="ml-0">Postulacion Realizada a <strong>{{postulacion.nombreMascota}} </strong><u>(Estado: <span *ngIf="postulacion.estado===null">Pendiente</span><span *ngIf="postulacion.estado==='true'">Aceptada</span><span *ngIf="postulacion.estado==='false'">Rechazada</span>)</u></mat-card-title>
+                                    <mat-card-title class="ml-0">Postulacion Realizada a
+                                        <strong>{{postulacion.nombreMascota}} </strong><u>(Estado: <span
+                                                *ngIf="postulacion.estado===null">Pendiente</span><span
+                                                *ngIf="postulacion.estado==='true'">Aceptada</span><span
+                                                *ngIf="postulacion.estado==='false'">Rechazada</span>)</u>
+                                    </mat-card-title>
                                 </mat-card-header>
                                 <div mat-card-image></div>
                                 <mat-card-content>
@@ -144,8 +155,11 @@
                                     </div>
                                 </mat-card-content>
                                 <mat-card-actions class="text-right">
-                                    <button mat-raised-button color="accent">EDITAR</button>
-                                    <button mat-raised-button color="warn">ELIMINAR</button>
+                                    <button *ngIf="postulacion.estado===null" mat-raised-button color="accent"
+                                        editarPostulacionModal data-toggle="modal" data-target="#editarPostulacionModal"
+                                        (click)="setDatosPostulacion(postulacion.idPostulaciones,postulacion.nombreMascota,postulacion.mascota)">EDITAR</button>
+                                    <button mat-raised-button color="warn" data-toggle="modal" data-target="#eliminarPostulacionModal"
+                                    (click)="setDatosPostulacion(postulacion.idPostulaciones,postulacion.nombreMascota,postulacion.mascota)">ELIMINAR</button>
                                 </mat-card-actions>
                             </mat-card>
                         </td>
@@ -180,68 +194,215 @@
     </button>
 </div>
 
-
-
-
-
-<!--
-    <div class="table-responsive">
-                <table class="table">
-                    <tbody>
-                        <tr>
-                            <td>
-                                <mat-card>
-                                    <mat-card-header>
-                                        <mat-card-title class="ml-0">Postulante (#) : (Nombre de Usuario) </mat-card-title>
-                                    </mat-card-header>
-                                    <div mat-card-image></div>
-                                    <mat-card-content>
-                                        <div class="row">
-                                            <div class="col bg-light rounded shadow-lg">
-                                                <h2>¿Por qué quiero tu mascota?</h2>
-                                                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat facilis
-                                                    enim dolores quasi accusantium ex doloribus vel nostrum magni incidunt.
-                                                    Dolorem molestias ullam itaque atque, distinctio libero! Repudiandae,
-                                                    veritatis at?</p>
-                                            </div>
-                                            <div class="col bg-light rounded shadow-lg">
-                                                <h2>Descripción: </h2>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae voluptatibus
-                                                    cupiditate reiciendis.</p>
-                                                <h2>¿Como es el lugar donde vivira?</h2>
-                                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Similique quasi
-                                                    asperiores sapiente corporis perspiciatis.</p>
-                                            </div>
-                                            <div class="col bg-light rounded shadow-lg">
-                                                <h2>¿Tengo más mascotas?</h2>
-                                                <p>Tengo # mascotas</p>
-                                                <u>
-                                                    <li>
-                                                        mascota 1 - especie - raza
-                                                    </li>
-                                                    <li>
-                                                        mascota 2 - especie - raza
-                                                    </li>
-                                                    <li>
-                                                        mascota 3 - especie - raza
-                                                    </li>
-                                                </u>
-                                            </div>
-                                            <div class="col bg-light rounded shadow-lg">
-                                                <h2>Imagenes de referencia:</h2>
-                                                <img src="https://webstockreview.net/images250_/clipart-animals-person.png"
-                                                    alt="">
-                                            </div>
-                                        </div>
-                                    </mat-card-content>
-                                    <mat-card-actions class="text-right">
-                                        <button mat-raised-button id='aceptar'>ACEPTAR</button>
-                                        <button mat-raised-button color="warn">RECHAZAR</button>
-                                    </mat-card-actions>
-                                </mat-card>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+<div class="modal fade" id="editarMascotaModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="width: 75%;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title">Editar publicación de {{nombreMascota}}</p>
+                <div style="width: 60%;"></div>
+                <mat-spinner *ngIf="loading2" diameter="40"></mat-spinner>
+                <button type="reset" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
--->
+            <form [formGroup]="actualizaMascotaForm" (ngSubmit)="actualizaMascotaOnSubmit()">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <mat-form-field class="w mr-3" appearance="outline">
+                                <mat-label>Nombre Mascota*</mat-label>
+                                <input type="text" matInput placeholder="Nombre de la Mascota" formControlName="nombre"
+                                    [ngClass]="{ 'is-invalid': actualizaMascotaSubmitted && fActualizaMascota.nombre.errors}">
+                                <mat-error *ngIf="actualizaMascotaSubmitted && fActualizaMascota.nombre.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="fActualizaMascota.nombre.errors.required">El nombre es requerido</div>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="w" appearance="outline">
+                                <mat-label>Sexo*</mat-label>
+                                <mat-select style="z-index: 1100" placeholder="Sexo de la Mascota"
+                                    formControlName="sexo"
+                                    [ngClass]="{ 'is-invalid': actualizaMascotaSubmitted && fActualizaMascota.sexo.errors}">
+                                    <mat-option value="H">Hembra</mat-option>
+                                    <mat-option value="M">Macho</mat-option>
+                                    <mat-option value="N">Indeterminado</mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="actualizaMascotaSubmitted && fActualizaMascota.sexo.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="fActualizaMascota.sexo.errors.required">El sexo es requerido</div>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <mat-form-field class="w mr-3" appearance="outline">
+                                <mat-label>Especie*</mat-label>
+                                <input type="text" matInput placeholder="Especie de la Mascota"
+                                    formControlName="especie"
+                                    [ngClass]="{ 'is-invalid': actualizaMascotaSubmitted && fActualizaMascota.especie.errors}">
+                                <mat-error *ngIf="actualizaMascotaSubmitted && fActualizaMascota.especie.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="fActualizaMascota.especie.errors.required">La especie es requerida</div>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field class="w" appearance="outline">
+                                <mat-label>Raza*</mat-label>
+                                <input type="text" matInput placeholder="Raza de la Mascota" formControlName="raza"
+                                    [ngClass]="{ 'is-invalid': actualizaMascotaSubmitted && fActualizaMascota.raza.errors}">
+                                <mat-error *ngIf="actualizaMascotaSubmitted && fActualizaMascota.raza.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="fActualizaMascota.raza.errors.required">La raza es requerida</div>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <mat-form-field class="w mr-3" appearance="outline">
+                                <mat-label>Edad*</mat-label>
+                                <input type="number" matInput placeholder="Edad de la mascota en años humanos"
+                                    formControlName="edad"
+                                    [ngClass]="{ 'is-invalid': actualizaMascotaSubmitted && fActualizaMascota.edad.errors}">
+                                <mat-error *ngIf="actualizaMascotaSubmitted && fActualizaMascota.edad.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="fActualizaMascota.edad.errors.required">La edad es requerida</div>
+                                </mat-error>
+                            </mat-form-field>
+                            <mat-form-field appearance="outline" class="w">
+                                <ngx-mat-file-input id="fotoPerfil" (change)="uploadImg($event)"
+                                    valuePlaceholder="Click para ingresar foto de la mascota*" type="file"
+                                    [multiple]="false" formControlName="imgMascota"
+                                    [ngClass]="{ 'is-invalid': actualizaMascotaSubmitted && fActualizaMascota.imgMascota.errors}">
+                                </ngx-mat-file-input>
+                                <mat-icon matSuffix style="cursor: pointer;">folder</mat-icon>
+                                <mat-error *ngIf="actualizaMascotaSubmitted && fActualizaMascota.imgMascota.errors"
+                                    class="invalid-feedback">
+                                    <div *ngIf="fActualizaMascota.imgMascota.errors.required">La imagen es requerida
+                                    </div>
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row mx-auto">
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Requisitos*</mat-label>
+                            <textarea type="text" matInput placeholder="Requisitos para adoptar" style="height: 65px;"
+                                formControlName="requisitos"
+                                [ngClass]="{ 'is-invalid': actualizaMascotaSubmitted && fActualizaMascota.requisitos.errors}"></textarea>
+                            <mat-error *ngIf="actualizaMascotaSubmitted && fActualizaMascota.requisitos.errors"
+                                class="invalid-feedback">
+                                <div *ngIf="fActualizaMascota.requisitos.errors.required">Los requisitos son requeridos
+                                </div>
+                            </mat-error>
+                        </mat-form-field>
+                        <mat-form-field class="w-100" appearance="outline">
+                            <mat-label>Información Adicional</mat-label>
+                            <textarea type="text" matInput placeholder="Información Adicional" style="height: 65px;"
+                                formControlName="infoAdicional"
+                                [ngClass]="{ 'is-invalid': actualizaMascotaSubmitted && fActualizaMascota.infoAdicional.errors}"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="form-group mt-2 text-center">
+                    <button mat-raised-button id='aceptar' class="w-50 boton">Actualizar Mascota</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="eliminarMascotaModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 75%;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>¿Eliminar a {{nombreMascota}}?</h2>
+                <mat-spinner *ngIf="loading3" diameter="40"></mat-spinner>
+            </div>
+            <div class="mx-auto">
+                <button class="m-4" mat-raised-button color="warn" (click)="eliminarMascota()">SI</button>
+                <button class="m-4" mat-raised-button id="aceptar" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarPostulacionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-xl" style="width: 75%;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <p class="modal-title">Editar postulación de {{nombreMascota2}}</p>
+                <div style="width: 60%;"></div>
+                <mat-spinner *ngIf="loading3" diameter="40"></mat-spinner>
+                <button type="reset" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form [formGroup]="actualizaPostulacionForm" (ngSubmit)="actualizaPostulacionOnSubmit()">
+                <div class="modal-body">
+
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>¿Por que tu deberias ser quien lo adopte?</mat-label>
+                        <textarea matInput type="text" style="height: 65px;" placeholder="Respuesta"
+                            formControlName="pregunta1"
+                            [ngClass]="{ 'is-invalid': actualizaPostulacionSubmitted && fActualizaPostulacion.pregunta1.errors}"></textarea>
+                        <mat-error *ngIf="actualizaPostulacionSubmitted && fActualizaPostulacion.pregunta1.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="fActualizaPostulacion.pregunta1.errors.required">El nombre es requerido</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>¿Como es el lugar donde vivira?</mat-label>
+                        <textarea matInput type="text" style="height: 65px;" placeholder="Respuesta"
+                            formControlName="pregunta2"
+                            [ngClass]="{ 'is-invalid': actualizaPostulacionSubmitted && fActualizaPostulacion.pregunta2.errors}"></textarea>
+                        <mat-error *ngIf="actualizaPostulacionSubmitted && fActualizaPostulacion.pregunta2.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="fActualizaPostulacion.pregunta2.errors.required">Pregunta requerida</div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field class="w-100" appearance="outline">
+                        <mat-label>Describete</mat-label>
+                        <textarea matInput type="text" style="height: 65px;" placeholder="Respuesta"
+                            formControlName="descripcion"
+                            [ngClass]="{ 'is-invalid': actualizaPostulacionSubmitted && fActualizaPostulacion.descripcion.errors}"></textarea>
+                        <mat-error *ngIf="actualizaPostulacionSubmitted && fActualizaPostulacion.descripcion.errors"
+                            class="invalid-feedback">
+                            <div *ngIf="fActualizaPostulacion.descripcion.errors.required">Descripción requerida
+                            </div>
+                        </mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="input ml-2 segundaRow w-100">
+                        <ngx-mat-file-input id="fotoPerfil" (change)="uploadImg2($event)"
+                            valuePlaceholder="Click para ingresar foto de referencia" type="file" [multiple]="false"
+                            formControlName="urlImg"
+                            [ngClass]="{ 'is-invalid': actualizaPostulacionSubmitted && fActualizaPostulacion.urlImg.errors}">
+                        </ngx-mat-file-input>
+                        <mat-icon matSuffix style="cursor: pointer;">folder</mat-icon>
+                    </mat-form-field>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success w-100">Actualizar Postulación</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="eliminarPostulacionModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" style="width: 75%;" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>¿Eliminar postulacion de {{nombreMascota2}}?</h2>
+                <mat-spinner *ngIf="loading4" diameter="40"></mat-spinner>
+            </div>
+            <div class="mx-auto">
+                <button class="m-4" mat-raised-button color="warn" (click)="eliminarPostulacion()">SI</button>
+                <button class="m-4" mat-raised-button id="aceptar" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>

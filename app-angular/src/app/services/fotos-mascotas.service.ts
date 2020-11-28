@@ -22,4 +22,7 @@ export class FotosMascotasService {
   agregarFotoMascota(Data:FormData){
     return this.http.post(`${this.apiURL}`,Data)
   }
+  actualizarFotoMascota(id:number,Data:FormData){
+    return this.http.put(`${this.apiURL}/actualizar=${id}`,Data)
+  }
 }

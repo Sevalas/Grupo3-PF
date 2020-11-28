@@ -31,4 +31,10 @@ export class MascotasService {
   obtenerMascotasPorCuidador(cuidador:number): Observable<Mascota[]>{
     return this.http.get<Mascota[]>(`${this.apiURL}/cuidador=${cuidador}`)
   }
+  actualizarMascota(idMascota:number,mascota:Mascota) {
+    return this.http.put(`${this.apiURL}/actualizar=${idMascota}`,mascota)
+  }
+  eliminarMascota(idMascota:number) {
+    return this.http.delete(`${this.apiURL}/eliminar=${idMascota}`)
+  }
 }

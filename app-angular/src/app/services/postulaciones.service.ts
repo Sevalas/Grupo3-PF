@@ -30,5 +30,13 @@ export class PostulacionesService {
   obtenerPostulacionPorUsuario(usuario:number): Observable<Postulacion[]>{
     return this.http.get<Postulacion[]>(`${this.apiURL}/usuario=${usuario}`)
   }
+
+  actualizarPostulacion(id:number,data:FormData) {
+    return this.http.put(`${this.apiURL}/actualizar=${id}`,data)
+  }
+
+  eliminarPostulacion(id:number){
+    return this.http.delete(`${this.apiURL}/eliminar=${id}`)
+  }
 }
 
