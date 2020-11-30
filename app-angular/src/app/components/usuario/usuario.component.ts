@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CustomValidators } from 'ngx-custom-validators';
 import { Usuario } from 'src/app/interfaces/usuario.model';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -11,9 +12,12 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 })
 export class UsuarioComponent implements OnInit {
 
-  constructor(private formBuilder: FormBuilder, private servicio: UsuarioService) { }
+  constructor(private router: Router,private formBuilder: FormBuilder, private servicio: UsuarioService) { }
 
   ngOnInit(): void {
+    if (localStorage.getItem("idUsuario") == null) {
+      this.router.navigateByUrl("/")
+    }
     this.setDatosUsuario()
 
   }
