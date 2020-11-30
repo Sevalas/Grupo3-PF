@@ -2,14 +2,14 @@
     color: white;
     background-color:  #12ad34;
 }
-.mat-tab-header{
+:host ::ng-deep .mat-tab-header{
     background-color: seagreen;
     border-radius: 5px 5px 0px 0px;
 }
-.mat-tab-label-content{
+:host ::ng-deep .mat-tab-label-content{
     color: white
 }
-.mat-tab-body-wrapper{
+:host ::ng-deep .mat-tab-body-wrapper{
     border-radius: 0px 0px 5px 5px;
 }
 #divFoto{
@@ -67,14 +67,14 @@
 p {
     font-size: 16px;
     }
-.mat-error {
+:host ::ng-deep .mat-error {
     font-size: 13px;
 }
-.mat-form-field-wrapper{
+:host ::ng-deep .mat-form-field-wrapper{
     padding-bottom: 12px;
     margin-top: 0% !important; 
     margin-bottom: 3% !important;
 }
-.cdk-global-overlay-wrapper, .cdk-overlay-container {
-    z-index: 10000 !important;
-}    
+:host ::ng-deep .ngx-pagination{
+    text-align: center;
+   }

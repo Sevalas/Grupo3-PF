@@ -30,6 +30,7 @@
     "ngx-custom-validators": "^10.0.0",
     "ngx-mat-file-input": "^3.0.0-beta.0",
     "ngx-material-file-input": "^2.1.1",
+    "ngx-pagination": "^5.0.0",
     "popper.js": "^1.16.1",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.3",

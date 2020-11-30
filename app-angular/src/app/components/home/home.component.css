@@ -17,17 +17,14 @@
     min-height: 300px;
 }
 
-.cdk-global-overlay-wrapper, .cdk-overlay-container {
-    z-index: 10000 !important;
-}
-.mat-error {
+:host ::ng-deep .mat-error {
     font-size: 13px;
 }
-.hint {
+:host ::ng-deep .hint {
     color:rgb(235, 140, 52);
     font-size: 14px;
 }
-.mat-form-field-wrapper{
+:host ::ng-deep .mat-form-field-wrapper{
     padding-bottom: 13px;
     margin-top: 0% !important; 
     margin-bottom: 3% !important;

@@ -1,8 +1,6 @@
-<div class="container-fluid">
     <form [formGroup]="publicaForm" (ngSubmit)="publicaOnSubmit()">
         <br>
-        <div class="row">
-            <div class="card mx-auto rounded shadow-lg" style="width: 95%;">
+            <div class="card bg-light mx-auto rounded shadow-lg">
                 <div class="card-header text-left">
                     <div class="row">
                         <div class="col-11 m-0"><strong>Agregar Informacion:</strong> Ingresa los datos de tu mascota
@@ -84,9 +82,7 @@
                     </div>
                 </div>
             </div>
-        </div>
         <br>
-        <div class="row">
             <div class="card mx-auto rounded shadow-lg" style="width: 95%;">
                 <div class="card-header text-left">
                     <div class="m-0"><strong>Requisitos de Adopcion: </strong> Ingrese los requisitos que deberan
@@ -115,9 +111,7 @@
                     <button mat-raised-button id='Registrarse' class="w-50 boton">Buscar Nuevo Hogar</button>
                 </div>
             </div>
-        </div>
     </form>
-</div>
 
 <div *ngIf="alertClosePublicacion" id="registro" class="alert alert-warning alert-dismissible fade show" role="alert">
     <strong>Completado</strong> La mascota se ha publicado Correctamente.

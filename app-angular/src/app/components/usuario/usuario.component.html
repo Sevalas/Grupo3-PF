@@ -1,0 +1,179 @@
+<br>
+<div class="container-fluid bg-light mx-auto p-3 rounded shadow-lg">
+    <div class="row" style="height: 38px;">
+        <div class="col-11"><h2 class="m-0 text-center pl-5">Actualizar tu información de usuario</h2></div>
+        <div class="col-1"><mat-spinner *ngIf="loading" diameter="40"></mat-spinner></div>
+    </div>
+    <form *ngIf="ready" [formGroup]="actualizaUsuarioForm" id="actualizaUsuarioForm"
+        (ngSubmit)="actualizaUsuarioOnSubmit()">
+        <hr>
+        <div class="h-50 w-100 px-3">
+            <div class="row justify-content-center mb-2">
+                <mat-form-field appearance="outline" class="input w-100">
+                    <mat-label>Usuario(Nickname)*</mat-label>
+                    <input matInput placeholder="Ingrese nombre de Usuario" type="text" maxlength="15"
+                        formControlName="usuario" (keydown)="RegistroNicknameOnKeydown($event)"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.usuario.errors }" />
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.usuario.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.usuario.errors.required">El nickname es requerido</div>
+                        <div *ngIf="fActualizaUsuario.usuario.errors.minlength">Largo minimo 7</div>
+                        <div *ngIf="fActualizaUsuario.usuario.errors.pattern">El Nickname puede contener
+                            (a-z|A-Z|.|-|_|) sin espacios</div>
+                    </mat-error>
+                    <mat-hint class="hint" *ngIf="checkNick">Este nombre de usuario ya esta registrado</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <mat-form-field appearance="outline" class="input w-100">
+                    <mat-label>Contraseña Actual*</mat-label>
+                    <input matInput
+                        placeholder="Ingrese Contraseña de largo 7 a 15 (mayuscula, minuscula, numero, Caracter Especial)"
+                        [type]="hide ? 'password' : 'text'" formControlName="contrasenaActual" type="text"
+                        maxlength="15"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.contrasenaActual.errors }" />
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.contrasenaActual.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.contrasenaActual.errors.required">La contraseña antigua es
+                            requerida</div>
+                        <div *ngIf="fActualizaUsuario.contrasenaActual.errors.minlength">Largo minimo 7</div>
+                        <div *ngIf="fActualizaUsuario.contrasenaActual.errors.pattern">Contraseña Incorrecta</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <mat-form-field appearance="outline" class="input w-100">
+                    <mat-label>Contraseña Nueva*</mat-label>
+                    <input matInput
+                        placeholder="Ingrese Contraseña de largo 7 a 15 (mayuscula, minuscula, numero, Caracter Especial)"
+                        [type]="hide ? 'password' : 'text'" formControlName="contrasenaNueva" type="text" maxlength="15"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.contrasenaNueva.errors }" />
+                    <button type="button" mat-icon-button matSuffix (click)="hide = !hide"
+                        [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                    </button>
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.contrasenaNueva.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.contrasenaNueva.errors.required">La contraseña nueva es requerida
+                        </div>
+                        <div *ngIf="fActualizaUsuario.contrasenaNueva.errors.minlength">Largo minimo 7</div>
+                        <div *ngIf="fActualizaUsuario.contrasenaNueva.errors.pattern">Al menos una mayuscula, minuscula,
+                            numero, Caracter Especial</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <mat-form-field appearance="outline" class="input w-100">
+                    <mat-label>Correo Electronico*</mat-label>
+                    <input matInput placeholder="Ingrese Correo Electronico correo@electronico.com" type="text"
+                        maxlength="35" name="email" formControlName="email" (keydown)="RegistroEmailOnKeydown($event)"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.email.errors }">
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.email.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.email.errors.required">El Correo Electronico es requerido
+                        </div>
+                        <div *ngIf="fActualizaUsuario.email.errors?.email">Correo Electronico con formato invalido
+                        </div>
+                    </mat-error>
+                    <mat-hint class="hint" *ngIf="checkEmail">Este correo ya esta registrado</mat-hint>
+                </mat-form-field>
+            </div>
+            <div class="row justify-content-center mb-2">
+                <mat-form-field appearance="outline" class="input w-100">
+                    <mat-label>Numero Telefonico*</mat-label>
+                    <input matInput type="number" value="0" onKeyPress="if(this.value.length==9) return false;"
+                        placeholder="Ingrese numero celular (9XXXXXXXX)" formControlName="fono"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.fono.errors }"
+                        (keydown)="RegistroFonoOnKeydown($event)" />
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.fono.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.fono.errors.required">El Numero telefonico es requerido</div>
+                        <div *ngIf="fActualizaUsuario.fono.errors.pattern">Formato invalido, Ingrese: 9XXXXXXXX (9
+                            numeros)</div>
+                    </mat-error>
+                    <mat-hint class="hint" *ngIf="checkFono">Este nombre de usuario ya esta registrado</mat-hint>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="h-50 w-100 px-3 mb-2">
+            <div class="row mb-2">
+                <mat-form-field appearance="outline" class="input mr-1 segundaRow">
+                    <mat-label>Nombre*</mat-label>
+                    <input matInput placeholder="Ingrese Usuario" type="text" maxlength="35" formControlName="nombre"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.nombre.errors }" />
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.nombre.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.nombre.errors.required">El nombre es requerido</div>
+                    </mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="outline" class="input ml-1 segundaRow">
+                    <mat-label>Apellido*</mat-label>
+                    <input matInput placeholder="Ingrese Apellido" maxlength="35" type="text" formControlName="apellido"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.apellido.errors }" />
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.apellido.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.apellido.errors.required">El apellido es requerido</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row mb-2">
+                <mat-form-field appearance="outline" class="input mr-1 segundaRow">
+                    <mat-label>Región*</mat-label>
+                    <mat-select name="region" formControlName="region"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.region.errors }">
+                        <mat-option *ngFor="let item of regionesYcomunas" [value]="item.NombreRegion"
+                            (click)='filtroComuna()'>{{item.NombreRegion}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.region.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.region.errors.required">La región es requerida</div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="input ml-1 segundaRow">
+                    <mat-label>Comuna*</mat-label>
+                    <mat-select name="comuna" formControlName="comuna"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.comuna.errors }">
+                        <mat-option *ngFor="let item of listaDeColumnas" [value]="item">{{item}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.comuna.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.comuna.errors.required">La comuna es requerida (ingrese
+                            primero una región)</div>
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="row">
+                <mat-form-field appearance="outline" class="input mr-1 segundaRow">
+                    <mat-label>Fecha de Nacimiento*</mat-label>
+                    <input readonly="readonly" matInput [matDatepicker]="picker" formControlName="fechaNac"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.fechaNac.errors }" />
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                    <mat-error *ngIf="actualizaUsuarioSubmitted && fActualizaUsuario.fechaNac.errors"
+                        class="invalid-feedback">
+                        <div *ngIf="fActualizaUsuario.fechaNac.errors.required">La Fecha de nacimiento es requerida
+                        </div>
+                        <div *ngIf="fActualizaUsuario.fechaNac.errors.verificadoEdad">Edad minima: 15 años</div>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="input ml-2 segundaRow">
+                    <ngx-mat-file-input id="fotoPerfil" (change)="uploadDocument($event)"
+                        valuePlaceholder="Click para ingresar foto de perfil" type="file" [multiple]="false"
+                        formControlName="img"
+                        [ngClass]="{ 'is-invalid': actualizaUsuarioSubmitted && fActualizaUsuario.img.errors}">
+                    </ngx-mat-file-input>
+                    <mat-icon matSuffix style="cursor: pointer;">folder</mat-icon>
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="form-group mt-2 text-center">
+            <button mat-raised-button id='boton' class="w-100 boton">Actualizar Usuario</button>
+        </div>
+    </form>
+</div>

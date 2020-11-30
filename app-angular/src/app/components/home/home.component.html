@@ -1,6 +1,6 @@
 <div class="container-flex h-100 w-100">
     <div class="row w-100 h-100 m-0">
-        <div class="col-4  bg-white text-dark">
+        <div class="col-4 bg-white text-dark">
             <div class="row h-25">
                 <div class="w-100 mr-3">
                     <a class="text-right click">
@@ -10,6 +10,8 @@
             </div>
             <div class="row h-75">
                 <div class="col text-center login">
+                    <div style="height: 38px;"><mat-spinner class="mx-auto" *ngIf="loading2" diameter="40"></mat-spinner></div>
+                    <br>
                     <p style="font-size: 40px;">PetAdopt <mat-icon>pets</mat-icon>
                     </p>
                     <p class="mt-5" style="font-size: 20px;">Ingrese a PetAdopt</p>
@@ -185,7 +187,7 @@
                         <div class="row mb-2">
                             <mat-form-field appearance="outline" class="input mr-1 segundaRow">
                                 <mat-label>Región*</mat-label>
-                                <mat-select name="region" formControlName="region"
+                                <mat-select class="select" name="region" formControlName="region"
                                     [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.region.errors }"
                                     [(ngModel)]="regionSeleccionada">
                                     <mat-option *ngFor="let item of regionesYcomunas" [value]="item.NombreRegion"
@@ -198,7 +200,7 @@
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="input ml-1 segundaRow">
                                 <mat-label>Comuna*</mat-label>
-                                <mat-select name="comuna" formControlName="comuna"
+                                <mat-select class="select" name="comuna" formControlName="comuna"
                                     [ngClass]="{ 'is-invalid': registerSubmitted && fRegister.comuna.errors }"
                                     [ngModel]="comunaSeleccionada">
                                     <mat-option *ngFor="let item of listaDeColumnas" [value]="item">{{item}}

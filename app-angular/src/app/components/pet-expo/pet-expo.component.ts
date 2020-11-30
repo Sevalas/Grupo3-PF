@@ -1,24 +1,26 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Postulacion } from 'src/app/interfaces/postulacion.model';
 import { FotosMascotasService } from 'src/app/services/fotos-mascotas.service';
 import { MascotasService } from 'src/app/services/mascotas.service';
 import { PostulacionesService } from 'src/app/services/postulaciones.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
+
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
   selector: 'app-pet-expo',
   templateUrl: './pet-expo.component.html',
   styleUrls: ['./pet-expo.component.css']
 })
 export class PetExpoComponent implements OnInit {
 
-  constructor(private router: Router,private servicio: MascotasService, private servicioFotos: FotosMascotasService, private servicioPostula: PostulacionesService, private formBuilder: FormBuilder) { }
+  constructor(private router: Router, private servicio: MascotasService, private servicioFotos: FotosMascotasService, private servicioPostula: PostulacionesService, private servicioUsuario:UsuarioService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    if(localStorage.getItem("idUsuario")==null){
-    this.router.navigateByUrl("/")}
+    if (localStorage.getItem("idUsuario") == null) {
+      this.router.navigateByUrl("/")
+    }
     this.conectarMascotas();
     this.postulaForm = this.formBuilder.group({
       pregunta1: ['', [Validators.required]],
@@ -37,32 +39,39 @@ export class PetExpoComponent implements OnInit {
   fotoRef = fetch('assets/imagenes/FotoRef.jpg').then(res => res.blob())
   idMascota = 0;
   nombreMascota = ""
-  setDatosMascota(idMascota: number,nombre:string) { this.idMascota = idMascota; this.nombreMascota = nombre}
+  setDatosMascota(idMascota: number, nombre: string) { this.idMascota = idMascota; this.nombreMascota = nombre }
   imageObject = Array<object>();
   currentIndex: any = -1;
   showFlag: boolean = false;
   loading: boolean = false;
+  p: number = 1;
 
   conectarMascotas() {
     if (localStorage.length !== 0) {
       this.servicio.listaMascotasFiltrada(parseInt(localStorage.getItem("idUsuario"))).subscribe(
-        res => {
-          for (let mascota of res) {
-            this.servicioFotos.obtenerListaFotoMascotaPorMascota(mascota.idMascota).subscribe(res => {
-              var pet = {
-                idMascota: mascota.idMascota,
-                nombre: mascota.nombre,
-                cuidador: mascota.cuidador,
-                especie: mascota.especie,
-                raza: mascota.raza,
-                edad: mascota.edad,
-                requisitos: mascota.requisitos,
-                fechaDePublicacion: mascota.fechaDePublicacion,
-                sexo: mascota.sexo,
-                infoAdicional: mascota.infoAdicional,
-                imgUrl: res[0].foto
-              }
-              this.listaMascotas.push(pet)
+        resLista => {
+          for (let mascota of resLista) {
+            this.servicioFotos.obtenerListaFotoMascotaPorMascota(mascota.idMascota).subscribe(
+              resMascota => {
+                this.servicioUsuario.obtenerUsuariosPorId(mascota.cuidador).subscribe(
+                  resUsuario => {
+                var pet = {
+                  idMascota: mascota.idMascota,
+                  nombre: mascota.nombre,
+                  cuidador: mascota.cuidador,
+                  especie: mascota.especie,
+                  raza: mascota.raza,
+                  edad: mascota.edad,
+                  requisitos: mascota.requisitos,
+                  fechaDePublicacion: mascota.fechaDePublicacion,
+                  sexo: mascota.sexo,
+                  infoAdicional: mascota.infoAdicional,
+                  imgUrl: resMascota[0].foto,
+                  nickCuidador: resUsuario.nickname,
+                  fotoCuidador: resUsuario.fotoPerfilUrl,
+                }
+                this.listaMascotas.push(pet)
+              })
             })
           }
         })
@@ -105,9 +114,9 @@ export class PetExpoComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
-  
-  showLightbox(index,imgUrl) {
-    this.imageObject.push({image: imgUrl})
+
+  showLightbox(index, imgUrl) {
+    this.imageObject.push({ image: imgUrl })
     this.currentIndex = index;
     this.showFlag = true;
   }

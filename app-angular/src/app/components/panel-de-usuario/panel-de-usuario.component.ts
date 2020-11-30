@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Mascota } from 'src/app/interfaces/mascota.model';
@@ -9,7 +9,6 @@ import { PostulacionesService } from 'src/app/services/postulaciones.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
   selector: 'app-panel-de-usuario',
   templateUrl: './panel-de-usuario.component.html',
   styleUrls: ['./panel-de-usuario.component.css']
@@ -58,6 +57,9 @@ export class PanelDeUsuarioComponent implements OnInit {
   emptyPostulacionEntrante: boolean = false;
   emptyMascotasPorCuidador: boolean = false;
   emptyPostulacionPorUsuario: boolean = false;
+  p1: number = 1;
+  p2: number = 1;
+  p3: number = 1;
 
   actualizaMascotaForm: FormGroup;
   actualizaMascotaSubmitted = false;

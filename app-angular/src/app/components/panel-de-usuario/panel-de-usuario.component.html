@@ -7,7 +7,9 @@
             </div>
             <table class="table">
                 <tbody>
-                    <tr *ngFor="let postulacion of PostulacionesEntrantes">
+                    <pagination-controls id="pagination1" (pageChange)="p1 = $event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="my-pagination" autoHide="true"></pagination-controls>
+                    <tr *ngFor="let postulacion of PostulacionesEntrantes | paginate: { id: 'pagination1', itemsPerPage: 5, currentPage: p1 }">
                         <td class="p-2">
                             <mat-card>
                                 <mat-card-header>
@@ -48,6 +50,8 @@
                             </mat-card>
                         </td>
                     </tr>
+                    <pagination-controls id="pagination1" (pageChange)="p1 = $event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="my-pagination" autoHide="true"></pagination-controls>
                 </tbody>
             </table>
         </div>
@@ -59,7 +63,9 @@
             </div>
             <table class="table">
                 <tbody>
-                    <tr *ngFor="let mascota of MascotasPorCuidador;let i = index">
+                    <pagination-controls id="pagination2" (pageChange)="p2 = $event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="my-pagination" autoHide="true"></pagination-controls>
+                    <tr *ngFor="let mascota of MascotasPorCuidador | paginate: { id: 'pagination2', itemsPerPage: 5, currentPage: p2 }">
                         <td class="p-0">
                             <div class="card mb-3" style="max-width: 100%;">
                                 <div class="row no-gutters">
@@ -108,6 +114,8 @@
                             </div>
                         </td>
                     </tr>
+                    <pagination-controls id="pagination2" (pageChange)="p2 = $event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="my-pagination" autoHide="true"></pagination-controls>
                 </tbody>
             </table>
         </div>
@@ -119,7 +127,9 @@
             </div>
             <table class="table">
                 <tbody>
-                    <tr *ngFor="let postulacion of PostulacionesPorUsuario">
+                    <pagination-controls id="pagination3" (pageChange)="p3 = $event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="my-pagination" autoHide="true"></pagination-controls>
+                    <tr *ngFor="let postulacion of PostulacionesPorUsuario | paginate: { id: 'pagination3', itemsPerPage: 5, currentPage: p3 }">
                         <td class="p-2">
                             <mat-card>
                                 <mat-card-header>
@@ -164,6 +174,8 @@
                             </mat-card>
                         </td>
                     </tr>
+                    <pagination-controls id="pagination3" (pageChange)="p3 = $event" previousLabel="Anterior" nextLabel="Siguiente"
+                        class="my-pagination" autoHide="true"></pagination-controls>
                 </tbody>
             </table>
         </div>

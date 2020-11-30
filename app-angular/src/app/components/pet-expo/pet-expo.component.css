@@ -20,10 +20,10 @@ table {
     background-position:center;
     background-repeat:no-repeat;
 }
-.mat-error {
+:host ::ng-deep .mat-error {
     font-size: 13px;
 }
-.mat-form-field-wrapper{
+:host ::ng-deep .mat-form-field-wrapper{
     padding-bottom: 12px;
     margin-top: 0% !important; 
     margin-bottom: 3% !important;
@@ -31,3 +31,14 @@ table {
 p {
 font-size: 16px;
 }
+.avatar {
+    float: right;
+    vertical-align: middle;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+:host ::ng-deep .ngx-pagination{
+    text-align: center;
+   }
+  

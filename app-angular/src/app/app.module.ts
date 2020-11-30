@@ -17,6 +17,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { MaterialFileInputModule } from 'ngx-mat-file-input';
 import { CustomFormsModule } from 'ngx-custom-validators';
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { UsuarioComponent } from './components/usuario/usuario.component';
 
 
 @NgModule({
@@ -27,6 +29,7 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
     PublicarPetComponent,
     PetExpoComponent,
     PanelDeUsuarioComponent,
+    UsuarioComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,6 +45,7 @@ import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
     MaterialFileInputModule,
     CustomFormsModule,
     NgImageFullscreenViewModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

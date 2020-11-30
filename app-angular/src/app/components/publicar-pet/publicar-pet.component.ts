@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, FormGroupDirective, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FotoMascota } from 'src/app/interfaces/foto-mascota.model';
@@ -7,7 +7,6 @@ import { FotosMascotasService } from 'src/app/services/fotos-mascotas.service';
 import { MascotasService } from 'src/app/services/mascotas.service';
 
 @Component({
-  encapsulation: ViewEncapsulation.None,
   selector: 'app-publicar-pet',
   templateUrl: './publicar-pet.component.html',
   styleUrls: ['./publicar-pet.component.css']

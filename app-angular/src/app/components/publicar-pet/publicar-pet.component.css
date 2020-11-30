@@ -1,3 +1,6 @@
+.card{
+    width: 95%;
+}
 .card-img{
     width: 100%; height: 100%;
 }
@@ -22,11 +25,11 @@
     height: 12%;
     font-size: 16px;
 }
-.mat-error {
+:host ::ng-deep .mat-error {
     font-size: 13px;
 }
-.mat-form-field-wrapper{
-    padding-bottom: 12px;
+:host ::ng-deep .mat-form-field-wrapper{
+    padding-bottom: 10px;
     margin-top: 0% !important; 
     margin-bottom: 3% !important;
 }

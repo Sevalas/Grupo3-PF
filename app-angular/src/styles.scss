@@ -13,3 +13,6 @@ body {
   background-repeat: repeat;
   background-size: cover;
 }
+.cdk-overlay-container, .cdk-overlay-pane {
+  z-index: 9999 !important;
+}

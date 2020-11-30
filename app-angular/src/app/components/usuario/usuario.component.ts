@@ -1,79 +1,57 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { UsuarioService } from 'src/app/services/usuario.service';
-import { Usuario } from '../../interfaces/usuario.model';
 import { CustomValidators } from 'ngx-custom-validators';
+import { Usuario } from 'src/app/interfaces/usuario.model';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-usuario',
+  templateUrl: './usuario.component.html',
+  styleUrls: ['./usuario.component.css']
 })
-export class HomeComponent implements OnInit {
-  @ViewChild('modalButton') modalButton: ElementRef;
+export class UsuarioComponent implements OnInit {
 
-  constructor(private router: Router, private formBuilder: FormBuilder, private servicio: UsuarioService) {
-  }
+  constructor(private formBuilder: FormBuilder, private servicio: UsuarioService) { }
+
   ngOnInit(): void {
-    localStorage.clear();
-    function verificadoEdad(control: AbstractControl): { [key: string]: boolean } | null {
-      if ((new Date().valueOf() - control.value.valueOf()) <= 473353890000.01) {
-        return { 'verificadoEdad': true }
-      }
-      return null;
-    }
-    this.loginForm = this.formBuilder.group({
-      usuario: ['', [Validators.required, Validators.minLength(7), Validators.pattern('(?!.*[\\.\\-\\_]{})^[a-zA-Z0-9\\.\\-\\_]{0,16}$')]],
-      contrasena: ['', [Validators.required, Validators.minLength(7), Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{7,15})')]],
-    });
-    this.registerForm = this.formBuilder.group({
-      usuario: ['', [Validators.required, Validators.minLength(7), Validators.pattern('(?!.*[\\.\\-\\_]{})^[a-zA-Z0-9\\.\\-\\_]{0,16}$')]],
-      contrasena: ['', [Validators.required, Validators.minLength(7), Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{7,15})')]],
-      nombre: ['', Validators.required,],
-      apellido: ['', Validators.required],
-      fechaNac: ['', [Validators.required, verificadoEdad]],
-      email: ['', [Validators.required, CustomValidators.email]],
-      region: ['', Validators.required],
-      comuna: ['', Validators.required],
-      fono: ['', [Validators.required, Validators.pattern('^(0?9)[987654321]\\d{7}$')]],
-    });
+    this.setDatosUsuario()
+
   }
 
-  loginPassOnKeydown(event) { this.CredencialesIncorrectas = false }
-  RegistroEmailOnKeydown(event) { this.registroEmail = false }
-  RegistroNicknameOnKeydown(event) { this.registroNick = false }
-  RegistroFonoOnKeydown(event) { this.registroFono = false }
-  resetRegistroForm() { this.registerForm.get('usuario').setValue(''), this.registerForm.get('contrasena').setValue(''), this.registerForm.get('nombre').setValue(''), this.registerForm.get('apellido').setValue(''), this.registerForm.get('fechaNac').setValue(''), this.registerForm.get('email').setValue(''), this.registerForm.get('fono').setValue(''), this.registerForm.get('region').setValue(''), this.registerForm.get('comuna').setValue('');this.registerSubmitted = false;}
-
-
-  loginForm: FormGroup;
-  registerForm: FormGroup;
-  loginSubmitted = false;
-  registerSubmitted = false;
-  hide = true;
-  multiple: boolean = false;
-  loading: boolean = false;
-  loading2: boolean = false;
-  alertCloseRegistro = false;
-
-  noExiste = false;
-  CredencialesIncorrectas = false;
-  registroNick = false;
-  registroEmail = false;
-  registroFono = false;
-  slides = [{ 'image': '../../../assets/imagenes/cat3.jpg' }, { 'image': '../../../assets/imagenes/dog.jpg' }, { 'image': '../../../assets/imagenes/cat.jpg' }, { 'image': '../../../assets/imagenes/dog2.jpg' }, { 'image': '../../../assets/imagenes/cat2.jpg' }];
-
+  actualizaUsuarioForm: FormGroup;
+  actualizaUsuarioSubmitted = false;
+  get fActualizaUsuario() { return this.actualizaUsuarioForm.controls; }
+  checkNick = false;
+  checkEmail = false;
+  checkFono = false;
+  fotoUrl;
   fotoPerfil = fetch('assets/imagenes/perfil.png').then(res => res.blob())
-  regionSeleccionada = null;
+  hide = true;
   cambioDeRegion = null;
   comunaSeleccionada = null;
   listaDeColumnas: String[];
+  actualPass: string;
+  ready = false;
+  loading = false;
 
-  usuarioDeValidacion: string;
+  RegistroEmailOnKeydown(event) { this.checkEmail = false }
+  RegistroNicknameOnKeydown(event) { this.checkNick = false }
+  RegistroFonoOnKeydown(event) { this.checkFono = false }
 
-  get fLogin() { return this.loginForm.controls; }
-  get fRegister() { return this.registerForm.controls; }
+  verificadoEdad(control: AbstractControl): { [key: string]: boolean } | null {
+    if ((new Date().valueOf() - control.value.valueOf()) <= 473353890000.01) {
+      return { 'verificadoEdad': true }
+    }
+    return null;
+  }
+
+  actualizaUsuarioOnSubmit() {
+    this.actualizaUsuarioSubmitted = true;
+    if (this.actualizaUsuarioForm.invalid) {
+      return;
+    }
+    this.actualizarUsuario()
+  }
 
   uploadDocument(event: any) {
     if (event.target.files && event.target.files[0]) {
@@ -85,25 +63,52 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  async registerOnSubmit() {
-    this.registerSubmitted = true;
-    if (this.registerForm.invalid) {
-      return;
+  setDatosUsuario() {
+    this.loading=true;
+    this.servicio.obtenerUsuariosPorId(parseInt(localStorage.getItem("idUsuario"))).subscribe(
+      res => {
+        var fecha = new Date(res.fechaNacimiento);
+        fecha.setDate(fecha.getDate() + 1)
+        this.actualizaUsuarioForm = this.formBuilder.group({
+          usuario: [res.nickname, [Validators.required, Validators.minLength(7), Validators.pattern('(?!.*[\\.\\-\\_]{})^[a-zA-Z0-9\\.\\-\\_]{0,16}$')]],
+          contrasenaActual: ['', [Validators.required, Validators.minLength(7), Validators.pattern(res.password)]],
+          contrasenaNueva: ['', [Validators.required, Validators.minLength(7), Validators.pattern('((?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[\\W]).{7,15})')]],
+          nombre: [res.nombres, Validators.required,],
+          apellido: [res.apellidos, Validators.required],
+          fechaNac: [fecha, [Validators.required, this.verificadoEdad]],
+          email: [res.email, [Validators.required, CustomValidators.email]],
+          region: [res.region, Validators.required],
+          comuna: [res.comuna, Validators.required],
+          fono: [res.fono, [Validators.required, Validators.pattern('^(0?9)[987654321]\\d{7}$')]],
+          img: ['', []]
+        },
+          { updateOn: 'blur' });
+        this.fotoUrl = res.fotoPerfilUrl
+        this.listaDeColumnas = this.regionesYcomunas.find(x => x.NombreRegion == this.actualizaUsuarioForm.get('region').value).comunas
+        this.ready = true;
+        this.loading=false;
+      })
+  }
+
+  async actualizarUsuario() {
+    var fotoUrl = '';
+    if (!this.actualizaUsuarioForm.get('img').value) {
+      fotoUrl = this.fotoUrl;
     }
     this.loading = true;
-    var fechaNac: Date = this.registerForm.get('fechaNac').value
+    var fechaNac: Date = this.actualizaUsuarioForm.get('fechaNac').value
     var usuario: Usuario = {
       idUsuario: 0,
-      nickname: this.registerForm.get('usuario').value,
-      password: this.registerForm.get('contrasena').value,
-      nombres: this.registerForm.get('nombre').value,
-      apellidos: this.registerForm.get('apellido').value,
+      nickname: this.actualizaUsuarioForm.get('usuario').value,
+      password: this.actualizaUsuarioForm.get('contrasenaNueva').value,
+      nombres: this.actualizaUsuarioForm.get('nombre').value,
+      apellidos: this.actualizaUsuarioForm.get('apellido').value,
       fechaNacimiento: `${fechaNac.getFullYear()}-${fechaNac.getMonth() + 1}-${fechaNac.getDate()}`,
-      email: this.registerForm.get('email').value,
-      fono: this.registerForm.get('fono').value,
-      region: this.registerForm.get('region').value,
-      comuna: this.registerForm.get('comuna').value,
-      fotoPerfilUrl: undefined
+      email: this.actualizaUsuarioForm.get('email').value,
+      fono: this.actualizaUsuarioForm.get('fono').value,
+      region: this.actualizaUsuarioForm.get('region').value,
+      comuna: this.actualizaUsuarioForm.get('comuna').value,
+      fotoPerfilUrl: fotoUrl
     }
     const formData = new FormData();
     for (var key in usuario) {
@@ -111,83 +116,43 @@ export class HomeComponent implements OnInit {
         key, usuario[key]
       )
     }
-
     formData.append(
-      'image', await this.fotoPerfil)
+      'imagen', await this.fotoPerfil)
 
-    this.servicio.agregarUsuario(formData).subscribe(
+    this.servicio.actualizarUsuario(parseInt(localStorage.getItem("idUsuario")), formData).subscribe(
       res => {
         if (res) {
           this.loading = false;
         }
         if (res === 'Este Nickname ya existe') {
-          this.registroEmail = false;
-          this.registroFono = false;
-          this.registroNick = true;
+          this.checkEmail = false;
+          this.checkFono = false;
+          this.checkNick = true;
         }
         if (res === 'Este Correo ya existe') {
-          this.registroNick = false;
-          this.registroFono = false;
-          this.registroEmail = true;
+          this.checkNick = false;
+          this.checkFono = false;
+          this.checkEmail = true;
         }
         if (res === 'Este Fono ya existe') {
-          this.registroEmail = false;
-          this.registroNick = false;
-          this.registroFono = true;
+          this.checkEmail = false;
+          this.checkNick = false;
+          this.checkFono = true;
         }
         if (res === 'Correo Enviado') {
-          this.modalButton.nativeElement.click();
-          this.alertCloseRegistro = true;
-          this.resetRegistroForm()
+          window.location.reload()
         }
-      }, err => {
-        if (err) {
-          this.loading = false;
-        }
-      })
-  }
-
-
-  Login() {
-    this.loading2 = true;
-    this.servicio.loginCredenciales(this.loginForm.get('usuario').value, this.loginForm.get('contrasena').value).subscribe(respuesta => {
-      this.loading2 = false;
-      if (respuesta === null) {
-        this.noExiste = true;
-        this.CredencialesIncorrectas = false;
-        this.usuarioDeValidacion = this.loginForm.get('usuario').value
       }
-      if (respuesta === false) {
-        this.CredencialesIncorrectas = true;
-        this.noExiste = false
-      }
-      if (respuesta === true) {
-        this.noExiste = false
-        this.CredencialesIncorrectas = false;
-        this.servicio.obtenerUsuariosPorNickname(this.loginForm.get('usuario').value).subscribe(respuesta => {
-          localStorage.setItem("idUsuario", JSON.stringify(respuesta.idUsuario))
-          this.router.navigate(['/tablero']);
-        })
-      }
-    })
+    )
   }
-
-  loginOnSubmit() {
-    this.loginSubmitted = true;
-    if (this.loginForm.invalid) {
-      return;
-    }
-    this.Login()
-  }
-
 
   filtroComuna() {
-    if (this.cambioDeRegion != this.regionSeleccionada) {
-      this.listaDeColumnas = this.regionesYcomunas.find(x => x.NombreRegion == this.regionSeleccionada).comunas
-      this.comunaSeleccionada = null;
+    if (this.cambioDeRegion != this.actualizaUsuarioForm.get('region').value) {
+      this.listaDeColumnas = this.regionesYcomunas.find(x => x.NombreRegion == this.actualizaUsuarioForm.get('region').value).comunas
+      this.actualizaUsuarioForm.get('comuna').setValue(null)
     }
     else {
-      this.cambioDeRegion = this.regionSeleccionada
+      this.cambioDeRegion = this.actualizaUsuarioForm.get('region').value
     }
   }
 
@@ -254,5 +219,4 @@ export class HomeComponent implements OnInit {
         "comunas": ["Cerrillos", "Cerro Navia", "Conchalí", "El Bosque", "Estación Central", "Huechuraba", "Independencia", "La Cisterna", "La Florida", "La Granja", "La Pintana", "La Reina", "Las Condes", "Lo Barnechea", "Lo Espejo", "Lo Prado", "Macul", "Maipú", "Ñuñoa", "Pedro Aguirre Cerda", "Peñalolén", "Providencia", "Pudahuel", "Quilicura", "Quinta Normal", "Recoleta", "Renca", "San Joaquín", "San Miguel", "San Ramón", "Vitacura", "Puente Alto", "Pirque", "San José de Maipo", "Colina", "Lampa", "TilVl", "San Bernardo", "Buin", "Calera de Tango", "Paine", "Melipilla", "Alhué", "Curacaví", "María Pinto", "San Pedro", "Talagante", "El Monte", "Isla de Maipo", "Padre Hurtado", "Peñaflor"]
       }
     ]
-
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +9,21 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(private router: Router) {}
-  ngOnInit(): void { }
+  constructor(private router: Router, private usuarioService: UsuarioService) { }
+  ngOnInit(): void {
+    this.getUsuarioFoto()
+  }
 
-  cerrarSesion(){
+  fotoUsuario: String;
+
+  getUsuarioFoto() {
+    this.usuarioService.obtenerFotoUsuario(parseInt(localStorage.getItem("idUsuario"))).subscribe(
+      res => {
+        this.fotoUsuario = res
+      })
+  }
+
+  cerrarSesion() {
     localStorage.clear();
     this.router.navigate(['/']);
   }

@@ -4,7 +4,8 @@
         <button mat-raised-button id='NAV1' class="mx-1" routerLink="/registro_mascotas">REGISTRAR MASCOTA</button>
         <button mat-raised-button id='NAV1' class="mx-1" routerLink="/panelUsuario">PANEL DE USUARIO</button>
     <span class="example-spacer"></span>
+    <button mat-fab class="avatarButton" style="background-image: url({{fotoUsuario}});" routerLink="/usuario"></button>
     <div >
-        <button mat-raised-button color="warn" class="mx-1" (click)="cerrarSesion()">CERRAR SESION</button>
+        <button mat-raised-button color="warn" class="mx-1 ml-3" (click)="cerrarSesion()">CERRAR SESION</button>
     </div>
 </mat-toolbar>

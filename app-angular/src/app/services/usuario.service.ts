@@ -28,8 +28,16 @@ export class UsuarioService {
   obtenerUsuariosPorNickname(usuario:String): Observable<Usuario>{
     return this.http.get<Usuario>(`${this.apiURL}/nickname=${usuario}`)
   }
+
   obtenerUsuariosPorId(id:number): Observable<Usuario>{
     return this.http.get<Usuario>(`${this.apiURL}/id=${id}`)
+  }
+
+  obtenerFotoUsuario(id:number): Observable<String> {
+    return this.http.get(`${this.apiURL}/foto=${id}`,{ responseType: 'text',})
+  }
+  actualizarUsuario(id:number,Data:FormData): Observable<string>{
+    return this.http.put(`${this.apiURL}/actualizar=${id}`,Data,{ responseType: 'text',})
   }
 }
 
