@@ -4,7 +4,7 @@
     color: white;
     background-color: #218838;
 }
-.click{
+.fontVerde{
     color: #218838;
 }
 .carousel .item {
@@ -24,11 +24,12 @@
     color:rgb(235, 140, 52);
     font-size: 14px;
 }
-:host ::ng-deep .mat-form-field-wrapper{
+ .mat-form-field-wrapper{
     padding-bottom: 13px;
     margin-top: 0% !important; 
     margin-bottom: 3% !important;
 }
+
 .segundaRow {
     width: 49%;
 }

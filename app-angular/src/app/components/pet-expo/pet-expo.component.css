@@ -50,3 +50,7 @@ font-size: 16px;
 :host ::ng-deep .mat-expansion-panel-body{
     padding: 0;
 }
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #12ad34;
+    border-radius: 50%;
+}
