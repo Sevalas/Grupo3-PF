@@ -45,6 +45,17 @@ export class PetExpoComponent implements OnInit {
   showFlag: boolean = false;
   loading: boolean = false;
   p: number = 1;
+  mascotaFiltro: any = {especie: '',raza: '',edad: '', sexo: ''}
+  order: string;
+  reverse: boolean = false;
+
+  setOrder(value: string) {
+    if (this.order === value) {
+      this.reverse = !this.reverse;
+    }
+
+    this.order = value;
+  }
 
   conectarMascotas() {
     if (localStorage.length !== 0) {

@@ -20,6 +20,7 @@ import {MatCarouselModule} from '@ngmodule/material-carousel';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatTabsModule} from '@angular/material/tabs';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [],
@@ -47,6 +48,7 @@ import {MatTabsModule} from '@angular/material/tabs';
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatTabsModule,
+    MatExpansionModule
   ]
 })
 export class AppMaterialModule { }

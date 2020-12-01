@@ -19,7 +19,8 @@ import { CustomFormsModule } from 'ngx-custom-validators';
 import { NgImageFullscreenViewModule } from 'ng-image-fullscreen-view';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { UsuarioComponent } from './components/usuario/usuario.component';
-
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { OrderModule } from 'ngx-order-pipe';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,9 @@ import { UsuarioComponent } from './components/usuario/usuario.component';
     MaterialFileInputModule,
     CustomFormsModule,
     NgImageFullscreenViewModule,
-    NgxPaginationModule
+    NgxPaginationModule,
+    FilterPipeModule,
+    OrderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
