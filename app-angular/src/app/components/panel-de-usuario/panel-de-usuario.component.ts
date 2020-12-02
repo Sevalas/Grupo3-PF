@@ -78,6 +78,35 @@ export class PanelDeUsuarioComponent implements OnInit {
   idPostulacion = 0;
   nombreMascota2 = "";
   idMascota2 = 0;
+  mascotaFiltro: any = {especie: '',raza: '',edad: '', sexo: ''}
+  orderMascota: string;
+  reverseMascota: boolean = false;
+  postulacionFiltroE: any = {nombreMascota: '',nickUsuario: ''}
+  orderPostulacionE: string;
+  reversePostulacionE: boolean = false;
+  postulacionFiltroR: any = {nombreMascota: '',estado: ''}
+  orderPostulacionR: string;
+  reversePostulacionR: boolean = false;
+
+  setOrderMascota(value: string) {
+    if (this.orderMascota === value) {
+      this.reverseMascota = !this.reverseMascota;
+    }
+    this.orderMascota = value;
+  }
+  setOrderPostulacionE(value: string) {
+    if (this.orderPostulacionE === value) {
+      this.reversePostulacionE = !this.reversePostulacionE;
+    }
+    this.orderPostulacionE = value;
+  }
+  setOrderPostulacionR(value: string) {
+    if (this.orderPostulacionR === value) {
+      this.reversePostulacionR = !this.reversePostulacionR;
+    }
+    this.orderPostulacionR = value;
+  }
+
   setDatosPostulacion(idPostulacion: number, nombre:string, idMascota: number) { this.actualizaPostulacionForm.reset(); this.formDirective.resetForm(); this.fotoRef = fetch('assets/imagenes/FotoRef.jpg').then(res => res.blob()); this.idPostulacion = idPostulacion; this.nombreMascota2 = nombre; this.idMascota2 = idMascota }
 
   actualizaMascotaOnSubmit() {
@@ -95,8 +124,6 @@ export class PanelDeUsuarioComponent implements OnInit {
     }
     this.actualizarPostulacion()
   }
-
-  closeModal() { this.aceptada = false, this.rechazada = false }
 
   actualizarEstado(id: number, estado: boolean, idPostulante: number) {
     this.loading = true;
@@ -128,7 +155,7 @@ export class PanelDeUsuarioComponent implements OnInit {
       raza: this.actualizaMascotaForm.get('raza').value,
       edad: this.actualizaMascotaForm.get('edad').value,
       requisitos: this.actualizaMascotaForm.get('requisitos').value,
-      fechaDePublicacion: `${this.fechaActual.getFullYear()}-${this.fechaActual.getMonth() + 1}-${this.fechaActual.getDate()}`,
+      fechaDePublicacion: this.fechaActual.toISOString().split('T')[0],
       sexo: this.actualizaMascotaForm.get('sexo').value,
       infoAdicional: this.actualizaMascotaForm.get('infoAdicional').value
     }
@@ -314,5 +341,7 @@ export class PanelDeUsuarioComponent implements OnInit {
       reader.readAsDataURL(event.target.files[0]);
     }
   }
+
+  closeModal() { this.aceptada = false, this.rechazada = false }
 
 }

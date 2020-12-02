@@ -26,6 +26,7 @@
     "@ngmodule/material-carousel": "^0.6.0",
     "bootstrap": "^4.5.0",
     "jquery": "^3.5.1",
+    "material-icons": "^0.3.1",
     "ng-image-fullscreen-view": "^2.0.0",
     "ngx-custom-validators": "^10.0.0",
     "ngx-filter-pipe": "^2.1.2",

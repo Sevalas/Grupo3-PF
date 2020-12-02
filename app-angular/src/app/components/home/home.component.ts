@@ -98,7 +98,7 @@ export class HomeComponent implements OnInit {
       password: this.registerForm.get('contrasena').value,
       nombres: this.registerForm.get('nombre').value,
       apellidos: this.registerForm.get('apellido').value,
-      fechaNacimiento: `${fechaNac.getFullYear()}-${fechaNac.getMonth() + 1}-${fechaNac.getDate()}`,
+      fechaNacimiento: fechaNac.toISOString().split('T')[0],
       email: this.registerForm.get('email').value,
       fono: this.registerForm.get('fono').value,
       region: this.registerForm.get('region').value,

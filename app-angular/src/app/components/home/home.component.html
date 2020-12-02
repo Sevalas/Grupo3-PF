@@ -12,7 +12,7 @@
                 <div class="col text-center login">
                     <div style="height: 38px;"><mat-spinner class="mx-auto" *ngIf="loading2" diameter="40"></mat-spinner></div>
                     <br>
-                    <p style="font-size: 40px;" class="fontVerde">PetAdopt <mat-icon>pets</mat-icon>
+                    <p style="font-size: 40px;" class="fontVerde">PetAdopt <span class="material-icons">pets</span>
                     </p>
                     <p class="mt-5" style="font-size: 20px;">Ingrese a PetAdopt</p>
                     <br>
@@ -79,9 +79,7 @@
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <p class="modal-title" id="exampleModalLongTitle">Registrate a <strong class="fontVerde">PetAdopt</strong>
-                    <mat-icon class="fontVerde">pets</mat-icon>
-                </p>
+                <p class="modal-title" id="exampleModalLongTitle">Registrate a <strong class="fontVerde">PetAdopt <span class="material-icons">pets</span></strong></p>
                 <div style="width: 65%;"></div>
                 <mat-spinner *ngIf="loading" diameter="40"></mat-spinner>
                 <button type="reset" #modalButton class="close" data-dismiss="modal" aria-label="Close" (click)="registroNick=false;registroEmail=false;registroFono=false;resetRegistroForm()">

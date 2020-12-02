@@ -107,7 +107,7 @@ export class UsuarioComponent implements OnInit {
       password: this.actualizaUsuarioForm.get('contrasenaNueva').value,
       nombres: this.actualizaUsuarioForm.get('nombre').value,
       apellidos: this.actualizaUsuarioForm.get('apellido').value,
-      fechaNacimiento: `${fechaNac.getFullYear()}-${fechaNac.getMonth() + 1}-${fechaNac.getDate()}`,
+      fechaNacimiento: fechaNac.toISOString().split('T')[0],
       email: this.actualizaUsuarioForm.get('email').value,
       fono: this.actualizaUsuarioForm.get('fono').value,
       region: this.actualizaUsuarioForm.get('region').value,

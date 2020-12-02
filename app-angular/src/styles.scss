@@ -1,5 +1,6 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~@angular/material/theming';
+@import '../node_modules/material-icons/iconfont/material-icons.scss';
 $custom-typography: mat-typography-config($font-family: '"Grandstander", sans-serif;');
 @include mat-core($custom-typography);
 

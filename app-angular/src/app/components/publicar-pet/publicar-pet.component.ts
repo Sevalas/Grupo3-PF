@@ -66,7 +66,7 @@ export class PublicarPetComponent implements OnInit {
       raza: this.publicaForm.get('raza').value,
       edad: this.publicaForm.get('edad').value,
       requisitos: this.publicaForm.get('requisitos').value,
-      fechaDePublicacion: `${this.fechaActual.getFullYear()}-${this.fechaActual.getMonth() + 1}-${this.fechaActual.getDate()}`,
+      fechaDePublicacion: this.fechaActual.toISOString().split('T')[0],
       sexo:this.publicaForm.get('sexo').value,
       infoAdicional:this.publicaForm.get('infoAdicional').value
     }

@@ -7,9 +7,61 @@
             </div>
             <table class="table">
                 <tbody>
-                    <pagination-controls id="pagination1" (pageChange)="p1 = $event" previousLabel="Anterior" nextLabel="Siguiente"
-                        class="my-pagination" autoHide="true"></pagination-controls>
-                    <tr *ngFor="let postulacion of PostulacionesEntrantes | paginate: { id: 'pagination1', itemsPerPage: 5, currentPage: p1 }">
+                    <pagination-controls id="pagination1" (pageChange)="p1 = $event" previousLabel="Anterior"
+                        nextLabel="Siguiente" class="my-pagination"></pagination-controls>
+                    <mat-accordion>
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header style="height: auto;">
+                                <mat-panel-title>
+                                    <p class="mx-auto my-1">Filtrar y ordenar Lista</p>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <table class="w-100" cellspacing="0" border="0">
+                                <tr id="filtro">
+                                    <td>
+                                        <mat-form-field class="mr-4" appearance="outline">
+                                            <mat-label>Nombre Mascota</mat-label>
+                                            <input matInput type="text" [(ngModel)]="postulacionFiltroE.nombreMascota">
+                                            <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                                                (click)="postulacionFiltroE.nombreMascota=''">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="mr-4" appearance="outline">
+                                            <mat-label>Nombre Usuario</mat-label>
+                                            <input matInput type="text" [(ngModel)]="postulacionFiltroE.nickUsuario">
+                                            <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                                                (click)="postulacionFiltroE.nickUsuario=''">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </td>
+                                    <td style="width: 350px;">
+                                        <div>
+                                            <mat-radio-button [class.active]="orderPostulacionE === 'nombreMascota'"
+                                                (click)="setOrderPostulacionE('nombreMascota')">Ordenar por Nombre De
+                                                Mascota <span *ngIf="orderPostulacionE === 'nombreMascota'"><span
+                                                        [hidden]="reversePostulacionE">Desc
+                                                        ▼</span><span [hidden]="!reversePostulacionE">Asc
+                                                        ▲</span></span>
+                                            </mat-radio-button>
+                                            <mat-radio-button [class.active]="orderPostulacionE === 'nickUsuario'"
+                                                (click)="setOrderPostulacionE('nickUsuario')"> Ordenar por Nombre de
+                                                Usuario <span *ngIf="orderPostulacionE === 'nickUsuario'"><span
+                                                        [hidden]="reversePostulacionE">Desc
+                                                        ▼</span><span [hidden]="!reversePostulacionE">Asc
+                                                        ▲</span></span>
+                                            </mat-radio-button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <tr
+                        *ngFor="let postulacion of PostulacionesEntrantes | filterBy: postulacionFiltroE | orderBy: orderPostulacionE:reversePostulacionE:'case-insensitive' | paginate: { id: 'pagination2', itemsPerPage: 5, currentPage: p2 } | paginate: { id: 'pagination1', itemsPerPage: 5, currentPage: p1 }">
                         <td class="p-2">
                             <mat-card>
                                 <mat-card-header>
@@ -50,8 +102,8 @@
                             </mat-card>
                         </td>
                     </tr>
-                    <pagination-controls id="pagination1" (pageChange)="p1 = $event" previousLabel="Anterior" nextLabel="Siguiente"
-                        class="my-pagination" autoHide="true"></pagination-controls>
+                    <pagination-controls id="pagination1" (pageChange)="p1 = $event" previousLabel="Anterior"
+                        nextLabel="Siguiente" class="my-pagination"></pagination-controls>
                 </tbody>
             </table>
         </div>
@@ -63,9 +115,79 @@
             </div>
             <table class="table">
                 <tbody>
-                    <pagination-controls id="pagination2" (pageChange)="p2 = $event" previousLabel="Anterior" nextLabel="Siguiente"
-                        class="my-pagination" autoHide="true"></pagination-controls>
-                    <tr *ngFor="let mascota of MascotasPorCuidador | paginate: { id: 'pagination2', itemsPerPage: 5, currentPage: p2 }">
+                    <pagination-controls id="pagination2" (pageChange)="p2 = $event" previousLabel="Anterior"
+                        nextLabel="Siguiente" class="my-pagination"></pagination-controls>
+                    <mat-accordion>
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header style="height: auto;">
+                                <mat-panel-title>
+                                    <p class="mx-auto my-1">Filtrar y ordenar Lista</p>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <table class="w-100" cellspacing="0" border="0">
+                                <tr id="filtro">
+                                    <td>
+                                        <mat-form-field class="mr-4" appearance="outline">
+                                            <mat-label>Especie</mat-label>
+                                            <input matInput type="text" [(ngModel)]="mascotaFiltro.especie">
+                                            <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                                                (click)="mascotaFiltro.especie=''">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field class="mr-4" appearance="outline">
+                                            <mat-label>Raza</mat-label>
+                                            <input matInput type="text" [(ngModel)]="mascotaFiltro.raza">
+                                            <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                                                (click)="mascotaFiltro.raza=''">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Sexo</mat-label>
+                                            <input matInput type="text" [(ngModel)]="mascotaFiltro.sexo">
+                                            <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                                                (click)="mascotaFiltro.sexo=''">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </td>
+                                    <td style="width: 250px;">
+                                        <div>
+                                            <mat-radio-button [class.active]="orderMascota === 'fechaDePublicacion'"
+                                                (click)="setOrderMascota('fechaDePublicacion')">Ordenar por Fecha <span
+                                                    *ngIf="orderMascota === 'fechaDePublicacion'"><span
+                                                        [hidden]="!reverseMascota">Desc
+                                                        ▼</span><span [hidden]="reverseMascota">Asc ▲</span></span>
+                                            </mat-radio-button>
+                                            <mat-radio-button [class.active]="orderMascota === 'nombre'"
+                                                (click)="setOrderMascota('nombre')">
+                                                Ordenar
+                                                por
+                                                Nombre <span *ngIf="orderMascota === 'nombre'"><span
+                                                        [hidden]="reverseMascota">Desc
+                                                        ▼</span><span [hidden]="!reverseMascota">Asc ▲</span></span>
+                                            </mat-radio-button>
+                                            <mat-radio-button [class.active]="orderMascota === 'edad'"
+                                                (click)="setOrderMascota('edad')">
+                                                Ordenar
+                                                por
+                                                Edad
+                                                <span *ngIf="orderMascota === 'edad'"><span
+                                                        [hidden]="!reverseMascota">Desc ▼</span><span
+                                                        [hidden]="reverseMascota">Asc ▲</span></span></mat-radio-button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <tr
+                        *ngFor="let mascota of MascotasPorCuidador | filterBy: mascotaFiltro | orderBy: orderMascota:reverseMascota:'case-insensitive' | paginate: { id: 'pagination2', itemsPerPage: 5, currentPage: p2 }">
                         <td class="p-0">
                             <div class="card mb-3" style="max-width: 100%;">
                                 <div class="row no-gutters">
@@ -114,8 +236,8 @@
                             </div>
                         </td>
                     </tr>
-                    <pagination-controls id="pagination2" (pageChange)="p2 = $event" previousLabel="Anterior" nextLabel="Siguiente"
-                        class="my-pagination" autoHide="true"></pagination-controls>
+                    <pagination-controls id="pagination2" (pageChange)="p2 = $event" previousLabel="Anterior"
+                        nextLabel="Siguiente" class="my-pagination"></pagination-controls>
                 </tbody>
             </table>
         </div>
@@ -127,9 +249,61 @@
             </div>
             <table class="table">
                 <tbody>
-                    <pagination-controls id="pagination3" (pageChange)="p3 = $event" previousLabel="Anterior" nextLabel="Siguiente"
-                        class="my-pagination" autoHide="true"></pagination-controls>
-                    <tr *ngFor="let postulacion of PostulacionesPorUsuario | paginate: { id: 'pagination3', itemsPerPage: 5, currentPage: p3 }">
+                    <pagination-controls id="pagination3" (pageChange)="p3 = $event" previousLabel="Anterior"
+                        nextLabel="Siguiente" class="my-pagination"></pagination-controls>
+                    <mat-accordion>
+                        <mat-expansion-panel hideToggle>
+                            <mat-expansion-panel-header style="height: auto;">
+                                <mat-panel-title>
+                                    <p class="mx-auto my-1">Filtrar y ordenar Lista</p>
+                                </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <table class="w-100" cellspacing="0" border="0">
+                                <tr id="filtro">
+                                    <td>
+                                        <mat-form-field class="mr-4" appearance="outline">
+                                            <mat-label>Nombre Mascota</mat-label>
+                                            <input matInput type="text" [(ngModel)]="postulacionFiltroR.nombreMascota">
+                                            <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                                                (click)="postulacionFiltroR.nombreMascota=''">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </td>
+                                    <td>
+                                        <mat-form-field appearance="outline">
+                                            <mat-label>Estado</mat-label>
+                                            <input matInput type="text" [(ngModel)]="postulacionFiltroR.estado">
+                                            <button mat-button matSuffix mat-icon-button aria-label="Clear"
+                                                (click)="postulacionFiltroR.estado=''">
+                                                <mat-icon>close</mat-icon>
+                                            </button>
+                                        </mat-form-field>
+                                    </td>
+                                    <td style="width: 350px;">
+                                        <div>
+                                            <mat-radio-button [class.active]="orderPostulacionR === 'nombreMascota'"
+                                                (click)="setOrderPostulacionR('nombreMascota')">Ordenar por Nombre De
+                                                Mascota <span *ngIf="orderPostulacionR === 'nombreMascota'"><span
+                                                        [hidden]="reversePostulacionR">Desc
+                                                        ▼</span><span [hidden]="!reversePostulacionR">Asc
+                                                        ▲</span></span>
+                                            </mat-radio-button>
+                                            <mat-radio-button [class.active]="orderPostulacionR === 'estado'"
+                                                (click)="setOrderPostulacionR('estado')"> Ordenar por Estado <span
+                                                    *ngIf="orderPostulacionR === 'estado'"><span
+                                                        [hidden]="reversePostulacionR">Desc
+                                                        ▼</span><span [hidden]="!reversePostulacionR">Asc
+                                                        ▲</span></span>
+                                            </mat-radio-button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </mat-expansion-panel>
+                    </mat-accordion>
+                    <tr
+                        *ngFor="let postulacion of PostulacionesPorUsuario | filterBy: postulacionFiltroR | orderBy: orderPostulacionR:reversePostulacionR:'case-insensitive' | paginate: { id: 'pagination3', itemsPerPage: 5, currentPage: p3 }">
                         <td class="p-2">
                             <mat-card>
                                 <mat-card-header>
@@ -168,14 +342,15 @@
                                     <button *ngIf="postulacion.estado===null" mat-raised-button color="accent"
                                         editarPostulacionModal data-toggle="modal" data-target="#editarPostulacionModal"
                                         (click)="setDatosPostulacion(postulacion.idPostulaciones,postulacion.nombreMascota,postulacion.mascota)">EDITAR</button>
-                                    <button mat-raised-button color="warn" data-toggle="modal" data-target="#eliminarPostulacionModal"
-                                    (click)="setDatosPostulacion(postulacion.idPostulaciones,postulacion.nombreMascota,postulacion.mascota)">ELIMINAR</button>
+                                    <button mat-raised-button color="warn" data-toggle="modal"
+                                        data-target="#eliminarPostulacionModal"
+                                        (click)="setDatosPostulacion(postulacion.idPostulaciones,postulacion.nombreMascota,postulacion.mascota)">ELIMINAR</button>
                                 </mat-card-actions>
                             </mat-card>
                         </td>
                     </tr>
-                    <pagination-controls id="pagination3" (pageChange)="p3 = $event" previousLabel="Anterior" nextLabel="Siguiente"
-                        class="my-pagination" autoHide="true"></pagination-controls>
+                    <pagination-controls id="pagination3" (pageChange)="p3 = $event" previousLabel="Anterior"
+                        nextLabel="Siguiente" class="my-pagination"></pagination-controls>
                 </tbody>
             </table>
         </div>

@@ -77,4 +77,14 @@ p {
 }
 :host ::ng-deep .ngx-pagination{
     text-align: center;
-   }
+}
+:host ::ng-deep .mat-expansion-panel-body{
+    padding: 0;
+}
+.my-pagination /deep/ .ngx-pagination .current {
+    background: #12ad34;
+    border-radius: 50%;
+}
+#filtro .mat-form-field{
+    width: 100% !important;
+}
